@@ -7,7 +7,9 @@ assignees: ''
 
 ---
 
-## Story Points:
+## Story points:
+
+## User Story:
 
 ## Card:
 As a "user role", I want to "goal" so that "benefit".
