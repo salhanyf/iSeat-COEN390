@@ -7,18 +7,18 @@ assignees: ''
 
 ---
 
-## Story points:
+## Story points: 
 
 ## User Story:
 
-## Card:
+### The Card
 As a "user role", I want to "goal" so that "benefit".
 
-## Conversation:
-Relevant Info
-
-## Confirmation:
+### The Conversation
 Acceptance Test(s)
 
-### Parent Story:
-### Child Stories:
+### The Confirmation
+
+#### Parent Story:
+
+#### Child Stories:
