@@ -21,4 +21,36 @@ public class Sensor {
         this.studyRoomLocation = location;
         this.studyRoomStatus = status;
     }
+
+    public void setStudyRoomID(int studyRoomID) {
+        this.studyRoomID = studyRoomID;
+    }
+
+    public int getStudyRoomID() {
+        return studyRoomID;
+    }
+
+    public void setStudyRoomLocation(String studyRoomLocation) {
+        this.studyRoomLocation = studyRoomLocation;
+    }
+
+    public String getStudyRoomLocation() {
+        return studyRoomLocation;
+    }
+
+    public void setStudyRoomName(String studyRoomName) {
+        this.studyRoomName = studyRoomName;
+    }
+
+    public String getStudyRoomName() {
+        return studyRoomName;
+    }
+
+    public void setStudyRoomStatus(String studyRoomStatus) {
+        this.studyRoomStatus = studyRoomStatus;
+    }
+
+    public String getStudyRoomStatus() {
+        return studyRoomStatus;
+    }
 }
