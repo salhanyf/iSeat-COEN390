@@ -18,11 +18,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Just testing can delete.
         for(int roomNumber = 1; roomNumber <= 10; roomNumber++) {
-                String roomID = "ID: " + roomNumber;
-                String roomLocation = "Room " + roomNumber;
+            for(int floorNumber = 1; floorNumber <= 10; floorNumber++) {
+                String roomID = "ID: " + roomNumber + floorNumber;
+                String roomLocation = "Room " + roomNumber + ", Floor " + 1;
                 String roomStatus = "Available";
                 Sensor sensor = new Sensor(roomNumber, roomID, roomLocation, roomStatus);
                 db.sensorDao().insertAll(sensor);
+            }
             }
         }
     }
