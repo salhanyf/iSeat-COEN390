@@ -22,6 +22,13 @@ public class Sensor {
         this.studyRoomStatus = status;
     }
 
+    public Sensor() {
+        this.studyRoomID = 0;
+        this.studyRoomName = "null";
+        this.studyRoomLocation = "null";
+        this.studyRoomStatus = "null";
+    }
+
     public void setStudyRoomID(int studyRoomID) {
         this.studyRoomID = studyRoomID;
     }
