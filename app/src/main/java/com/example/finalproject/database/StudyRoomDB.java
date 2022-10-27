@@ -15,9 +15,7 @@ public abstract class StudyRoomDB extends RoomDatabase {
     private static volatile StudyRoomDB instance;
     private static final String DB_NAME = "study_room_db";
 
-    protected StudyRoomDB() {
-
-    }
+    protected StudyRoomDB() {}
 
     private static StudyRoomDB create (Context context) {   // Might crash if database too big
         return Room.databaseBuilder(context, StudyRoomDB.class, DB_NAME).allowMainThreadQueries().build();
