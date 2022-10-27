@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
                 String roomLocation = "Room " + roomNumber + ", Floor " + 1;
                 String roomStatus = "Available";
                 Sensor sensor = new Sensor(roomNumber, roomID, roomLocation, roomStatus);
-                db.sensorDao().insertAll(sensor);
+                //db.sensorDao().insertAll(sensor);
             }
             }
         }
