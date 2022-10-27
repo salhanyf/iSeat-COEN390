@@ -9,9 +9,35 @@
     android:scrollbarStyle="outsideInset">
 
     <TextView
+        android:id="@+id/room_seats_textview2"
+        android:layout_width="63dp"
+        android:layout_height="28dp"
+        android:layout_gravity="fill"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="fill"
+        android:text="X/Y"
+        android:textColor="#00C853"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/roomID_textview3"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_gravity="fill"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="fill"
+        android:text="Room ID:"
+        android:textSize="16sp" />
+
+    <TextView
         android:id="@+id/roomLocation_textview"
         android:layout_width="wrap_content"
         android:layout_height="27dp"
+        android:gravity="fill"
         android:text="Room Location: "
         android:textSize="16sp" />
 
@@ -20,27 +46,32 @@
         android:layout_width="match_parent"
         android:layout_height="26dp"
         android:layout_marginLeft="115dp"
+        android:gravity="fill"
         android:text="Hall Building"
         android:textSize="16sp" />
 
     <TextView
         android:id="@+id/roomID_textview2"
-        android:layout_width="match_parent"
+        android:layout_width="76dp"
         android:layout_height="29dp"
+        android:layout_gravity="fill"
         android:layout_marginLeft="115dp"
         android:layout_marginTop="30dp"
+        android:gravity="fill"
         android:text="H-XYZ"
-        android:textColor="#AA00FF"
+        android:textColor="#00BFA5"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/roomID_textview"
+        android:id="@+id/room_seats_textview1"
         android:layout_width="wrap_content"
         android:layout_height="28dp"
-        android:layout_marginStart="45dp"
+        android:layout_gravity="fill"
+        android:layout_marginStart="200dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="15dp"
-        android:text="Room ID:"
+        android:gravity="fill"
+        android:text="Seats Available:"
         android:textSize="16sp" />
 
     <View
