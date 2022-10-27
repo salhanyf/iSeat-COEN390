@@ -11,7 +11,6 @@ import java.util.List;
 
 @Dao
 public interface SensorDao {
-
     @Query("SELECT * FROM study_room_table")    // Select all the rows in table
     List<Sensor> getAll();
 
