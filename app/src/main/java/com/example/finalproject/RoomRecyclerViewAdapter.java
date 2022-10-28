@@ -1,5 +1,6 @@
 package com.example.finalproject;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,12 +9,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.finalproject.database.entity.Sensor;
+import com.example.finalproject.database.entity.RoomEntity;
 
 import java.util.List;
 
 public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RoomRecyclerViewAdapter.ViewHolder> {
-    private List<Sensor> localDataSet;
+    private List<RoomEntity> localDataSet;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -34,7 +35,7 @@ public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RoomRecyclerVi
         }
     }
 
-    public RoomRecyclerViewAdapter(List<Sensor> localDataSet) {
+    public RoomRecyclerViewAdapter(List<RoomEntity> localDataSet) {
         this.localDataSet = localDataSet;
     }
 
@@ -49,6 +50,17 @@ public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RoomRecyclerVi
     public void onBindViewHolder(@NonNull RoomRecyclerViewAdapter.ViewHolder holder, int position) {
         holder.getRoomLocationTextView().setText(localDataSet.get(position).studyRoomLocation);
         holder.getRoomNameTextView().setText(localDataSet.get(position).studyRoomName);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getLayoutPosition();
+
+                Intent intent = new Intent(v.getContext(), RoomInfoActivity.class);
+                intent.putExtra("study_room_table", localDataSet.get(position).studyRoomName);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
     @Override
     public int getItemCount() {

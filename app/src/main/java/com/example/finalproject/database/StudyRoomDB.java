@@ -6,10 +6,10 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.finalproject.database.dao.SensorDao;
-import com.example.finalproject.database.entity.Sensor;
+import com.example.finalproject.database.dao.RoomDao;
+import com.example.finalproject.database.entity.RoomEntity;
 
-@Database(entities = {Sensor.class}, version = 1)
+@Database(entities = {RoomEntity.class}, version = 1)
 public abstract class StudyRoomDB extends RoomDatabase {
 
     private static volatile StudyRoomDB instance;
@@ -28,5 +28,5 @@ public abstract class StudyRoomDB extends RoomDatabase {
         return instance;
     }
 
-    public abstract SensorDao sensorDao();
+    public abstract RoomDao sensorDao();
 }

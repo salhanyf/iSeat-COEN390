@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "study_room_table")
-public class Sensor {
+public class RoomEntity {
     @PrimaryKey(autoGenerate = true)
     public int studyRoomID;
     @ColumnInfo(name = "study_room_name")
@@ -15,14 +15,14 @@ public class Sensor {
     @ColumnInfo(name = "study_room_status")
     public String studyRoomStatus;
 
-    public Sensor(int id, String name, String location, String status) {
+    public RoomEntity(int id, String name, String location, String status) {
         this.studyRoomID = id;
         this.studyRoomName = name;
         this.studyRoomLocation = location;
         this.studyRoomStatus = status;
     }
 
-    public Sensor() {
+    public RoomEntity() {
         this.studyRoomID = 0;
         this.studyRoomName = "null";
         this.studyRoomLocation = "null";
