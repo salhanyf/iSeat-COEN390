@@ -1,20 +1,31 @@
 #include <ESP8266WiFi.h>
-#include <WiFiClient.h>
 #include <ESP8266HTTPClient.h>
 
-const char* SSID = "BELL325";
-const char* PASS = "4217F6E9";
-const char* SERVER = "http://192.168.2.93:8080";
+// SENSOR CONTROLLER BEHAVIOUR:
+//  1. Connect to WiFi
+//  2. Send "HELLO" to Firebase with MAC address (unique)
+//  3. If already registered with room, start sending status updates (open/taken). GOTO: 5.
+//  4. Else not registered, wait for APP to assign it a room. GOTO: 3.
+//  5. Loop:
+//  6.    If seat status changes, send update to Firebase (seat open/taken).
+//  7.    If APP removes sensor from room, stop sending updates. GOTO: 3.
+//  8.    GOTO: 5.
 
-const float VCC = 3.316;
-const float RES = 975000.0;
+// CHANGE THESE VALUES DEPENDING ON YOUR SETUP
+const char* SSID = "BELL325"; // CHANGE SSID TO YOUR NETWORK NAME
+const char* PASS = "4217F6E9";  // CHANGE PASSWORD TO YOUR NETWORK PASSWORD
+const char* SERVER = "http://192.168.2.93:8080";  // CHANGE TO LISTENING SERVER'S IP ADDRESS:PORT
 
-const int ADC_TRESH = 800;
-const bool OPEN = true;
-const bool TAKEN = false;
+const float VCC = 3.316;    // measured Vcc voltage used
+const float RES = 975000.0; // measure Resistor value used
 
+const int ADC_TRESH = 800;  // ADC code below => seat open, ADC code above => seat taken
+const bool OPEN = true;     // seat status open
+const bool TAKEN = false;   // seat status taken
+
+// converts ADC code into corresponding resistance value, force (weight) and print
 void printSensorReadings(int adcCode) {
-  float sensV = adcCode * VCC / 1023.0;
+  float sensV = adcCode * VCC / 1023.0;   // sensor voltage
   float sensR = RES * (VCC / sensV - 1.0);
   float sensG = 1.0 / sensR;
   float force;
@@ -37,48 +48,42 @@ void sendStatusToServer(bool status) {
     http.begin(client, serverName.c_str());
     int responseCode = http.GET();
 
-    if (responseCode > 0) {
-      Serial.println("HTTP Response Code: " + String(responseCode));
-      Serial.println("Message: " + http.getString());
-    }
-    else {
-      Serial.println("Error Code: " + String(responseCode));
-    }
+    if (responseCode > 0) Serial.println("HTTP Response Code: " + String(responseCode) + "\nMessage: " + http.getString());
+    else                  Serial.println("Error Code: " + String(responseCode));
 
     http.end();
 }
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(A0, INPUT);
   Serial.begin(9600);
+  pinMode(A0, INPUT);
+  pinMode(D4, OUTPUT);
 
-  Serial.print("Connecting to wifi");
+  Serial.print("\n\nConnecting to wifi");
   WiFi.begin(SSID, PASS);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
-  Serial.printf(" Connected. IP address: %d\n", WiFi.localIP());
+  String ipAddr = WiFi.localIP().toString();
+  String macAddr = WiFi.macAddress();
+  Serial.printf(" Connected.\nIP: %s\tMAC: %s\n", ipAddr.c_str(), macAddr.c_str());
 }
 
-unsigned long lastTime = 0;
-int adcCode = 0;
 bool status = true, lastStatus = true;
 
 void loop() {
   // put your main code here, to run repeatedly:
   delay(100);
-  unsigned long time = millis();
 
-  if (time - lastTime > 1000) {
-    printSensorReadings(adcCode = analogRead(A0));
-    status = adcCode >= ADC_TRESH ? TAKEN : OPEN;
-    if (status != lastStatus) {
-      sendStatusToServer(status);
-      lastStatus = status;
-    }
-    lastTime = millis();
+  int adcCode = analogRead(A0);
+  printSensorReadings(adcCode);
+
+  status = adcCode < ADC_TRESH ? OPEN : TAKEN;
+  if (status != lastStatus) {
+    sendStatusToServer(status);
+    digitalWrite(D4, status);
+    lastStatus = status;
   }
 }
-
