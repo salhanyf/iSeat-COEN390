@@ -15,7 +15,7 @@ public interface RoomDao {
     List<RoomEntity> getAll();
 
     @Query("SELECT * FROM study_room_table WHERE studyRoomID=:studyRoomID")   // Select a specific row in table
-    RoomEntity findBtId(int studyRoomID);
+    RoomEntity findById(int studyRoomID);
 
     @Insert // Insert a row into table
     void insertAll(RoomEntity... roomEntities);

@@ -14,19 +14,22 @@ public class RoomEntity {
     public String studyRoomLocation;
     @ColumnInfo(name = "study_room_status")
     public String studyRoomStatus;
+    @ColumnInfo(name = "study_room_seats")
+    public String studyRoomSeats;
 
-    public RoomEntity(int id, String name, String location, String status) {
+    public RoomEntity(int id, String name, String location, String status, String seats) {
         this.studyRoomID = id;
         this.studyRoomName = name;
         this.studyRoomLocation = location;
         this.studyRoomStatus = status;
+        this.studyRoomSeats = seats;
     }
-
     public RoomEntity() {
         this.studyRoomID = 0;
         this.studyRoomName = "null";
         this.studyRoomLocation = "null";
         this.studyRoomStatus = "null";
+        this.studyRoomSeats = "null";
     }
 
     public void setStudyRoomID(int studyRoomID) {
@@ -59,5 +62,13 @@ public class RoomEntity {
 
     public String getStudyRoomStatus() {
         return studyRoomStatus;
+    }
+
+    public void setStudyRoomSeats(String studyRoomSeats) {
+        this.studyRoomSeats = studyRoomSeats;
+    }
+
+    public String getStudyRoomSeats() {
+        return studyRoomSeats;
     }
 }

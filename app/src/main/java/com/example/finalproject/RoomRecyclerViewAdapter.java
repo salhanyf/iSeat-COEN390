@@ -20,11 +20,13 @@ public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RoomRecyclerVi
 
         public TextView roomLocationTextView;
         public TextView roomIDTextView;
+        public TextView roomSeatsTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             roomLocationTextView = itemView.findViewById(R.id.roomLocation_textview2);
             roomIDTextView = itemView.findViewById(R.id.roomID_textview2);
+            roomSeatsTextView = itemView.findViewById(R.id.room_seats_textview2);
         }
 
         public TextView getRoomLocationTextView() {
@@ -33,6 +35,7 @@ public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RoomRecyclerVi
         public TextView getRoomNameTextView() {
             return roomIDTextView;
         }
+        public TextView getRoomSeatsTextView() { return roomSeatsTextView; }
     }
 
     public RoomRecyclerViewAdapter(List<RoomEntity> localDataSet) {
@@ -50,6 +53,7 @@ public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RoomRecyclerVi
     public void onBindViewHolder(@NonNull RoomRecyclerViewAdapter.ViewHolder holder, int position) {
         holder.getRoomLocationTextView().setText(localDataSet.get(position).studyRoomLocation);
         holder.getRoomNameTextView().setText(localDataSet.get(position).studyRoomName);
+        holder.getRoomSeatsTextView().setText(localDataSet.get(position).studyRoomSeats);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +61,7 @@ public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RoomRecyclerVi
                 int position = holder.getLayoutPosition();
 
                 Intent intent = new Intent(v.getContext(), RoomInfoActivity.class);
-                intent.putExtra("study_room_table", localDataSet.get(position).studyRoomName);
+                intent.putExtra("room_uid", localDataSet.get(position).studyRoomID);
                 v.getContext().startActivity(intent);
             }
         });

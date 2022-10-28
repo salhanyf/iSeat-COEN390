@@ -22,12 +22,12 @@ public class RoomInfoActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        int uid = intent.getIntExtra("roomNumber", 0);
-        if(uid != 0) {
+        int studyRoomID = intent.getIntExtra("room_uid", 0);
+        if(studyRoomID != 0) {
             StudyRoomDB db = StudyRoomDB.getInstance(this);
-            RoomEntity roomEntity = db.sensorDao().findBtId(uid);
+            RoomEntity roomEntity = db.sensorDao().findById(studyRoomID);
 
-            ROOM_NAME.setText(roomEntity.getStudyRoomID() + " " + roomEntity.getStudyRoomName() + " " + roomEntity.getStudyRoomLocation() + " " + roomEntity.getStudyRoomStatus());
+            ROOM_NAME.setText("Room Number: " +  roomEntity.getStudyRoomID() + "\nRoom ID: " + roomEntity.getStudyRoomName() + "\nRoom Location: " + roomEntity.getStudyRoomLocation() + "\nRoom's Status: " + roomEntity.getStudyRoomStatus() + "\nRoom's Capacity: " + roomEntity.getStudyRoomSeats());
         }
         intent.getStringExtra("roomLocation");
         intent.getStringExtra("roomStatus");

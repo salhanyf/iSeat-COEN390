@@ -25,7 +25,9 @@ public class SeatsActivityUser extends AppCompatActivity {
         String roomName = "Room " + (int) (Math.random() * 100);
         String roomLocation = "John Molson School of Business";
         String roomStatus = "Available";
-        RoomEntity roomEntity = new RoomEntity(0, roomName, roomLocation, roomStatus);
+        int RandomSeats = (int) (Math.random() * 6);
+        String roomSeats = Integer.toString(RandomSeats) + "/6";
+        RoomEntity roomEntity = new RoomEntity(0, roomName, roomLocation, roomStatus, roomSeats);
         studyRoomDB.sensorDao().insertAll(roomEntity);
 
         setupRecyclerView();
