@@ -27,7 +27,7 @@ bool hasRoom = false;
 
 void setup() {
   
-  Serial.begin(9600); // start serial communications
+  Serial.begin(115200); // start serial communications
   delay(2 * SLEEP_DELAY_MS);
 
   // setup GPIOs
