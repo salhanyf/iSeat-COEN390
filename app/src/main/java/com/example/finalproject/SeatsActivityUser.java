@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.example.finalproject.database.StudyRoomDB;
+import com.example.finalproject.database.AppDatabase;
 import com.example.finalproject.database.entity.RoomEntity;
 
 import java.util.List;
@@ -14,13 +14,13 @@ import java.util.List;
 public class SeatsActivityUser extends AppCompatActivity {
     protected RecyclerView RoomRecyclerView;
     protected RoomRecyclerViewAdapter RoomRecyclerViewAdapter;
-    protected StudyRoomDB studyRoomDB;
+    protected AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seats_user);
-        studyRoomDB = StudyRoomDB.getInstance(this);
+        db = AppDatabase.getInstance(this);
 
         String roomName = "Room " + (int) (Math.random() * 100);
         String roomLocation = "John Molson School of Business";
@@ -28,13 +28,13 @@ public class SeatsActivityUser extends AppCompatActivity {
         int RandomSeats = (int) (Math.random() * 6);
         String roomSeats = Integer.toString(RandomSeats) + "/6";
         RoomEntity roomEntity = new RoomEntity(0, roomName, roomLocation, roomStatus, roomSeats);
-        studyRoomDB.sensorDao().insertAll(roomEntity);
+        db.roomDao().insertAll(roomEntity);
 
         setupRecyclerView();
     }
 
     protected void setupRecyclerView() {
-        List<RoomEntity> roomEntityList = studyRoomDB.sensorDao().getAll();
+        List<RoomEntity> roomEntityList = db.roomDao().getAll();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         RoomRecyclerViewAdapter = new RoomRecyclerViewAdapter(roomEntityList);
 
