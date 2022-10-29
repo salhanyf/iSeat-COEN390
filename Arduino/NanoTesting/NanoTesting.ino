@@ -1,74 +1,131 @@
-#include <Firebase_Arduino_WiFiNINA.h>
+#include "lib.h"
 
-// ***** CHANGE FOR YOUR FIREBASE *****
-#define URL     "test-1ee43-default-rtdb.firebaseio.com"  // Firebase Website -> Build -> Realtime Database -> URL
-#define API_KEY "AIzaSyAcNLVUsicx0dKUT__6ojBJ8P8N-HoTrmQ" // Firebase Website -> Project Settings -> Web API Key
+// ***** Change macros SSID and PASS in lib.h for your network. *****
+// ***** Change macros URL and API_KEY in lib.h for your firebase project *****
 
-// ***** CHANGE FOR YOUR NETWORK *****
-#define SSID  "BELL325" 
-#define PASS  "4217F6E9"
+// ***** SEE DEFINES IN lib.h TO SELECT WHICH CODE SEGMENT WILL BE COMPILED: *****
+inline bool sensorState() {
+#ifdef PB_TEST_SENSOR
+  // FOR TESTING WITH PB SWITCH:
+  return digitalRead(PIN);
+#endif
 
-//Define Firebase data object
-FirebaseData fbdo;
-String mac;
+#ifdef FILM_SENSOR
+  // FOR TESTING WITH FILM SENSOR:
+#endif
 
-// ***** CHANGE FUNCTION IMPLEMENTATION (for other sensors) *****
-bool sensorState() {
-  // for testing with PB switch:
-  return !digitalRead(2); // button is default 0, and 1 when pushed
+#ifdef LOAD_CELL
+  // FOR TESTING WITH LOAD CELL:
+  // put sensor data aquisition algorithm here.
+  // bool return value must be TRUE if seat is open, FALSE if seat is taken
+#endif
 }
 
-String getMac() {
-  byte arr[WL_MAC_ADDR_LENGTH];
-  String s = "";
-  WiFi.macAddress(arr);
-  for (int i = WL_MAC_ADDR_LENGTH - 1; i >= 0; i--)
-    s += String(arr[i]) + (i > 0 ? ":" : "");
-  return s;
-}
+FirebaseData fbdo;  // Define Firebase data object
+String mac = "";  // MAC address of device
+bool hasRoom = false;
 
 void setup() {
-  pinMode(2, INPUT);    // when using active-HIGH sensor/switch on D2 pin
-  pinMode(13, OUTPUT);  // on-board LED pin D13
   
-  Serial.begin(115200); // start serial communications
-  delay(500);
+  Serial.begin(9600); // start serial communications
+  delay(2 * SLEEP_DELAY_MS);
+
+  // setup GPIOs
+  Serial.print("Setting up GPIOS... ");
+  setupPins();
+  Serial.println("Done.");
 
   // connect to network
-  Serial.print("\nConnecting to Wifi...");
-  WiFi.begin(SSID, PASS);
-  while (WiFi.status() != WL_CONNECTED) {
-    Serial.print(".");
-    delay(200);
-  }
+  Serial.print("Connecting to Wifi...");
+  setupWifi();
+  Serial.println(" Done.");
   
-  // Print IP when connected
-  Serial.print(" Connected.\nIP: ");
+  // Print IP and MAC
+  Serial.print("IP: ");
   Serial.println(WiFi.localIP());
-
-  // save and print mac address
   mac = getMac();
   Serial.println("MAC: " + mac);
 
-  //Provide the autntication data for firebase
+  //Provide the authentication data for firebase
+  Serial.print("Authenticating Firebase... ");
   Firebase.begin(URL, API_KEY, SSID, PASS);
   Firebase.reconnectWiFi(true);
+  Serial.println("Done.");
+
+  // check if roomID for sensor is initialized in Firebase, else initialize it
+  Serial.print("Checking if roomID entry exists for sensor... ");
+  if (Firebase.getInt(fbdo, "sensors/" + mac + "/roomID")) {
+    Serial.println("Success.\n" + fbdo.dataPath() + " : " + String(fbdo.intData()));  // print success
+    if (fbdo.intData() != 0)
+      hasRoom = true;
+  }
+  else {
+    Serial.println("\nError, " + fbdo.errorReason() + ": " + fbdo.dataPath());  // print error
+    
+    // add roomID=0 entry to sensor if non-existant
+    if (fbdo.errorReason() == "path not exist") {
+      Serial.print("Adding roomID \'0\' to Firebase... ");
+      Firebase.setInt(fbdo, "sensors/" + mac + "/roomID", 0);
+      Serial.println("Done.");
+    }
+    fbdo.clear();
+  }
 }
 
-// seat status
-bool status = true, lastStatus = true;
-
 void loop() {
-  delay(100); // small delay
+  // seat status, last loop status flags
+  static bool status = true, lastStatus = true;
+  static int cnt = 0;  // counter for loops
 
-  status = sensorState();  // get status according to sensor used
+  delay(SLEEP_DELAY_MS); // small delay
 
-  digitalWrite(13, status); // show status on LED (ON: open-status=1, OFF: taken-status=0)
+  // effective counter delay is CHECK_ROOM_CNT * SLEEP_DELAY_MS,
+  // uC will check Firebase if assigned to a Room
+  if (++cnt >= CHECK_ROOM_CNT) {
+    Serial.print("Checking if sensor is assigned to room... ");
+    if (Firebase.getInt(fbdo, "sensors/" + mac + "/roomID")) {
+      // if roomID not zero, update hasRoom
+      if (fbdo.intData() != 0) {
+        Serial.println("roomID: " + String(fbdo.intData()));
+        hasRoom = true;
+      }
+      // else roomID = 0, update hasRoom
+      else {
+        Serial.println("No room.");
+        hasRoom = false;
+      }
+    }
+    else {
+      // error occured during get from Firebase
+      Serial.println("\nError, " + fbdo.errorReason());
+    }
+    fbdo.clear();
+    cnt = 0;
+  }
 
-  // if status changed from last time update Firebase sensor entry
-  if (status != lastStatus) {
-    Firebase.setBool(fbdo, "sensors/" + mac + "/status", status);
-    Serial.println("Status sent to Firebase: " + String(status));
-    lastStatus = status;
+  // if sensor has room assigned to it, send status updates to Firebase
+  if (hasRoom) {
+    Serial.print("Updating status and LED from sensor state... ");
+    status = sensorState();     // get status according to sensor used
+    digitalWrite(LED, status);  // show status on LED (ON: open-status=1, OFF: taken-status=0)
+    Serial.println("Done.");
+
+    // if status changed from last time update Firebase sensor entry
+    if (status != lastStatus) {
+      Firebase.setBool(fbdo, "sensors/" + mac + "/status", status);
+      Serial.println("Status sent to Firebase: " + String(status));
+      fbdo.clear();
+      lastStatus = status;
+    }
+  }
+  // blink LED when sensor has no room
+  else {
+    static int blink = 0;
+    static bool toggle = false;
+
+    if (++blink >= 2) {
+      digitalWrite(LED, toggle ^= true);
+      blink = 0;
+    }
   }
 }
