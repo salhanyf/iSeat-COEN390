@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">iSeat</string>
     <string name="slogan">iSeat, You Seat, We All Find a Seat</string>
+
+    <!--    AddSensorDialogFragment Strings    -->
+    <string name="AddSensor_TextView_SelectedRoom">Please select a sensor for:</string>
+    <string name="AddSensor_TextView_AvailableSensors">Available Sensors</string>
 </resources>
