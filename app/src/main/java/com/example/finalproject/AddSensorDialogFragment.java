@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +64,18 @@ public class AddSensorDialogFragment extends DialogFragment {
             for (DataSnapshot snap : snapshot.getChildren()) {
                 list.add(snap.getKey());
             }
-            listViewAvailableSensors.setAdapter(new ArrayAdapter<>(getContext(), R.layout.listview_sensor, list.toArray(new String[0])));
+
+            listViewAvailableSensors.setAdapter(new ArrayAdapter<String>(getContext(), 0, list) {
+                @NonNull
+                @Override
+                public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                    TextView textView = new TextView(getContext());
+                    textView.setTextColor(getContext().getColor(R.color.black));
+                    textView.setGravity(Gravity.CENTER);
+                    textView.setPadding(10, 10, 10, 10);
+                    return super.getView(position, textView, parent);
+                }
+            });
         }
 
         @Override
