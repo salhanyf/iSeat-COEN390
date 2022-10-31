@@ -19,6 +19,13 @@
             android:textColor="@color/black"
             android:textSize="24sp" />
 
+        <TextView
+            android:id="@+id/textViewNoSensors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/AddSensor_TextView_NoSensors"
+            android:textStyle="italic" />
+
         <ListView
             android:id="@+id/listViewAvailableSensors"
             android:layout_width="fill_parent"
