@@ -24,9 +24,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class AddSensorDialogFragment extends DialogFragment {
     private final String roomKey;
@@ -59,7 +57,6 @@ public class AddSensorDialogFragment extends DialogFragment {
     }
 
     private class GetSensorsValueEventListener implements ValueEventListener {
-
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             list = new ArrayList<>();
