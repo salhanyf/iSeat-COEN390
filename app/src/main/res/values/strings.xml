@@ -5,4 +5,5 @@
     <!--    AddSensorDialogFragment Strings    -->
     <string name="AddSensor_TextView_SelectedRoom">Please select a sensor for:</string>
     <string name="AddSensor_TextView_AvailableSensors">Available Sensors</string>
+    <string name="AddSensor_TextView_NoSensors">* No available sensors *</string>
 </resources>
