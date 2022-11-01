@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
         StudyRoomDB db = StudyRoomDB.getInstance(getApplicationContext());
 
+        /*
         // Just testing can delete.
         for(int roomNumber = 1; roomNumber <= 10; roomNumber++) {
             for(int floorNumber = 1; floorNumber <= 10; floorNumber++) {
@@ -25,6 +26,6 @@ public class MainActivity extends AppCompatActivity {
                 Sensor sensor = new Sensor(roomNumber, roomID, roomLocation, roomStatus);
                 db.sensorDao().insertAll(sensor);
             }
-            }
+            }*/
         }
     }
