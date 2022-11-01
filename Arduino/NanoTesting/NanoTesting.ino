@@ -1,10 +1,13 @@
 #include "lib.h"
+#include <HX711_ADC.h>
+//HX711 constructor:
+HX711_ADC LoadCell(4, 5);
 
 // ***** Change macros SSID and PASS in lib.h for your network. *****
 // ***** Change macros URL and API_KEY in lib.h for your firebase project *****
 
 // ***** SEE DEFINES IN lib.h TO SELECT WHICH CODE SEGMENT WILL BE COMPILED: *****
-inline bool sensorState() {
+inline bool sensorState(bool current) {
 #ifdef PB_TEST_SENSOR
   // FOR TESTING WITH PB SWITCH:
   return digitalRead(PIN);
@@ -18,16 +21,71 @@ inline bool sensorState() {
   // FOR TESTING WITH LOAD CELL:
   // put sensor data aquisition algorithm here.
   // bool return value must be TRUE if seat is open, FALSE if seat is taken
+
+  // Arduino Example 1x load cell with HX711
+  // Variables
+  bool newDataReady = 0;
+
+  // check for new data/start next conversion:
+  if (LoadCell.update())
+    newDataReady = true;
+
+  // get smoothed value from the dataset:
+  if (newDataReady)
+  {
+      float i = LoadCell.getData(); // Contains Raw data of load cell!!!
+
+      // If load cell output is greater than 500, seat is taken else seat is open
+      if (i > 60)
+      {
+        Serial.print("Seat is taken, Current Pressure: ");
+        Serial.println(i);
+        return false;
+      }
+      else
+      {
+        Serial.print("Seat is open, Current Pressure: ");
+        Serial.println(i);
+        return true;
+      }
+  }
+
+  else return current;
 #endif
 }
 
+// Declared Variables
 FirebaseData fbdo;  // Define Firebase data object
 String mac = "";  // MAC address of device
 bool hasRoom = false;
+//pins:
+const int HX711_dout = 4; //mcu > HX711 dout pin
+const int HX711_sck = 5; //mcu > HX711 sck pin
+
+
+void loadCellSetup() {
+  // check if load cell is calibrated, else calibrate it (Added by Shahin 29/10/2022)
+  LoadCell.begin();
+
+  float calibrationValue = 696.0; //calibration value for load cell
+  unsigned long stabilizationTime = 2000; //time in milliseconds to stabilize sensor before reading
+  boolean _tare = true; //set to true to tare before reading
+  
+  LoadCell.start(stabilizationTime, _tare);
+
+  if (LoadCell.getTareStatus()) {
+    Serial.println("Tare complete");
+    while(1);
+  }
+  else{
+    LoadCell.setCalFactor(calibrationValue); //user set calibration value (float)
+    Serial.println("Calibration complete");
+  }
+}
 
 void setup() {
   
-  Serial.begin(115200); // start serial communications
+  Serial.begin(57600); // start serial communications
   delay(2 * SLEEP_DELAY_MS);
 
   // setup GPIOs
@@ -61,7 +119,6 @@ void setup() {
   }
   else {
     Serial.println("\nError, " + fbdo.errorReason() + ": " + fbdo.dataPath());  // print error
-    
     // add roomID=0 entry to sensor if non-existant
     if (fbdo.errorReason() == "path not exist") {
       Serial.print("Adding roomID \'0\' to Firebase... ");
@@ -70,6 +127,9 @@ void setup() {
     }
     fbdo.clear();
   }
+
+  loadCellSetup();
+
 }
 
 void loop() {
@@ -106,8 +166,7 @@ void loop() {
   // if sensor has room assigned to it, send status updates to Firebase
   if (hasRoom) {
     Serial.print("Updating status and LED from sensor state... ");
-    status = sensorState();     // get status according to sensor used
-    digitalWrite(LED, status);  // show status on LED (ON: open-status=1, OFF: taken-status=0)
+    status = sensorState(status);     // get status according to sensor used
     Serial.println("Done.");
 
     // if status changed from last time update Firebase sensor entry
@@ -116,16 +175,6 @@ void loop() {
       Serial.println("Status sent to Firebase: " + String(status));
       fbdo.clear();
       lastStatus = status;
-    }
-  }
-  // blink LED when sensor has no room
-  else {
-    static int blink = 0;
-    static bool toggle = false;
-
-    if (++blink >= 2) {
-      digitalWrite(LED, toggle ^= true);
-      blink = 0;
     }
   }
 }
