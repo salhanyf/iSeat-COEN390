@@ -11,7 +11,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
 //        StudyRoomDB db = StudyRoomDB.getInstance(getApplicationContext());
 
@@ -27,7 +26,5 @@ public class MainActivity extends AppCompatActivity {
                 db.sensorDao().insertAll(sensor);
             }
             }*/
-        }
     }
-
 }
