@@ -58,7 +58,7 @@ public class AddSensorDialogFragment extends DialogFragment {
 
     // setup UI elements
     private void setupUI(View view) {
-        textViewNoSensors = view.findViewById(R.id.textViewNoSensors);
+        textViewNoSensors = view.findViewById(R.id.textViewNoneAvailable);
         textViewSelectedRoom = view.findViewById(R.id.textViewSelectedRoom);
         listViewAvailableSensors = view.findViewById(R.id.listViewAvailableSensors);
     }
@@ -167,7 +167,7 @@ public class AddSensorDialogFragment extends DialogFragment {
                 textViewSelectedRoom.setText(String.format("%s \n%s", getString(R.string.AddSensor_TextView_SelectedRoom), room.toString()));
             } else {
                 // print error if occurs
-                Toast.makeText(getContext(), "Error reading Room for rooms key=" + roomKey, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Error reading rooms for roomKey=" + roomKey, Toast.LENGTH_LONG).show();
             }
         }
     }
