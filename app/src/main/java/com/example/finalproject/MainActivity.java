@@ -1,11 +1,9 @@
 package com.example.finalproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.widget.Button;
 
-import com.example.finalproject.database.StudyRoomDB;
-import com.example.finalproject.database.entity.Sensor;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,8 +11,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
 
-        StudyRoomDB db = StudyRoomDB.getInstance(getApplicationContext());
+//        StudyRoomDB db = StudyRoomDB.getInstance(getApplicationContext());
+
 
         /*
         // Just testing can delete.
@@ -29,3 +29,5 @@ public class MainActivity extends AppCompatActivity {
             }*/
         }
     }
+
+}

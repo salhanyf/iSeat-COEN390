@@ -5,28 +5,31 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "study_room_table")
-public class Sensor {
+public class RoomEntity {
     @PrimaryKey(autoGenerate = true)
-    private int studyRoomID;
+    public int studyRoomID;
     @ColumnInfo(name = "study_room_name")
-    private String studyRoomName;
+    public String studyRoomName;
     @ColumnInfo(name = "study_room_location")
-    private String studyRoomLocation;
+    public String studyRoomLocation;
     @ColumnInfo(name = "study_room_status")
-    private String studyRoomStatus;
+    public String studyRoomStatus;
+    @ColumnInfo(name = "study_room_seats")
+    public String studyRoomSeats;
 
-    public Sensor(int id, String name, String location, String status) {
+    public RoomEntity(int id, String name, String location, String status, String seats) {
         this.studyRoomID = id;
         this.studyRoomName = name;
         this.studyRoomLocation = location;
         this.studyRoomStatus = status;
+        this.studyRoomSeats = seats;
     }
-
-    public Sensor() {
+    public RoomEntity() {
         this.studyRoomID = 0;
         this.studyRoomName = "null";
         this.studyRoomLocation = "null";
         this.studyRoomStatus = "null";
+        this.studyRoomSeats = "null";
     }
 
     public void setStudyRoomID(int studyRoomID) {
@@ -59,5 +62,13 @@ public class Sensor {
 
     public String getStudyRoomStatus() {
         return studyRoomStatus;
+    }
+
+    public void setStudyRoomSeats(String studyRoomSeats) {
+        this.studyRoomSeats = studyRoomSeats;
+    }
+
+    public String getStudyRoomSeats() {
+        return studyRoomSeats;
     }
 }

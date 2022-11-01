@@ -8,13 +8,16 @@
   "client": [
     {
       "client_info": {
+
         "mobilesdk_app_id": "1:603577159939:android:af1e276e9de3e9815f9936",
+
         "android_client_info": {
           "package_name": "com.example.finalproject"
         }
       },
       "oauth_client": [
         {
+
           "client_id": "603577159939-v2l4g3uer8fapkgnjm97v43jrjck10a1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
