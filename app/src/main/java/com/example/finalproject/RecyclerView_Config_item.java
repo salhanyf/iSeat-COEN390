@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.finalproject.models.Room;
@@ -20,6 +21,7 @@ public class RecyclerView_Config_item {
     public void setConfig(RecyclerView recyclerView, Context context, List<Room> rooms, List<String> keys) {
         mContext = context;
         mRoomsAdapter = new RoomsAdapter(rooms, keys);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(mRoomsAdapter);
     }
 

@@ -1,5 +1,7 @@
 package com.example.finalproject;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import com.example.finalproject.models.Room;
 import com.google.firebase.database.DatabaseError;
@@ -41,7 +43,7 @@ public class FirebaseDatabaseHelper {
                     keys.add(keyNode.getKey());
                     Room room = keyNode.getValue(Room.class);
                     rooms.add(room);
-                    System.out.println("Room: " + room.getName() + " " + room.getLocation() + " " + room.getCapacity());
+                    Log.i("Room", room.getName());
                 }
                 dataStatus.DataIsLoaded(rooms,keys);
             }
