@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         button.setLayoutParams(params);
         button.setBackgroundColor(getColor(R.color.purple_700));
         button.setTextColor(getColor(R.color.white));
-        button.setText("  Goto Seats Activity  ");
+        button.setText("  Goto Room List Activity  ");
         button.setOnClickListener(view -> {
             Intent intent = new Intent(this, RoomListActivity.class);
             startActivity(intent);
