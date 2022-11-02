@@ -2,7 +2,6 @@ package com.example.finalproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -26,21 +25,10 @@ public class MainActivity extends AppCompatActivity {
         seatsActivityTestButton();      // goes to seat activity
         addRemoveSensorsTestButtons();  // adds or removes sensor from room 1
 
-        /*
-        // Just testing can delete.
-        for(int roomNumber = 1; roomNumber <= 10; roomNumber++) {
-            for(int floorNumber = 1; floorNumber <= 10; floorNumber++) {
-                String roomID = "ID: " + roomNumber + floorNumber;
-                String roomLocation = "Room " + roomNumber + ", Floor " + 1;
-                String roomStatus = "Available";
-                Sensor sensor = new Sensor(roomNumber, roomID, roomLocation, roomStatus);
-                db.sensorDao().insertAll(sensor);
-            }
-            }*/
     }
 
     private void signOutTestButton() {
-        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
         params.topToTop = R.id.constraintLayoutMainActivity;
         params.endToEnd = R.id.constraintLayoutMainActivity;
         params.topMargin = 25;
