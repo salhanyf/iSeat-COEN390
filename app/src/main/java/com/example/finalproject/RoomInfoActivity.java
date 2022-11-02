@@ -3,13 +3,11 @@ package com.example.finalproject;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+
 import com.example.finalproject.models.Room;
 
 import java.util.List;
-import com.example.finalproject.database.AppDatabase;
 
 public class RoomInfoActivity extends AppCompatActivity {
 
@@ -20,15 +18,15 @@ public class RoomInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_room_info);
+        setContentView(R.layout.activity_seats_user);
 
         // NEW
-        mRecyclerView = (RecyclerView) findViewById(R.id.Sensor_RecyclerViewID);
+        mRecyclerView = (RecyclerView) findViewById(R.id.Room_RecyclerViewID);
 
         new FirebaseDatabaseHelper().readRooms(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Room> rooms, List<String> keys) {
-                new RecyclerView_Config().setConfig(mRecyclerView, SeatsActivityUser.this, rooms, keys);
+                new RecyclerView_Config_item().setConfig(mRecyclerView, RoomInfoActivity.this, rooms, keys);
             }
 
             @Override

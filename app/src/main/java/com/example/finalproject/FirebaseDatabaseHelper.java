@@ -34,13 +34,14 @@ public class FirebaseDatabaseHelper {
     public void readRooms(DataStatus dataStatus) {
         mReferenceRooms.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {  // This is the method that is called when the data is changed (asynchronous)
                 rooms.clear();
                 List<String> keys = new ArrayList<>();
                 for (DataSnapshot keyNode : dataSnapshot.getChildren()) {
                     keys.add(keyNode.getKey());
                     Room room = keyNode.getValue(Room.class);
                     rooms.add(room);
+                    System.out.println("Room: " + room.getName() + " " + room.getLocation() + " " + room.getCapacity());
                 }
                 dataStatus.DataIsLoaded(rooms,keys);
             }

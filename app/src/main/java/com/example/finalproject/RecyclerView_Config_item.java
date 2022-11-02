@@ -12,7 +12,7 @@ import com.example.finalproject.models.Room;
 
 import java.util.List;
 
-public class RecyclerView_Config {
+public class RecyclerView_Config_item {
 
     private Context mContext;
     private RoomsAdapter mRoomsAdapter;
@@ -33,9 +33,9 @@ public class RecyclerView_Config {
         public RoomItemView(ViewGroup parent) {
             super(LayoutInflater.from(mContext).inflate(R.layout.room_recyclerview_item, parent, false));
 
-            mRoomLocation = (TextView) itemView.findViewById(R.id.roomLocation_textview2);
-            mRoomID = (TextView) itemView.findViewById(R.id.roomID_textview2);
-            mRoomCapacity = (TextView) itemView.findViewById(R.id.room_seats_textview2);
+            mRoomLocation = (TextView) itemView.findViewById(R.id.textViewRecycler_topleft);
+            mRoomID = (TextView) itemView.findViewById(R.id.textViewRecyclerView_BottomLeft);
+            mRoomCapacity = (TextView) itemView.findViewById(R.id.textViewRecyclerView_BottomRight);
         }
         public void bind(Room room, String key) {
             mRoomLocation.setText(room.getLocation());
