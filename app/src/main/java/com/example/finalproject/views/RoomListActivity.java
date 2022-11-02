@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.finalproject.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.finalproject.R;
 import com.example.finalproject.controllers.FirebaseDatabaseHelper;
 import com.example.finalproject.models.Room;
 

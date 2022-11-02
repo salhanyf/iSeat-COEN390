@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.finalproject.views;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.finalproject.R;
 import com.example.finalproject.models.Room;
 
 import java.util.List;
