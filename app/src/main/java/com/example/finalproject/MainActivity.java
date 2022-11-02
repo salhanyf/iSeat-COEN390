@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void seatsActivityTestButton() {
-        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
         params.startToStart = R.id.constraintLayoutMainActivity;
         params.endToEnd = R.id.constraintLayoutMainActivity;
         params.topToTop = R.id.constraintLayoutMainActivity;
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         button.setTextColor(getColor(R.color.white));
         button.setText("  Goto Seats Activity  ");
         button.setOnClickListener(view -> {
-            Intent intent = new Intent(this, SeatsActivityUser.class);
+            Intent intent = new Intent(this, RoomListActivity.class);
             startActivity(intent);
         });
         ((ConstraintLayout) findViewById(R.id.constraintLayoutMainActivity)).addView(button);
