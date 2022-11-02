@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.finalproject.models.Room;
 
@@ -24,6 +25,7 @@ public class RoomListActivity extends AppCompatActivity {
         new FirebaseDatabaseHelper().readRooms(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Room> rooms, List<String> keys) {
+                findViewById(R.id.progressBarRecyclerView).setVisibility(View.GONE);
                 new RecyclerView_Config_item().setConfig(mRecyclerView, RoomListActivity.this, rooms, keys);
             }
 
