@@ -26,7 +26,7 @@ public class SeatsActivityUser extends AppCompatActivity {
         String roomLocation = "John Molson School of Business";
         String roomStatus = "Available";
         int RandomSeats = (int) (Math.random() * 6);
-        String roomSeats = Integer.toString(RandomSeats) + "/6";
+        String roomSeats = Integer.toString(RandomSeats) + "/6"; // Input the number of seats available in the room from firebase
         RoomEntity roomEntity = new RoomEntity(0, roomName, roomLocation, roomStatus, roomSeats);
         db.roomDao().insertAll(roomEntity);
 
@@ -41,6 +41,5 @@ public class SeatsActivityUser extends AppCompatActivity {
         RoomRecyclerView = findViewById(R.id.Sensor_RecyclerViewID);
         RoomRecyclerView.setLayoutManager(linearLayoutManager);
         RoomRecyclerView.setAdapter(RoomRecyclerViewAdapter);
-
     }
 }
