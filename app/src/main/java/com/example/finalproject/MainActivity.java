@@ -14,22 +14,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO: check logged-in status and start login activity if not
-//        startActivity(new Intent(this, LoginActivity.class));
-
         addRemoveSensorsTestButtons();
 
-        /*
-        // Just testing can delete.
-        for(int roomNumber = 1; roomNumber <= 10; roomNumber++) {
-            for(int floorNumber = 1; floorNumber <= 10; floorNumber++) {
-                String roomID = "ID: " + roomNumber + floorNumber;
-                String roomLocation = "Room " + roomNumber + ", Floor " + 1;
-                String roomStatus = "Available";
-                Sensor sensor = new Sensor(roomNumber, roomID, roomLocation, roomStatus);
-                db.sensorDao().insertAll(sensor);
-            }
-            }*/
     }
 
     private void addRemoveSensorsTestButtons() {
