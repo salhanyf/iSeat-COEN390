@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class SeatsActivityAdmin extends AppCompatActivity {
+public class AdminRoomsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seats_admin);
+        setContentView(R.layout.activity_admin_rooms);
     }
 }
