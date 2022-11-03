@@ -76,7 +76,7 @@ public class FirebaseDatabaseHelper {
                         open++;
                     total++;
                 }
-                room.setCapacity(String.format("%d/%d", open, total));
+                room.setCapacity(open + "/" + total);
                 dataStatus.DataIsLoaded(rooms, keys);
             }
 
