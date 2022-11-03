@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
         // TEST BUTTONS FOR DEMO:
         signOutTestButton();            // allows signed-in user to sign out
-        seatsActivityTestButton();      // goes to seat activity
+        seatsActivityTestButton();
+        adminRoomsActivityTestButton();      // goes to room activity
         addRemoveSensorsTestButtons();  // adds or removes sensor from room 1
 
     }
@@ -61,21 +62,41 @@ public class MainActivity extends AppCompatActivity {
         button.setBackgroundColor(getColor(R.color.purple_700));
         button.setTextColor(getColor(R.color.white));
         button.setText("  Goto Room List Activity  ");
+        button.setOnClickListener(view -> startActivity(new Intent(this, RoomListActivity.class)));
+        ((ConstraintLayout) findViewById(R.id.constraintLayoutMainActivity)).addView(button);
+    }
+
+    private void adminRoomsActivityTestButton() {
+        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+        params.startToStart = R.id.constraintLayoutMainActivity;
+        params.endToEnd = R.id.constraintLayoutMainActivity;
+        params.topToTop = R.id.constraintLayoutMainActivity;
+        params.topMargin = 400;
+        Button button = new Button(this);
+        button.setLayoutParams(params);
+        button.setBackgroundColor(getColor(R.color.purple_700));
+        button.setTextColor(getColor(R.color.white));
+        button.setText("  Goto Admin Rooms Activity  ");
         button.setOnClickListener(view -> {
-            Intent intent = new Intent(this, RoomListActivity.class);
-            startActivity(intent);
+            Intent intent = new Intent(this, AdminRoomsActivity.class);
+            startActivity(new Intent(this, AdminRoomsActivity.class).putExtra(getString(R.string.Extra_adminEmail), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
         });
         ((ConstraintLayout) findViewById(R.id.constraintLayoutMainActivity)).addView(button);
     }
 
     private void addRemoveSensorsTestButtons() {
-        final int MARGIN = 100;
-
         Button buttonAdd = new Button(this);
         buttonAdd.setBackgroundColor(0xFF00A000);
         buttonAdd.setTextColor(getColor(R.color.white));
         buttonAdd.setText("  Add Sensor to room 1  ");
         buttonAdd.setOnClickListener(view -> (new AddSensorDialogFragment("1")).show(getSupportFragmentManager(), "AddSensorDialogFragment"));
+
+        ConstraintLayout.LayoutParams paramsButtonAdd = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+        paramsButtonAdd.startToStart = R.id.constraintLayoutMainActivity;
+        paramsButtonAdd.endToEnd = R.id.constraintLayoutMainActivity;
+        paramsButtonAdd.bottomToBottom = R.id.constraintLayoutMainActivity;
+        paramsButtonAdd.bottomMargin = 200;
+        buttonAdd.setLayoutParams(paramsButtonAdd);
 
         Button buttonRemove = new Button(this);
         buttonRemove.setBackgroundColor(0xFFC00000);
@@ -83,18 +104,11 @@ public class MainActivity extends AppCompatActivity {
         buttonRemove.setText("  Remove Sensor from room 1  ");
         buttonRemove.setOnClickListener(view -> (new RemoveSensorDialogFragment("1")).show(getSupportFragmentManager(), "RemoveSensorDialogFragment"));
 
-        ConstraintLayout.LayoutParams paramsButtonAdd = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
-        paramsButtonAdd.startToStart = R.id.constraintLayoutMainActivity;
-        paramsButtonAdd.endToEnd = R.id.constraintLayoutMainActivity;
-        paramsButtonAdd.bottomToBottom = R.id.constraintLayoutMainActivity;
-        paramsButtonAdd.bottomMargin = 3 * MARGIN;
-        buttonAdd.setLayoutParams(paramsButtonAdd);
-
         ConstraintLayout.LayoutParams paramsButtonRemove = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
         paramsButtonRemove.startToStart = R.id.constraintLayoutMainActivity;
         paramsButtonRemove.endToEnd = R.id.constraintLayoutMainActivity;
         paramsButtonRemove.bottomToBottom = R.id.constraintLayoutMainActivity;
-        paramsButtonRemove.bottomMargin = MARGIN;
+        paramsButtonRemove.bottomMargin = 50;
         buttonRemove.setLayoutParams(paramsButtonRemove);
 
         ConstraintLayout layout = findViewById(R.id.constraintLayoutMainActivity);

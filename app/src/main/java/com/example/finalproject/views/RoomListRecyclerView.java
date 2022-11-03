@@ -14,7 +14,7 @@ import com.example.finalproject.models.Room;
 
 import java.util.List;
 
-public class RecyclerView_Config_item {
+public class RoomListRecyclerView {
 
     private Context mContext;
     private RoomsAdapter mRoomsAdapter;
@@ -34,7 +34,7 @@ public class RecyclerView_Config_item {
         private String key;
 
         public RoomItemView(ViewGroup parent) {
-            super(LayoutInflater.from(mContext).inflate(R.layout.recyclerview_item_room, parent, false));
+            super(LayoutInflater.from(mContext).inflate(R.layout.recyclerview_room_list_item, parent, false));
 
             mRoomLocation = (TextView) itemView.findViewById(R.id.textViewRecycler_topleft);
             mRoomID = (TextView) itemView.findViewById(R.id.textViewRecyclerView_BottomLeft);

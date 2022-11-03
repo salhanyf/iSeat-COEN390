@@ -32,7 +32,7 @@ public class RoomListActivity extends AppCompatActivity {
         @Override
         public void DataIsLoaded(List<Room> rooms, List<String> keys) {
             if (progressBar.getVisibility() != View.GONE) progressBar.setVisibility(View.GONE);
-            new RecyclerView_Config_item().setConfig(mRecyclerView, RoomListActivity.this, rooms, keys);
+            new RoomListRecyclerView().setConfig(mRecyclerView, RoomListActivity.this, rooms, keys);
         }
 
         @Override public void DataIsInserted() {}
