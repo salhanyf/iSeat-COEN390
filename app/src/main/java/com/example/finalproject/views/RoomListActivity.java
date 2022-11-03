@@ -1,6 +1,7 @@
 package com.example.finalproject.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -32,7 +33,8 @@ public class RoomListActivity extends AppCompatActivity {
         @Override
         public void DataIsLoaded(List<Room> rooms) {
             if (progressBar.getVisibility() != View.GONE) progressBar.setVisibility(View.GONE);
-            new RoomListRecyclerView().setConfig(mRecyclerView, RoomListActivity.this, rooms, keys);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(RoomListActivity.this));
+            mRecyclerView.setAdapter(new RoomListRecyclerViewAdaptor(rooms));
         }
 
         @Override public void DataIsInserted() {}
