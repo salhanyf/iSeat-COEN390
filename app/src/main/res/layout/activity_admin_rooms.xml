@@ -6,4 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".views.AdminRoomsActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/adminRoomsActivityToolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/AdminRooms_Toolbar_Tile"
+        app:titleTextColor="@color/white" />
 </androidx.constraintlayout.widget.ConstraintLayout>

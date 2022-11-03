@@ -11,4 +11,7 @@
     <string name="RemoveSensor_TextView_ForRoom">Sensors in room:</string>
     <string name="RemoveSensor_TextView_NoSensors">* No sensors assigned to room *</string>
     <string name="RemoveSensor_TextView_DeleteMsg">Please select a sensor to remove.</string>
+    
+    <!--    AdminRoomsActivity Strings  -->
+    <string name="AdminRooms_Toolbar_Tile">%s\'s Rooms</string>
 </resources>
