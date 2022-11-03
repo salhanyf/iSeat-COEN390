@@ -31,6 +31,11 @@ public class Room {
         return capacity;
     }
 
+    // DELETE SOON
+    public void setCapacity(String capacity) {
+        this.capacity = capacity;
+    }
+
     public String toString() {
         return name + ", " + location;
     }
