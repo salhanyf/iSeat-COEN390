@@ -72,8 +72,8 @@ public class RoomListActivity extends AppCompatActivity {
             findViewById(R.id.progressBarRecyclerView).setVisibility(View.GONE);
 
             if (sensorList != null) {
-                int[] open = new int[rooms.size()];
-                int[] total = new int[rooms.size()];
+                int[] open = new int[rooms.size() + 1];
+                int[] total = new int[rooms.size() + 1];
 
                 for (Sensor s : sensorList) {
                     if (s.getStatus() == true)
@@ -82,7 +82,7 @@ public class RoomListActivity extends AppCompatActivity {
                 }
 
                 for (int i = 0; i < rooms.size(); i++) {
-                    rooms.get(i).setCapacity(String.format("%d/%d", open[i], total[i]));
+                    rooms.get(i).setCapacity(String.format("%d/%d", open[i + 1], total[i + 1]));
                 }
             }
 
