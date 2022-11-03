@@ -4,21 +4,21 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class Sensor {
-    private String roomId;
-    private boolean state;
+    private int roomID;
+    private boolean status;
 
     public Sensor(){}
 
-    public Sensor(String roomId, boolean state) {
-        this.roomId = roomId;
-        this.state = state;
+    public Sensor(int roomID, boolean status) {
+        this.roomID = roomID;
+        this.status = status;
     }
 
-    public String getRoomId() {
-        return roomId;
+    public int getRoomID() {
+        return roomID;
     }
 
-    public boolean getState() {
-        return state;
+    public boolean getStatus() {
+        return status;
     }
 }
