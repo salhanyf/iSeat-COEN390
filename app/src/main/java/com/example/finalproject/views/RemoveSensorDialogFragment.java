@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.finalproject.views;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.finalproject.R;
 import com.example.finalproject.models.Room;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

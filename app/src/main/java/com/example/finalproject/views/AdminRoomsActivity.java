@@ -1,14 +1,16 @@
-package com.example.finalproject;
+package com.example.finalproject.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class SeatsActivityAdmin extends AppCompatActivity {
+import com.example.finalproject.R;
+
+public class AdminRoomsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seats_admin);
+        setContentView(R.layout.activity_admin_rooms);
     }
 }

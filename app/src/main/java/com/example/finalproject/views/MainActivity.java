@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.finalproject.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.finalproject.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         button.setLayoutParams(params);
         button.setBackgroundColor(getColor(R.color.purple_700));
         button.setTextColor(getColor(R.color.white));
-        button.setText("  Goto Seats Activity  ");
+        button.setText("  Goto Room List Activity  ");
         button.setOnClickListener(view -> {
             Intent intent = new Intent(this, RoomListActivity.class);
             startActivity(intent);
