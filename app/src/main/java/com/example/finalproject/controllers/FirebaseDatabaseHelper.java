@@ -16,13 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FirebaseDatabaseHelper {
-    private FirebaseDatabase mDatabase; // Firebase database object
-    private DatabaseReference mReferenceProfiles; // Object for Adnan and Farah
-    private DatabaseReference mReferenceRooms;  // Object for Shahin, Shayan, and Samson
-    private DatabaseReference mReferenceSensors; // Object for Shahin, Shayan, and Samson
-    private List<Pair<Query, ValueEventListener>> queries = new ArrayList<>();
-    private List<String> keys = new ArrayList<>();
-    private List<Room> rooms = new ArrayList<>();
+    private final FirebaseDatabase mDatabase; // Firebase database object
+    private final DatabaseReference mReferenceProfiles; // Object for Adnan and Farah
+    private final DatabaseReference mReferenceRooms;  // Object for Shahin, Shayan, and Samson
+    private final DatabaseReference mReferenceSensors; // Object for Shahin, Shayan, and Samson
+    private final List<Pair<Query, ValueEventListener>> queries = new ArrayList<>();
+    private final List<String> keys = new ArrayList<>();
+    private final List<Room> rooms = new ArrayList<>();
 
     public interface DataStatus {
         void DataIsLoaded(List<Room> rooms, List<String> keys);
@@ -52,7 +52,7 @@ public class FirebaseDatabaseHelper {
                     Room room = keyNode.getValue(Room.class);
                     rooms.add(room);
                     listenToRoomSensors(keyNode.getKey(), room, dataStatus);
-                    Log.i("Room", room.getName());
+                    Log.i("Room", (room == null ? "Error: room == null" : room.getName()));
                 }
                 dataStatus.DataIsLoaded(rooms, keys);
             }
@@ -72,7 +72,7 @@ public class FirebaseDatabaseHelper {
                 int open = 0, total = 0;
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     Sensor sensor = snap.getValue(Sensor.class);
-                    if (sensor.getStatus())
+                    if ((sensor != null) && sensor.getStatus())
                         open++;
                     total++;
                 }
