@@ -21,11 +21,10 @@ public class FirebaseDatabaseHelper {
     private final DatabaseReference mReferenceRooms;  // Object for Shahin, Shayan, and Samson
     private final DatabaseReference mReferenceSensors; // Object for Shahin, Shayan, and Samson
     private final List<Pair<Query, ValueEventListener>> queries = new ArrayList<>();
-    private final List<String> keys = new ArrayList<>();
     private final List<Room> rooms = new ArrayList<>();
 
     public interface DataStatus {
-        void DataIsLoaded(List<Room> rooms, List<String> keys);
+        void DataIsLoaded(List<Room> rooms);
         void DataIsInserted();
         void DataIsUpdated();
         void DataIsDeleted();
@@ -46,15 +45,13 @@ public class FirebaseDatabaseHelper {
                     p.first.removeEventListener(p.second);
                 queries.clear();
                 rooms.clear();
-                keys.clear();
                 for (DataSnapshot keyNode : dataSnapshot.getChildren()) {
-                    keys.add(keyNode.getKey());
                     Room room = keyNode.getValue(Room.class);
                     rooms.add(room);
                     listenToRoomSensors(keyNode.getKey(), room, dataStatus);
                     Log.i("Room", (room == null ? "Error: room == null" : room.getName()));
                 }
-                dataStatus.DataIsLoaded(rooms, keys);
+                dataStatus.DataIsLoaded(rooms);
             }
 
             @Override
@@ -77,7 +74,7 @@ public class FirebaseDatabaseHelper {
                     total++;
                 }
                 room.setCapacity(open + "/" + total);
-                dataStatus.DataIsLoaded(rooms, keys);
+                dataStatus.DataIsLoaded(rooms);
             }
 
             @Override
