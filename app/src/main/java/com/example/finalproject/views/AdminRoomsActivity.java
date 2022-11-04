@@ -49,10 +49,12 @@ public class AdminRoomsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_add_room) {
+            // TODO: add room dialog fragment
             Toast.makeText(this, "Clicked on Add Room for admin: " + adminEmail, Toast.LENGTH_SHORT).show();
             return true;
         }
         else if (id == R.id.action_remove_room) {
+            // TODO: remove room dialog fragment
             Toast.makeText(this, "Clicked on Remove Room for admin: " + adminEmail, Toast.LENGTH_SHORT).show();
             return true;
         }
@@ -68,7 +70,7 @@ public class AdminRoomsActivity extends AppCompatActivity {
 
     private class UpdateAdminsRoomsRecyclerView implements FirebaseDatabaseHelper.DataStatusRoom {
         @Override
-        public void DataIsLoaded(List<Room> rooms, List<String> keys) {
+        public void DataIsLoaded(List<Room> rooms) {
             setupRecyclerView(rooms);
         }
     }
