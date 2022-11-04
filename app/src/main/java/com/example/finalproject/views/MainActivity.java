@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity {
         signOutTestButton();            // allows signed-in user to sign out
         seatsActivityTestButton();
         adminRoomsActivityTestButton();      // goes to room activity
-        addRemoveSensorsTestButtons();  // adds or removes sensor from room 1
-
     }
 
     private void signOutTestButton() {
@@ -78,41 +76,8 @@ public class MainActivity extends AppCompatActivity {
         button.setTextColor(getColor(R.color.white));
         button.setText("  Goto Admin Rooms Activity  ");
         button.setOnClickListener(view -> {
-            Intent intent = new Intent(this, AdminRoomsActivity.class);
             startActivity(new Intent(this, AdminRoomsActivity.class).putExtra(getString(R.string.Extra_adminEmail), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
         });
         ((ConstraintLayout) findViewById(R.id.constraintLayoutMainActivity)).addView(button);
-    }
-
-    private void addRemoveSensorsTestButtons() {
-        Button buttonAdd = new Button(this);
-        buttonAdd.setBackgroundColor(0xFF00A000);
-        buttonAdd.setTextColor(getColor(R.color.white));
-        buttonAdd.setText("  Add Sensor to room 1  ");
-        buttonAdd.setOnClickListener(view -> (new AddSensorDialogFragment("1")).show(getSupportFragmentManager(), "AddSensorDialogFragment"));
-
-        ConstraintLayout.LayoutParams paramsButtonAdd = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
-        paramsButtonAdd.startToStart = R.id.constraintLayoutMainActivity;
-        paramsButtonAdd.endToEnd = R.id.constraintLayoutMainActivity;
-        paramsButtonAdd.bottomToBottom = R.id.constraintLayoutMainActivity;
-        paramsButtonAdd.bottomMargin = 200;
-        buttonAdd.setLayoutParams(paramsButtonAdd);
-
-        Button buttonRemove = new Button(this);
-        buttonRemove.setBackgroundColor(0xFFC00000);
-        buttonRemove.setTextColor(getColor(R.color.white));
-        buttonRemove.setText("  Remove Sensor from room 1  ");
-        buttonRemove.setOnClickListener(view -> (new RemoveSensorDialogFragment("1")).show(getSupportFragmentManager(), "RemoveSensorDialogFragment"));
-
-        ConstraintLayout.LayoutParams paramsButtonRemove = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
-        paramsButtonRemove.startToStart = R.id.constraintLayoutMainActivity;
-        paramsButtonRemove.endToEnd = R.id.constraintLayoutMainActivity;
-        paramsButtonRemove.bottomToBottom = R.id.constraintLayoutMainActivity;
-        paramsButtonRemove.bottomMargin = 50;
-        buttonRemove.setLayoutParams(paramsButtonRemove);
-
-        ConstraintLayout layout = findViewById(R.id.constraintLayoutMainActivity);
-        layout.addView(buttonAdd);
-        layout.addView(buttonRemove);
     }
 }
