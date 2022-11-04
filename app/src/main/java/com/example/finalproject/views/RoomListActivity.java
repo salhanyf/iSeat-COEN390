@@ -31,7 +31,7 @@ public class RoomListActivity extends AppCompatActivity {
 
     private class UpdateRoomsRecyclerView implements FirebaseDatabaseHelper.DataStatus {
         @Override
-        public void DataIsLoaded(List<Room> rooms) {
+        public void DataIsLoaded(List<Room> rooms, List<String> keys) {
             if (progressBar.getVisibility() != View.GONE) progressBar.setVisibility(View.GONE);
             mRecyclerView.setLayoutManager(new LinearLayoutManager(RoomListActivity.this));
             mRecyclerView.setAdapter(new RoomListRecyclerViewAdaptor(rooms));
