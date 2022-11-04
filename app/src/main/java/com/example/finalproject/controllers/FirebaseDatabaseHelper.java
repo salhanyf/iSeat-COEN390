@@ -55,7 +55,6 @@ public class FirebaseDatabaseHelper {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
@@ -69,6 +68,25 @@ public class FirebaseDatabaseHelper {
                      sensors.add(snap.getValue(Sensor.class));
                 }
                 dataStatus.DataIsLoaded(sensors);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+    public void getAdminRooms(String adminEmail, DataStatusRoom dataStatus) {
+        mReferenceRooms.orderByChild("admin").equalTo(adminEmail).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<String> keys = new ArrayList<>();
+                List<Room> rooms = new ArrayList<>();
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    keys.add(snap.getKey());
+                    rooms.add(snap.getValue(Room.class));
+                }
+                dataStatus.DataIsLoaded(rooms, keys);
             }
 
             @Override
