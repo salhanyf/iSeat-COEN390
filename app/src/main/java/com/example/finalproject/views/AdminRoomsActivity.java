@@ -22,7 +22,6 @@ public class AdminRoomsActivity extends AppCompatActivity {
 
     private String adminEmail;
     private RecyclerView recycler;
-    private AdminRoomsRecyclerViewAdaptor adaptor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,9 @@ public class AdminRoomsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.adminRoomsActivityToolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(String.format(getString(R.string.AdminRooms_Toolbar_Tile), adminEmail != null ? adminEmail : ""));
-        
+
+        recycler = findViewById(R.id.adminRoomsActivityRecyclerView);
+
         new FirebaseDatabaseHelper().getAdminRooms(adminEmail, new UpdateAdminsRoomsRecyclerView());
     }
 
@@ -62,10 +63,8 @@ public class AdminRoomsActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(List<Room> rooms) {
-        adaptor = new AdminRoomsRecyclerViewAdaptor(rooms);
-        recycler = findViewById(R.id.adminRoomsActivityRecyclerView);
         recycler.setLayoutManager(new LinearLayoutManager(this));
-        recycler.setAdapter(adaptor);
+        recycler.setAdapter(new AdminRoomsRecyclerViewAdaptor(rooms, getSupportFragmentManager()));
     }
 
     private class UpdateAdminsRoomsRecyclerView implements FirebaseDatabaseHelper.DataStatusRoom {
