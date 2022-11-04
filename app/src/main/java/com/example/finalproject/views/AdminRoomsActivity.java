@@ -13,9 +13,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.finalproject.R;
+import com.example.finalproject.controllers.FirebaseDatabaseHelper;
 import com.example.finalproject.models.Room;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdminRoomsActivity extends AppCompatActivity {
@@ -35,12 +35,8 @@ public class AdminRoomsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.adminRoomsActivityToolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(String.format(getString(R.string.AdminRooms_Toolbar_Tile), adminEmail != null ? adminEmail : ""));
-
-        List<Room> r = new ArrayList<>();
-        r.add(new Room("H-404", "Hall Building", "0/0", "test@mail.com"));
-        r.add(new Room("FB-C080", "Fauxbourg Building OMG OMG OMG", "0/0", "test@mail.com"));
-        r.add(new Room("LB-200", "Library Building", "0/0", "test@mail.com"));
-        setupRecyclerView(r);
+        
+        new FirebaseDatabaseHelper().getAdminRooms(adminEmail, new UpdateAdminsRoomsRecyclerView());
     }
 
     @Override
@@ -68,5 +64,12 @@ public class AdminRoomsActivity extends AppCompatActivity {
         recycler = findViewById(R.id.adminRoomsActivityRecyclerView);
         recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.setAdapter(adaptor);
+    }
+
+    private class UpdateAdminsRoomsRecyclerView implements FirebaseDatabaseHelper.DataStatusRoom {
+        @Override
+        public void DataIsLoaded(List<Room> rooms, List<String> keys) {
+            setupRecyclerView(rooms);
+        }
     }
 }
