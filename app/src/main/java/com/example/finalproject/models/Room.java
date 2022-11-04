@@ -7,6 +7,7 @@ import com.google.firebase.database.annotations.NotNull;
 
 @IgnoreExtraProperties
 public class Room {
+    private String key;
     private String name;
     private String location;
     private String capacity;
@@ -14,7 +15,8 @@ public class Room {
 
     public Room() {}
 
-    public Room(String name, String location, String capacity, String admin) {
+    public Room(String key, String name, String location, String capacity, String admin) {
+        this.key = key;
         this.name = name;
         this.location = location;
         this.capacity = capacity;
@@ -22,12 +24,14 @@ public class Room {
     }
 
     // getters
+    public String getKey() { return key; }
     public String getName() { return name; }
     public String getLocation() { return location; }
     public String getCapacity() { return capacity; }
     public String getAdmin() { return admin; }
 
     // setters
+    public Room setKey(String key) { this.key = key; return this; }
     public void setName(String name) { this.name = name; }
     public void setLocation(String location) { this.location = location; }
     public void setCapacity(String capacity) { this.capacity = capacity; }

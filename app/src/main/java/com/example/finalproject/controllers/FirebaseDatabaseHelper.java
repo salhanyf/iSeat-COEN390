@@ -18,11 +18,9 @@ public class FirebaseDatabaseHelper {
     private final DatabaseReference mReferenceProfiles; // Object for Adnan and Farah
     private final DatabaseReference mReferenceRooms;  // Object for Shahin, Shayan, and Samson
     private final DatabaseReference mReferenceSensors; // Object for Shahin, Shayan, and Samson
-    private final List<Room> rooms = new ArrayList<>();
-    private final List<String> keys = new ArrayList<>();
 
     public interface DataStatusRoom {
-        void DataIsLoaded(List<Room> rooms, List<String> keys);
+        void DataIsLoaded(List<Room> rooms);
 //        void DataIsInserted(); void DataIsUpdated(); void DataIsDeleted();
     }
 
@@ -42,15 +40,13 @@ public class FirebaseDatabaseHelper {
         mReferenceRooms.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {  // This is the method that is called when the data is changed (asynchronous)
-                rooms.clear();
-                keys.clear();
+                List<Room> rooms = new ArrayList<>();
                 for (DataSnapshot keyNode : dataSnapshot.getChildren()) {
-                    keys.add(keyNode.getKey());
                     Room room = keyNode.getValue(Room.class);
-                    rooms.add(room);
+                    rooms.add(room.setKey(keyNode.getKey()));
                     Log.i("Room", (room == null ? "Error: room == null" : room.getName()));
                 }
-                dataStatus.DataIsLoaded(rooms, keys);
+                dataStatus.DataIsLoaded(rooms);
             }
 
             @Override
@@ -80,13 +76,11 @@ public class FirebaseDatabaseHelper {
         mReferenceRooms.orderByChild("admin").equalTo(adminEmail).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<String> keys = new ArrayList<>();
                 List<Room> rooms = new ArrayList<>();
                 for (DataSnapshot snap : snapshot.getChildren()) {
-                    keys.add(snap.getKey());
-                    rooms.add(snap.getValue(Room.class));
+                    rooms.add(snap.getValue(Room.class).setKey(snap.getKey()));
                 }
-                dataStatus.DataIsLoaded(rooms, keys);
+                dataStatus.DataIsLoaded(rooms);
             }
 
             @Override

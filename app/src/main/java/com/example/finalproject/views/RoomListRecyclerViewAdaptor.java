@@ -19,13 +19,11 @@ import java.util.List;
 public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRecyclerViewAdaptor.ViewHolder> {
 
     private final List<Room> mRooms;
-    private final List<String> mKeys;
     private final Context context;
 
-    public RoomListRecyclerViewAdaptor(Context context, List<Room> mRooms, List<String> mKeys) {
+    public RoomListRecyclerViewAdaptor(Context context, List<Room> mRooms) {
         this.context = context;
         this.mRooms = mRooms;
-        this.mKeys = mKeys;
     }
 
     @NonNull
@@ -38,7 +36,7 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(mRooms.get(position));
-        new FirebaseDatabaseHelper().getRoomSensors(mKeys.get(position), new UpdateCapacityTextView(holder.getTextViewCapacity()));
+        new FirebaseDatabaseHelper().getRoomSensors(mRooms.get(position).getKey(), new UpdateCapacityTextView(holder.mRoomCapacity));
     }
 
     @Override
