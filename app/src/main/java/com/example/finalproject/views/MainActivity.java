@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         params.startToStart = R.id.constraintLayoutMainActivity;
         params.endToEnd = R.id.constraintLayoutMainActivity;
         params.topToTop = R.id.constraintLayoutMainActivity;
-        params.topMargin = 250;
+        params.topMargin = 400;
         Button button = new Button(this);
         button.setLayoutParams(params);
         button.setBackgroundColor(getColor(R.color.purple_700));
@@ -65,16 +65,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void adminRoomsActivityTestButton() {
+        String adminEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
         params.startToStart = R.id.constraintLayoutMainActivity;
         params.endToEnd = R.id.constraintLayoutMainActivity;
-        params.topToTop = R.id.constraintLayoutMainActivity;
-        params.topMargin = 400;
+        params.bottomToBottom = R.id.constraintLayoutMainActivity;
+        params.bottomMargin = 400;
         Button button = new Button(this);
         button.setLayoutParams(params);
         button.setBackgroundColor(getColor(R.color.purple_700));
         button.setTextColor(getColor(R.color.white));
-        button.setText("  Goto Admin Rooms Activity  ");
+        button.setAllCaps(false);
+        button.setText(String.format("  GOTO ADMIN ROOMS ACTIVITY FOR  \n  %s  ", adminEmail));
         button.setOnClickListener(view -> {
             startActivity(new Intent(this, AdminRoomsActivity.class).putExtra(getString(R.string.Extra_adminEmail), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
         });
