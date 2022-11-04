@@ -32,19 +32,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddSensorDialogFragment extends DialogFragment {
-    private final String roomKey;   // room key passed to dialog fragment
-    private Room room;              // info on room (name, location)
+    private final Room room;        // info on room (name, location)
     private List<String> sensors;   // global list of sensor id Keys
-    private ListView listViewAvailableSensors;  // lists available sensors (not assigned to room)
     private TextView textViewNoSensors;         // shows No sensor message if none available
-    private TextView textViewSelectedRoom;      // shows the room sensor is being added to
+    private ListView listViewAvailableSensors;  // lists available sensors (not assigned to room)
+
     private Query queryAvailableSensors;            // active query for changes in Firebase sensor data
     private ValueEventListener listenerSensorData;  // active listener for changes in Firebase sensor data
 
     // constructor calls DialogFragment parent constructor, sets roomKey for later
-    public AddSensorDialogFragment(String roomKey) {
+    public AddSensorDialogFragment(Room room) {
         super();
-        this.roomKey = roomKey;
+        this.room = room;
     }
 
     // onCreateView() called when dialog fragment opens
@@ -59,8 +58,8 @@ public class AddSensorDialogFragment extends DialogFragment {
 
     // setup UI elements
     private void setupUI(View view) {
+        ((TextView) view.findViewById(R.id.textViewSelectedRoom)).setText(String.format("%s \n%s", getString(R.string.AddSensor_TextView_SelectedRoom), room.toString()));
         textViewNoSensors = view.findViewById(R.id.textViewNoneAvailable);
-        textViewSelectedRoom = view.findViewById(R.id.textViewSelectedRoom);
         listViewAvailableSensors = view.findViewById(R.id.listViewAvailableSensors);
     }
 
@@ -68,8 +67,6 @@ public class AddSensorDialogFragment extends DialogFragment {
     private void setupDB() {
         // get reference to Firebase table (root node)
         DatabaseReference db = FirebaseDatabase.getInstance().getReference();
-        // get room data (name, location) using roomKey (asynchronous, only once, custom OnCompleteListener see class below)
-        db.child("rooms").child(roomKey).get().addOnCompleteListener(new GetRoomOnCompleteListener());
         // make a query for sensors whose roomID are 0
         queryAvailableSensors = db.child("sensors").orderByChild("roomID").equalTo(0);
         // add listener for data changes in sensor roomIDs on Firebase (asynchronous, continual, custom ValueEventListener see class below)
@@ -139,7 +136,7 @@ public class AddSensorDialogFragment extends DialogFragment {
                                 // get reference to Firebase for the sensor's roomID
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("sensors/" + sensorKey + "/roomID");
                                 // update the sensors roomID to this room
-                                ref.setValue(Integer.parseInt(roomKey));
+                                ref.setValue(Integer.parseInt(room.getKey()));
                                 // print success toast and dismiss dialog fragment
                                 Toast.makeText(getContext(), "Added " + sensorKey + " to " + room.toString(), Toast.LENGTH_SHORT).show();
                                 dismiss();
@@ -154,22 +151,6 @@ public class AddSensorDialogFragment extends DialogFragment {
         @Override
         public void onCancelled(@NonNull DatabaseError error) {
             Toast.makeText(getContext(), "Error reading Sensors: " + error.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
-
-    // custom 1-time only OnCompleteListener for reading room info
-    private class GetRoomOnCompleteListener implements OnCompleteListener<DataSnapshot> {
-        @Override
-        public void onComplete(@NonNull Task<DataSnapshot> task) {
-            if (task.isSuccessful()) {
-                // convert room Info from Firebase into class
-                room = task.getResult().getValue(Room.class);
-                // set textview for selected room
-                textViewSelectedRoom.setText(String.format("%s \n%s", getString(R.string.AddSensor_TextView_SelectedRoom), room.toString()));
-            } else {
-                // print error if occurs
-                Toast.makeText(getContext(), "Error reading rooms for roomKey=" + roomKey, Toast.LENGTH_LONG).show();
-            }
         }
     }
 }

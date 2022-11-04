@@ -30,8 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RemoveSensorDialogFragment extends DialogFragment {
-    private final String roomKey;
-    private Room room;
+    private final Room room;
     private List<String> list;
     private TextView textViewForRoom;
     private TextView textViewNoneAssigned;
@@ -40,9 +39,9 @@ public class RemoveSensorDialogFragment extends DialogFragment {
     private Query q;
     private ValueEventListener listener;
 
-    public RemoveSensorDialogFragment(String roomKey) {
+    public RemoveSensorDialogFragment(Room room) {
         super();
-        this.roomKey = roomKey;
+        this.room = room;
     }
 
     @Nullable
@@ -55,16 +54,8 @@ public class RemoveSensorDialogFragment extends DialogFragment {
         listViewSensorsInRoom = view.findViewById(R.id.listViewSensorsInRoom);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.child("rooms").child(roomKey).get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                room = task.getResult().getValue(Room.class);
-                textViewForRoom.setText(String.format("%s \n%s", getString(R.string.RemoveSensor_TextView_ForRoom), room.toString()));
-            } else {
-                Toast.makeText(getContext(), "Error reading rooms for roomKey=", Toast.LENGTH_LONG).show();
-            }
-        });
 
-        q = ref.child("sensors").orderByChild("roomID").equalTo(Integer.parseInt(roomKey));
+        q = ref.child("sensors").orderByChild("roomID").equalTo(Integer.parseInt(room.getKey()));
         listener = q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
