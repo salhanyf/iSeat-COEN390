@@ -49,8 +49,6 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
         private final TextView mRoomLocation;
         private final TextView mRoomCapacity;
 
-        public TextView getTextViewCapacity() { return mRoomCapacity; }
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mRoomName = itemView.findViewById(R.id.textViewRecyclerView_BottomLeft);
@@ -58,11 +56,10 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
             mRoomCapacity = itemView.findViewById(R.id.textViewRecyclerView_BottomRight);
         }
 
-        public TextView bind(Room room) {
+        public void bind(Room room) {
             mRoomName.setText(room.getName());
             mRoomLocation.setText(room.getLocation());
             mRoomCapacity.setText(room.getCapacity());
-            return mRoomCapacity;
         }
     }
 
