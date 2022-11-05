@@ -32,7 +32,6 @@ import java.util.List;
 public class RemoveSensorDialogFragment extends DialogFragment {
     private final Room room;
     private List<String> list;
-    private TextView textViewForRoom;
     private TextView textViewNoneAssigned;
     private ListView listViewSensorsInRoom;
 
@@ -49,7 +48,7 @@ public class RemoveSensorDialogFragment extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialogfragment_remove_sensor, container);
 
-        textViewForRoom = view.findViewById(R.id.textViewForRoom);
+        ((TextView) view.findViewById(R.id.textViewForRoom)).setText(String.format("%s\n%s", getString(R.string.RemoveSensor_TextView_ForRoom), room));
         textViewNoneAssigned = view.findViewById(R.id.textViewNoneAssigned);
         listViewSensorsInRoom = view.findViewById(R.id.listViewSensorsInRoom);
 
@@ -78,6 +77,7 @@ public class RemoveSensorDialogFragment extends DialogFragment {
                         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                             TextView textView = new TextView(getContext());
                             textView.setGravity(Gravity.CENTER);
+                            textView.setMinHeight(50);
                             textView.setPadding(10, 10, 10, 10);
                             textView.setTextColor(getContext().getColor(R.color.black));
                             textView.setOnClickListener(view -> (new ConfirmDialog(getContext(), list.get(position))).show());
