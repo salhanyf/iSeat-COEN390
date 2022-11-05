@@ -25,4 +25,6 @@ public class Sensor {
     public String getKey() { return key; }
     public int getRoomID() { return roomID; }
     public boolean getStatus() { return status; }
+
+    public String toString() { return key; }
 }
