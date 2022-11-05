@@ -20,11 +20,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (FirebaseAuth.getInstance().getCurrentUser() == null)
             startActivity(new Intent(this, LoginActivity.class));
+        else
+            adminRoomsActivityTestButton();      // goes to room activity
 
         // TEST BUTTONS FOR DEMO:
         signOutTestButton();            // allows signed-in user to sign out
         seatsActivityTestButton();
-        adminRoomsActivityTestButton();      // goes to room activity
     }
 
     private void signOutTestButton() {
