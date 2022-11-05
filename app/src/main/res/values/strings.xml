@@ -17,7 +17,7 @@
     
     <!--    AdminRoomsActivity Strings  -->
     <string name="Extra_adminEmail">admin_email</string>
-    <string name="AdminRooms_Toolbar_Tile">%s\'s Rooms</string>
+    <string name="AdminRooms_Toolbar_Tile">\'s Rooms</string>
 
     <!--    AdminRoomsRecyclerView Strings  -->
     <string name="AdminRooms_ContentDescription_AddSensor">Add Sensor</string>

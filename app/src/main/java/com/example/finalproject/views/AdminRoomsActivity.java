@@ -33,7 +33,7 @@ public class AdminRoomsActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.adminRoomsActivityToolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle(String.format(getString(R.string.AdminRooms_Toolbar_Tile), adminEmail != null ? adminEmail : ""));
+        toolbar.setTitle(String.format("%s%s", adminEmail != null ? adminEmail : "", getString(R.string.AdminRooms_Toolbar_Tile)));
 
         recycler = findViewById(R.id.adminRoomsActivityRecyclerView);
 
