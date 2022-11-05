@@ -36,7 +36,7 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(mRooms.get(position));
-        new FirebaseDatabaseHelper().getRoomSensors(mRooms.get(position).getKey(), new UpdateCapacityTextView(holder.mRoomCapacity));
+        new FirebaseDatabaseHelper().listenToSensorsRoom(mRooms.get(position).getKey(), new UpdateCapacityTextView(holder.mRoomCapacity));
     }
 
     @Override
@@ -63,13 +63,13 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
         }
     }
 
-    private class UpdateCapacityTextView implements FirebaseDatabaseHelper.DataStatusSensor {
+    private class UpdateCapacityTextView implements FirebaseDatabaseHelper.SensorDataChange {
         private final TextView textView;
 
         public UpdateCapacityTextView(TextView textView) { this.textView = textView; }
 
         @Override
-        public void DataIsLoaded(List<Sensor> sensors) {
+        public void dataUpdated(List<Sensor> sensors) {
             int open = 0, total = 0;
             for (Sensor sensor : sensors) {
                 if (sensor.getStatus())
