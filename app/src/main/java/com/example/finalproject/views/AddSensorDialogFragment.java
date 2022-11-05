@@ -18,27 +18,18 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.finalproject.R;
+import com.example.finalproject.controllers.FirebaseDatabaseHelper;
 import com.example.finalproject.models.Room;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
+import com.example.finalproject.models.Sensor;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AddSensorDialogFragment extends DialogFragment {
     private final Room room;        // info on room (name, location)
-    private List<String> sensors;   // global list of sensor id Keys
+    private FirebaseDatabaseHelper db;
     private TextView textViewNoSensors;         // shows No sensor message if none available
     private ListView listViewAvailableSensors;  // lists available sensors (not assigned to room)
-
-    private Query queryAvailableSensors;            // active query for changes in Firebase sensor data
-    private ValueEventListener listenerSensorData;  // active listener for changes in Firebase sensor data
 
     // constructor calls DialogFragment parent constructor, sets roomKey for later
     public AddSensorDialogFragment(Room room) {
@@ -52,105 +43,79 @@ public class AddSensorDialogFragment extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialogfragment_add_sensor, container);
         setupUI(view);
-        setupDB();
+        db = new FirebaseDatabaseHelper();
+        db.listenToSensorsRoom("0", new UpdateSensorsListView());
         return view;
+    }
+
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
+        db.removeSensorsListeners();
     }
 
     // setup UI elements
     private void setupUI(View view) {
-        ((TextView) view.findViewById(R.id.textViewSelectedRoom)).setText(String.format("%s \n%s", getString(R.string.AddSensor_TextView_SelectedRoom), room.toString()));
+        ((TextView) view.findViewById(R.id.textViewSelectedRoom)).setText(String.format("%s\n%s", getString(R.string.AddSensor_TextView_SelectedRoom), room));
         textViewNoSensors = view.findViewById(R.id.textViewNoneAvailable);
         listViewAvailableSensors = view.findViewById(R.id.listViewAvailableSensors);
     }
 
-    // set up queries for data from Firebase
-    private void setupDB() {
-        // get reference to Firebase table (root node)
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference();
-        // make a query for sensors whose roomID are 0
-        queryAvailableSensors = db.child("sensors").orderByChild("roomID").equalTo(0);
-        // add listener for data changes in sensor roomIDs on Firebase (asynchronous, continual, custom ValueEventListener see class below)
-        listenerSensorData = queryAvailableSensors.addValueEventListener(new GetSensorsValueEventListener());
-    }
-
-    // onDismiss() called when dialog fragment closes
-    @Override
-    public void onDismiss(@NonNull DialogInterface dialog) {
-        // remove the event listener (many bugs until I found out this line)
-        queryAvailableSensors.removeEventListener(listenerSensorData);
-        super.onDismiss(dialog);
-    }
-
-    // custom ValueEventListener for changes in Available sensors
-    private class GetSensorsValueEventListener implements ValueEventListener {
-        // onDataChange() when roomID for a sensor modified in Firebase
+    private class UpdateSensorsListView implements FirebaseDatabaseHelper.SensorDataChange {
         @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            sensors = new ArrayList<>(); // create new list
-
-            // read keys of available sensors from Firebase DataSnapshot
-            // snapshot contains all sensors (json-list-like thing)
-            // for loop cycles through its children
-            for (DataSnapshot sensor : snapshot.getChildren())
-                sensors.add(sensor.getKey()); // add sensor key to list
-
-            // when list is empty, set No Sensor message textview to visible and listview of sensors to gone
-            // else we have something in list, set NoSensor message to gone and set adaptor for listView available sensors
+        public void dataUpdated(List<Sensor> sensors) {
             if (sensors.isEmpty()) {
                 textViewNoSensors.setVisibility(View.VISIBLE);
                 listViewAvailableSensors.setVisibility(View.GONE);
             } else {
                 listViewAvailableSensors.setVisibility(View.VISIBLE);
                 textViewNoSensors.setVisibility(View.GONE);
-
                 // add ArrayAdaptor with method overrides for Sensor item in listview
-                listViewAvailableSensors.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, sensors) {
-                    // getView() controls how data looks, rather than create a new .xml layout just for a textview
-                    @NonNull
-                    @Override
-                    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                        TextView textViewSensor = makeTextView();
-                        // set the items onClickListener to open a Confirmation Dialog for adding sensor
-                        textViewSensor.setOnClickListener(view -> (new ConfirmDialog(getContext(), sensors.get(position))).show());
-                        return super.getView(position, textViewSensor, parent);
-                    }
-
-                    // customize textview
-                    private TextView makeTextView() {
-                        TextView textView = new TextView(getContext());
-                        textView.setGravity(Gravity.CENTER);
-                        textView.setPadding(10, 10, 10, 10);
-                        textView.setTextColor(getContext().getColor(R.color.black));
-                        return textView;
-                    }
-
-                    // confirmation dialog for adding a sensor
-                    class ConfirmDialog extends AlertDialog.Builder {
-                        // do everything in constructor
-                        public ConfirmDialog(Context context, String sensorKey) {
-                            super(context);
-                            setTitle(room.toString());
-                            setMessage("Confirm adding sensor " + sensorKey + " to room.");
-                            setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.cancel());
-                            setPositiveButton("Confirm", ((dialogInterface, i) -> {
-                                // get reference to Firebase for the sensor's roomID
-                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("sensors/" + sensorKey + "/roomID");
-                                // update the sensors roomID to this room
-                                ref.setValue(Integer.parseInt(room.getKey()));
-                                // print success toast and dismiss dialog fragment
-                                Toast.makeText(getContext(), "Added " + sensorKey + " to " + room.toString(), Toast.LENGTH_SHORT).show();
-                                dismiss();
-                            }));
-                        }
-                    }
-                });
+                listViewAvailableSensors.setAdapter(new SensorListArrayAdapter(getContext(), sensors));
             }
         }
+    }
 
-        // Error reading data from firebase using the ValueEventListener
+    private class SensorListArrayAdapter extends ArrayAdapter<Sensor> {
+        private List<Sensor> sensors;
+
+        public SensorListArrayAdapter(Context context, List<Sensor> sensors) {
+            super(context, android.R.layout.simple_list_item_1, sensors);
+            this.sensors = sensors;
+        }
+
+        // getView() controls how data looks, rather than create a new .xml layout just for a textview
+        @NonNull
         @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-            Toast.makeText(getContext(), "Error reading Sensors: " + error.getMessage(), Toast.LENGTH_LONG).show();
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            // customize textview
+            TextView textViewSensor = new TextView(getContext());
+            textViewSensor.setGravity(Gravity.CENTER);
+            textViewSensor.setMinHeight(50);
+            textViewSensor.setPadding(10, 10, 10, 10);
+            textViewSensor.setTextColor(getContext().getColor(R.color.black));
+            // set the items onClickListener to open a Confirmation Dialog for adding sensor
+            textViewSensor.setOnClickListener(view -> (new ConfirmDialog(getContext(), sensors.get(position).getKey())).show());
+            return super.getView(position, textViewSensor, parent);
+        }
+    }
+
+    // confirmation dialog for adding a sensor
+    private class ConfirmDialog extends AlertDialog.Builder {
+        // do everything in constructor
+        public ConfirmDialog(Context context, String sensorKey) {
+            super(context);
+            setTitle(room.toString());
+            setMessage("Confirm adding sensor " + sensorKey + " to room.");
+            setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.cancel());
+            setPositiveButton("Confirm", ((dialogInterface, i) -> {
+                // update the sensors roomID to this room
+                FirebaseDatabase.getInstance().getReference("sensors/" + sensorKey + "/roomID").setValue(Integer.parseInt(room.getKey()));
+                // print success toast and dismiss dialog fragment
+                Toast.makeText(getContext(), "Added " + sensorKey + " to " + room, Toast.LENGTH_SHORT).show();
+                dialogInterface.dismiss();
+                dismiss();
+            }));
         }
     }
 }
