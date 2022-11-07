@@ -2,6 +2,9 @@
     <string name="app_name">iSeat</string>
     <string name="slogan">iSeat, You Seat, We All Find a Seat</string>
 
+    <!--    RoomListRecyclerView Strings    -->
+    <string name="RoomList_TextView_Capacity">%d/%d</string>
+
     <!--    AddSensorDialogFragment Strings    -->
     <string name="AddSensor_TextView_AvailableSensors">Available Sensors</string>
     <string name="AddSensor_TextView_NoneAvailable">* No available sensors *</string>
