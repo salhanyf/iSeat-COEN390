@@ -71,15 +71,15 @@ public class AddSensorDialogFragment extends DialogFragment {
                 listViewAvailableSensors.setVisibility(View.VISIBLE);
                 textViewNoSensors.setVisibility(View.GONE);
                 // add ArrayAdaptor with method overrides for Sensor item in listview
-                listViewAvailableSensors.setAdapter(new SensorListArrayAdapter(getContext(), sensors));
+                listViewAvailableSensors.setAdapter(new AvailableSensorsArrayAdaptor(getContext(), sensors));
             }
         }
     }
 
-    private class SensorListArrayAdapter extends ArrayAdapter<Sensor> {
+    private class AvailableSensorsArrayAdaptor extends ArrayAdapter<Sensor> {
         private List<Sensor> sensors;
 
-        public SensorListArrayAdapter(Context context, List<Sensor> sensors) {
+        public AvailableSensorsArrayAdaptor(Context context, List<Sensor> sensors) {
             super(context, android.R.layout.simple_list_item_1, sensors);
             this.sensors = sensors;
         }
