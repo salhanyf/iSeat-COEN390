@@ -19,13 +19,11 @@ import java.util.List;
 public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRecyclerViewAdaptor.ViewHolder> {
 
     private final List<Room> mRooms;
-    private final List<String> mKeys;
     private final Context context;
 
-    public RoomListRecyclerViewAdaptor(Context context, List<Room> mRooms, List<String> mKeys) {
+    public RoomListRecyclerViewAdaptor(Context context, List<Room> mRooms) {
         this.context = context;
         this.mRooms = mRooms;
-        this.mKeys = mKeys;
     }
 
     @NonNull
@@ -38,7 +36,7 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(mRooms.get(position));
-        new FirebaseDatabaseHelper().getRoomSensors(mKeys.get(position), new UpdateCapacityTextView(holder.getTextViewCapacity()));
+        new FirebaseDatabaseHelper().listenToSensorsRoom(mRooms.get(position).getKey(), new UpdateCapacityTextView(holder.mRoomCapacity));
     }
 
     @Override
@@ -51,8 +49,6 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
         private final TextView mRoomLocation;
         private final TextView mRoomCapacity;
 
-        public TextView getTextViewCapacity() { return mRoomCapacity; }
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mRoomName = itemView.findViewById(R.id.textViewRecyclerView_BottomLeft);
@@ -60,21 +56,20 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
             mRoomCapacity = itemView.findViewById(R.id.textViewRecyclerView_BottomRight);
         }
 
-        public TextView bind(Room room) {
+        public void bind(Room room) {
             mRoomName.setText(room.getName());
             mRoomLocation.setText(room.getLocation());
             mRoomCapacity.setText(room.getCapacity());
-            return mRoomCapacity;
         }
     }
 
-    private class UpdateCapacityTextView implements FirebaseDatabaseHelper.DataStatusSensor {
+    private class UpdateCapacityTextView implements FirebaseDatabaseHelper.SensorDataChange {
         private final TextView textView;
 
         public UpdateCapacityTextView(TextView textView) { this.textView = textView; }
 
         @Override
-        public void DataIsLoaded(List<Sensor> sensors) {
+        public void dataUpdated(List<Sensor> sensors) {
             int open = 0, total = 0;
             for (Sensor sensor : sensors) {
                 if (sensor.getStatus())

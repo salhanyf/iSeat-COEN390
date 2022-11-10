@@ -10,17 +10,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.finalproject.R;
+import com.example.finalproject.controllers.FirebaseDatabaseHelper;
 import com.example.finalproject.models.Room;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdminRoomsActivity extends AppCompatActivity {
 
+    private String adminEmail;
     private RecyclerView recycler;
-    private AdminRoomsRecyclerViewAdaptor adaptor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +29,15 @@ public class AdminRoomsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_rooms);
 
         Intent intent = getIntent();
-        String adminEmail = intent.getStringExtra(getString(R.string.Extra_adminEmail));
+        adminEmail = intent.getStringExtra(getString(R.string.Extra_adminEmail));
 
         Toolbar toolbar = findViewById(R.id.adminRoomsActivityToolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle(String.format(getString(R.string.AdminRooms_Toolbar_Tile), adminEmail != null ? adminEmail : ""));
+        toolbar.setTitle(String.format("%s%s", adminEmail != null ? adminEmail : "", getString(R.string.AdminRooms_Toolbar_Tile)));
 
-        List<Room> r = new ArrayList<>();
-        r.add(new Room("H-404", "Hall Building", "0/0", "test@mail.com"));
-        r.add(new Room("FB-C080", "Fauxbourg Building OMG OMG OMG", "0/0", "test@mail.com"));
-        r.add(new Room("LB-200", "Library Building", "0/0", "test@mail.com"));
-        setupRecyclerView(r);
+        recycler = findViewById(R.id.adminRoomsActivityRecyclerView);
+
+        new FirebaseDatabaseHelper().getAdminRooms(adminEmail, new UpdateAdminsRoomsRecyclerView());
     }
 
     @Override
@@ -51,18 +50,27 @@ public class AdminRoomsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_add_room) {
+            // TODO: add room dialog fragment
+            Toast.makeText(this, "Clicked on Add Room for admin: " + adminEmail, Toast.LENGTH_SHORT).show();
             return true;
         }
         else if (id == R.id.action_remove_room) {
+            // TODO: remove room dialog fragment
+            Toast.makeText(this, "Clicked on Remove Room for admin: " + adminEmail, Toast.LENGTH_SHORT).show();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void setupRecyclerView(List<Room> rooms) {
-        adaptor = new AdminRoomsRecyclerViewAdaptor(rooms);
-        recycler = findViewById(R.id.adminRoomsActivityRecyclerView);
         recycler.setLayoutManager(new LinearLayoutManager(this));
-        recycler.setAdapter(adaptor);
+        recycler.setAdapter(new AdminRoomsRecyclerViewAdaptor(rooms, getSupportFragmentManager()));
+    }
+
+    private class UpdateAdminsRoomsRecyclerView implements FirebaseDatabaseHelper.DataStatusRoom {
+        @Override
+        public void DataIsLoaded(List<Room> rooms) {
+            setupRecyclerView(rooms);
+        }
     }
 }

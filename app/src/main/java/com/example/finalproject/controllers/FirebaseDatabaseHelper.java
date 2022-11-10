@@ -1,6 +1,7 @@
 package com.example.finalproject.controllers;
 
 import android.util.Log;
+import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import com.example.finalproject.models.Room;
@@ -8,6 +9,7 @@ import com.example.finalproject.models.Sensor;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DataSnapshot;
 import java.util.ArrayList;
@@ -18,17 +20,15 @@ public class FirebaseDatabaseHelper {
     private final DatabaseReference mReferenceProfiles; // Object for Adnan and Farah
     private final DatabaseReference mReferenceRooms;  // Object for Shahin, Shayan, and Samson
     private final DatabaseReference mReferenceSensors; // Object for Shahin, Shayan, and Samson
-    private final List<Room> rooms = new ArrayList<>();
-    private final List<String> keys = new ArrayList<>();
+    List<Pair<Query, ValueEventListener>> sensorQueries = new ArrayList<>();
 
     public interface DataStatusRoom {
-        void DataIsLoaded(List<Room> rooms, List<String> keys);
+        void DataIsLoaded(List<Room> rooms);
 //        void DataIsInserted(); void DataIsUpdated(); void DataIsDeleted();
     }
 
-    public interface DataStatusSensor {
-        void DataIsLoaded(List<Sensor> sensors);
-//        void DataIsInserted(); void DataIsUpdated(); void DataIsDeleted();
+    public interface SensorDataChange {
+        void dataUpdated(List<Sensor> sensors);
     }
 
     public FirebaseDatabaseHelper() {
@@ -42,33 +42,54 @@ public class FirebaseDatabaseHelper {
         mReferenceRooms.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {  // This is the method that is called when the data is changed (asynchronous)
-                rooms.clear();
-                keys.clear();
+                List<Room> rooms = new ArrayList<>();
                 for (DataSnapshot keyNode : dataSnapshot.getChildren()) {
-                    keys.add(keyNode.getKey());
                     Room room = keyNode.getValue(Room.class);
-                    rooms.add(room);
+                    rooms.add(room.setKey(keyNode.getKey()));
                     Log.i("Room", (room == null ? "Error: room == null" : room.getName()));
                 }
-                dataStatus.DataIsLoaded(rooms, keys);
+                dataStatus.DataIsLoaded(rooms);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
 
-    public void getRoomSensors(String roomKey, DataStatusSensor dataStatus) {
-        mReferenceSensors.orderByChild("roomID").equalTo(Integer.parseInt(roomKey)).addValueEventListener(new ValueEventListener() {
+    public void listenToSensorsRoom(String roomKey, SensorDataChange dataStatus) {
+        Query query = mReferenceSensors.orderByChild("roomID").equalTo(Integer.parseInt(roomKey));
+        ValueEventListener listener = query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<Sensor> sensors = new ArrayList<>();
                 for (DataSnapshot snap : snapshot.getChildren()) {
-                     sensors.add(snap.getValue(Sensor.class));
+                     sensors.add(snap.getValue(Sensor.class).setKey(snap.getKey()));
                 }
-                dataStatus.DataIsLoaded(sensors);
+                dataStatus.dataUpdated(sensors);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+        sensorQueries.add(new Pair<>(query, listener));
+    }
+
+    public void removeSensorsListeners() {
+        for (Pair<Query, ValueEventListener> q : sensorQueries)
+            q.first.removeEventListener(q.second);
+    }
+
+    public void getAdminRooms(String adminEmail, DataStatusRoom dataStatus) {
+        mReferenceRooms.orderByChild("admin").equalTo(adminEmail).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<Room> rooms = new ArrayList<>();
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    rooms.add(snap.getValue(Room.class).setKey(snap.getKey()));
+                }
+                dataStatus.DataIsLoaded(rooms);
             }
 
             @Override
