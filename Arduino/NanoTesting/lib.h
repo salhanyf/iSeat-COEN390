@@ -21,7 +21,7 @@
 
 // timing macros
 #define SLEEP_DELAY_MS      500
-#define CHECK_ROOM_DELAY_S  5
+#define CHECK_ROOM_DELAY_S  4
 #define CHECK_ROOM_CNT      ((CHECK_ROOM_DELAY_S * 1000) / SLEEP_DELAY_MS) 
 
 #ifdef PB_TEST_SENSOR

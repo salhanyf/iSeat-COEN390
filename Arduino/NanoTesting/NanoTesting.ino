@@ -112,23 +112,27 @@ void setup() {
 
   // check if roomID for sensor is initialized in Firebase, else initialize it
   Serial.print("Checking if roomID entry exists for sensor... ");
-  if (Firebase.getInt(fbdo, "sensors/" + mac + "/roomID")) {
-    Serial.println("Success.\n" + fbdo.dataPath() + " : " + String(fbdo.intData()));  // print success
-    if (fbdo.intData() != 0)
+  if (Firebase.getString(fbdo, "sensors/" + mac + "/roomID")) {
+    Serial.println("Success.\n" + fbdo.dataPath() + " : " + String(fbdo.stringData()));  // print success
+    if (fbdo.stringData() != "")
       hasRoom = true;
   }
   else {
     Serial.println("\nError, " + fbdo.errorReason() + ": " + fbdo.dataPath());  // print error
-    // add roomID=0 entry to sensor if non-existant
+    // add roomID="" entry to sensor if non-existant
     if (fbdo.errorReason() == "path not exist") {
       Serial.print("Adding roomID \'0\' to Firebase... ");
-      Firebase.setInt(fbdo, "sensors/" + mac + "/roomID", 0);
+      Firebase.setString(fbdo, "sensors/" + mac + "/roomID", "");
       Serial.println("Done.");
     }
     fbdo.clear();
   }
 
+#ifdef LOAD_CELL
+
   loadCellSetup();
+
+#endif
 
 }
 
@@ -143,10 +147,10 @@ void loop() {
   // uC will check Firebase if assigned to a Room
   if (++cnt >= CHECK_ROOM_CNT) {
     Serial.print("Checking if sensor is assigned to room... ");
-    if (Firebase.getInt(fbdo, "sensors/" + mac + "/roomID")) {
+    if (Firebase.getString(fbdo, "sensors/" + mac + "/roomID")) {
       // if roomID not zero, update hasRoom
-      if (fbdo.intData() != 0) {
-        Serial.println("roomID: " + String(fbdo.intData()));
+      if (fbdo.stringData() != "") {
+        Serial.println("roomID: " + fbdo.stringData());
         hasRoom = true;
       }
       // else roomID = 0, update hasRoom
@@ -171,10 +175,14 @@ void loop() {
 
     // if status changed from last time update Firebase sensor entry
     if (status != lastStatus) {
+      digitalWrite(LED, status);  // show seat status on LED
       Firebase.setBool(fbdo, "sensors/" + mac + "/status", status);
       Serial.println("Status sent to Firebase: " + String(status));
       fbdo.clear();
       lastStatus = status;
     }
+  } else {
+    static unsigned char tog = 0;
+    digitalWrite(LED, (tog++) & 0x04);
   }
 }
