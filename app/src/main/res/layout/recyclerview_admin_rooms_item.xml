@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     style="?android:attr/listSeparatorTextViewStyle"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -10,19 +9,25 @@
     android:padding="10dp"
     android:weightSum="1">
 
+    <CheckBox
+        android:id="@+id/checkBoxAdminRoomsItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:checkedState="unchecked"
+        app:useMaterialThemeColors="false" />
+
     <TextView
-        android:id="@+id/itemAdminRoomsRoomTextView"
+        android:id="@+id/textViewRoomAdminRoomsItem"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_weight="1"
         android:gravity="start|center_vertical"
-        android:padding="5dp"
         android:singleLine="true"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
     <ImageButton
-        android:id="@+id/itemAdminRoomButtonAddSensor"
+        android:id="@+id/buttonAddSensorAdminRoomsItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -30,7 +35,7 @@
         app:srcCompat="@drawable/ic_add_sensor" />
 
     <ImageButton
-        android:id="@+id/itemAdminRoomButtonRemoveSensor"
+        android:id="@+id/buttonRemoveSensorAdminRoomsItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"

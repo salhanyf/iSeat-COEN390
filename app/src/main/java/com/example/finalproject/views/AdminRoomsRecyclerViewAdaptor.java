@@ -16,8 +16,8 @@ import com.example.finalproject.models.Room;
 import java.util.List;
 
 public class AdminRoomsRecyclerViewAdaptor extends RecyclerView.Adapter<AdminRoomsRecyclerViewAdaptor.ViewHolder> {
-    private FragmentManager fragmentManager;
-    private List<Room> localDatSet;
+    private final FragmentManager fragmentManager;
+    private final List<Room> localDatSet;
 
     public AdminRoomsRecyclerViewAdaptor(List<Room> localDatSet, FragmentManager fragmentManager) {
         this.localDatSet = localDatSet;
@@ -56,9 +56,9 @@ public class AdminRoomsRecyclerViewAdaptor extends RecyclerView.Adapter<AdminRoo
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewRoom = itemView.findViewById(R.id.itemAdminRoomsRoomTextView);
-            buttonAddSensor = itemView.findViewById(R.id.itemAdminRoomButtonAddSensor);
-            buttonRemoveSensor = itemView.findViewById(R.id.itemAdminRoomButtonRemoveSensor);
+            textViewRoom = itemView.findViewById(R.id.textViewRoomAdminRoomsItem);
+            buttonAddSensor = itemView.findViewById(R.id.buttonAddSensorAdminRoomsItem);
+            buttonRemoveSensor = itemView.findViewById(R.id.buttonRemoveSensorAdminRoomsItem);
         }
     }
 }
