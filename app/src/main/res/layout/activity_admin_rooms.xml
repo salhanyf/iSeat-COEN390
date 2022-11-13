@@ -8,7 +8,7 @@
     tools:context=".views.AdminRoomsActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/adminRoomsActivityToolbar"
+        android:id="@+id/toolbarAdminRooms"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -18,7 +18,7 @@
         app:titleTextColor="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/adminRoomsActivityRecyclerView"
+        android:id="@+id/recyclerViewAdminRooms"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 </LinearLayout>

@@ -31,11 +31,11 @@ public class AdminRoomsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         adminEmail = intent.getStringExtra(getString(R.string.Extra_adminEmail));
 
-        Toolbar toolbar = findViewById(R.id.adminRoomsActivityToolbar);
+        Toolbar toolbar = findViewById(R.id.toolbarAdminRooms);
         setSupportActionBar(toolbar);
         toolbar.setTitle(String.format("%s%s", adminEmail != null ? adminEmail : "", getString(R.string.AdminRooms_Toolbar_Tile)));
 
-        recycler = findViewById(R.id.adminRoomsActivityRecyclerView);
+        recycler = findViewById(R.id.recyclerViewAdminRooms);
 
         new FirebaseDatabaseHelper().getAdminRooms(adminEmail, new UpdateAdminsRoomsRecyclerView());
     }
