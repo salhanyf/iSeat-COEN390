@@ -22,4 +22,12 @@
     <!--    AdminRoomsRecyclerView Strings  -->
     <string name="AdminRooms_ContentDescription_AddSensor">Add Sensor</string>
     <string name="AdminRooms_ContentDescription_RemoveSensor">Remove Sensor</string>
+
+    <!--    AddRoomDialogFragment Strings   -->
+    <string name="AddRoom_TextView_AddRoomInfo">Add Room Info:</string>
+    <string name="AddRoom_TextView_RoomName">Name:</string>
+    <string name="AddRoom_TextView_RoomLocation">Location:</string>
+    <string name="AddRoom_EditText_HintName">Enter Name Here</string>
+    <string name="AddRoom_EditText_HintLocation">Enter Location Here</string>
+    <string name="AddRoom_Button_AddRoom">Add Room</string>
 </resources>

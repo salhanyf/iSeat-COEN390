@@ -102,10 +102,9 @@ public class RemoveSensorDialogFragment extends DialogFragment {
             setMessage("Confirm removing sensor " + sensorKey + " from room.");
             setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.cancel());
             setPositiveButton("Confirm", ((dialogInterface, i) -> {
-                // get reference to Firebase for the sensor's roomID
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("sensors/" + sensorKey + "/roomID");
-                // update the sensors roomID to this room
-                ref.setValue(0);
+                // get reference to Firebase for the sensor's roomKey
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("sensors/" + sensorKey + "/roomKey");
+                ref.setValue("");
                 // print success toast and dismiss dialog fragment
                 Toast.makeText(getContext(), "Remove " + sensorKey + " from " + room.toString(), Toast.LENGTH_SHORT).show();
                 dismiss();
