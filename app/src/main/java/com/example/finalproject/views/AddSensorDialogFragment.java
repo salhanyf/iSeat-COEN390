@@ -44,7 +44,7 @@ public class AddSensorDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.dialogfragment_add_sensor, container);
         setupUI(view);
         db = new FirebaseDatabaseHelper();
-        db.listenToSensorsRoom("0", new UpdateSensorsListView());
+        db.listenToSensorsRoom("", new UpdateSensorsListView());
         return view;
     }
 
@@ -110,7 +110,7 @@ public class AddSensorDialogFragment extends DialogFragment {
             setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.cancel());
             setPositiveButton("Confirm", ((dialogInterface, i) -> {
                 // update the sensors roomID to this room
-                FirebaseDatabase.getInstance().getReference("sensors/" + sensorKey + "/roomID").setValue(Integer.parseInt(room.getKey()));
+                FirebaseDatabase.getInstance().getReference("sensors/" + sensorKey + "/roomID").setValue(room.getKey());
                 // print success toast and dismiss dialog fragment
                 Toast.makeText(getContext(), "Added " + sensorKey + " to " + room, Toast.LENGTH_SHORT).show();
                 dialogInterface.dismiss();

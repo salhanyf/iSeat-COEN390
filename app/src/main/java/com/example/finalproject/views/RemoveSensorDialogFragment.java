@@ -105,7 +105,7 @@ public class RemoveSensorDialogFragment extends DialogFragment {
                 // get reference to Firebase for the sensor's roomID
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("sensors/" + sensorKey + "/roomID");
                 // update the sensors roomID to this room
-                ref.setValue(0);
+                ref.setValue("");
                 // print success toast and dismiss dialog fragment
                 Toast.makeText(getContext(), "Remove " + sensorKey + " from " + room.toString(), Toast.LENGTH_SHORT).show();
                 dismiss();

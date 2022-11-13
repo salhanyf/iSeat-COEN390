@@ -1,7 +1,6 @@
 package com.example.finalproject.controllers;
 
 import android.util.Log;
-import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import com.example.finalproject.models.Room;
@@ -20,7 +19,8 @@ public class FirebaseDatabaseHelper {
     private final DatabaseReference mReferenceProfiles; // Object for Adnan and Farah
     private final DatabaseReference mReferenceRooms;  // Object for Shahin, Shayan, and Samson
     private final DatabaseReference mReferenceSensors; // Object for Shahin, Shayan, and Samson
-    List<Pair<Query, ValueEventListener>> sensorQueries = new ArrayList<>();
+    Query query;
+    ValueEventListener listener;
 
     public interface DataStatusRoom {
         void DataIsLoaded(List<Room> rooms);
@@ -58,8 +58,8 @@ public class FirebaseDatabaseHelper {
     }
 
     public void listenToSensorsRoom(String roomKey, SensorDataChange dataStatus) {
-        Query query = mReferenceSensors.orderByChild("roomID").equalTo(Integer.parseInt(roomKey));
-        ValueEventListener listener = query.addValueEventListener(new ValueEventListener() {
+        query = mReferenceSensors.orderByChild("roomID").equalTo(roomKey);
+        listener = query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<Sensor> sensors = new ArrayList<>();
@@ -73,12 +73,10 @@ public class FirebaseDatabaseHelper {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-        sensorQueries.add(new Pair<>(query, listener));
     }
 
     public void removeSensorsListeners() {
-        for (Pair<Query, ValueEventListener> q : sensorQueries)
-            q.first.removeEventListener(q.second);
+        query.removeEventListener(listener);
     }
 
     public void getAdminRooms(String adminEmail, DataStatusRoom dataStatus) {
