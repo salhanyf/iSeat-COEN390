@@ -6,6 +6,9 @@
 #define URL     "test-1ee43-default-rtdb.firebaseio.com"  // Firebase Website -> Build -> Realtime Database -> URL
 #define API_KEY "AIzaSyAcNLVUsicx0dKUT__6ojBJ8P8N-HoTrmQ" // Firebase Website -> Project Settings -> Web API Key
 
+#define ROOM_KEY_STR  String("roomKey")
+#define STATUS_STR    String("status")
+
 // ***** CHANGE FOR YOUR NETWORK *****
 #define SSID  "BELL325"   
 #define PASS  "4217F6E9"  // DONT HACK ME PLZ
@@ -59,13 +62,11 @@
   #error Please make sure only 1 sensor is defined in lib.h
 #endif
 
-#define S(s) (String(s))  // macro to shorten string constructor for MAC address
-
 // get mac address of WiFi module (unique)
 inline String getMac() {
   byte m[WL_MAC_ADDR_LENGTH];
   WiFi.macAddress(m);
-  return S(m[5]) + ":" + S(m[4]) + ":" + S(m[3]) + ":" + S(m[2]) + ":" + S(m[1]) + ":" + S(m[0]);
+  return String(m[5]) + ":" + String(m[4]) + ":" + String(m[3]) + ":" + String(m[2]) + ":" + String(m[1]) + ":" + String(m[0]);
 }
 
 inline void setupPins() {
@@ -73,7 +74,7 @@ inline void setupPins() {
   pinMode(CLK, OUTPUT);     // setup clock for Load Cell Amplifier
   pinMode(LED, OUTPUT);     // on-board LED pin D13
   digitalWrite(CLK, HIGH);
-  digitalWrite(LED, HIGH);
+  digitalWrite(LED, LOW);
 }
 
 inline void setupWifi() {

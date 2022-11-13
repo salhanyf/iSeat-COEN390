@@ -62,7 +62,6 @@ bool hasRoom = false;
 const int HX711_dout = 4; //mcu > HX711 dout pin
 const int HX711_sck = 5; //mcu > HX711 sck pin
 
-
 void loadCellSetup() {
   // check if load cell is calibrated, else calibrate it (Added by Shahin 29/10/2022)
   LoadCell.begin();
@@ -112,7 +111,7 @@ void setup() {
 
   // check if roomID for sensor is initialized in Firebase, else initialize it
   Serial.print("Checking if roomID entry exists for sensor... ");
-  if (Firebase.getString(fbdo, "sensors/" + mac + "/roomID")) {
+  if (Firebase.getString(fbdo, "sensors/" + mac + "/" + ROOM_KEY_STR)) {
     Serial.println("Success.\n" + fbdo.dataPath() + " : " + String(fbdo.stringData()));  // print success
     if (fbdo.stringData() != "")
       hasRoom = true;
@@ -121,8 +120,9 @@ void setup() {
     Serial.println("\nError, " + fbdo.errorReason() + ": " + fbdo.dataPath());  // print error
     // add roomID="" entry to sensor if non-existant
     if (fbdo.errorReason() == "path not exist") {
-      Serial.print("Adding roomID \'0\' to Firebase... ");
-      Firebase.setString(fbdo, "sensors/" + mac + "/roomID", "");
+      Serial.print("Adding " + ROOM_KEY_STR + " \'0\' to Firebase... ");
+      Firebase.setString(fbdo, "sensors/" + mac + "/" + ROOM_KEY_STR, "");
+      Firebase.setBool(fbdo, "sensors/" + mac + "/" + STATUS_STR, true);
       Serial.println("Done.");
     }
     fbdo.clear();
@@ -147,10 +147,10 @@ void loop() {
   // uC will check Firebase if assigned to a Room
   if (++cnt >= CHECK_ROOM_CNT) {
     Serial.print("Checking if sensor is assigned to room... ");
-    if (Firebase.getString(fbdo, "sensors/" + mac + "/roomID")) {
+    if (Firebase.getString(fbdo, "sensors/" + mac + "/" + ROOM_KEY_STR)) {
       // if roomID not zero, update hasRoom
       if (fbdo.stringData() != "") {
-        Serial.println("roomID: " + fbdo.stringData());
+        Serial.println(ROOM_KEY_STR + ": " + fbdo.stringData());
         hasRoom = true;
       }
       // else roomID = 0, update hasRoom
@@ -176,13 +176,13 @@ void loop() {
     // if status changed from last time update Firebase sensor entry
     if (status != lastStatus) {
       digitalWrite(LED, status);  // show seat status on LED
-      Firebase.setBool(fbdo, "sensors/" + mac + "/status", status);
+      Firebase.setBool(fbdo, "sensors/" + mac + "/" + STATUS_STR, status);
       Serial.println("Status sent to Firebase: " + String(status));
       fbdo.clear();
       lastStatus = status;
     }
   } else {
     static unsigned char tog = 0;
-    digitalWrite(LED, (tog++) & 0x04);
+    digitalWrite(LED, (tog++) & 0x02);
   }
 }
