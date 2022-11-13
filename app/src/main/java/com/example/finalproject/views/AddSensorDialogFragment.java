@@ -109,8 +109,8 @@ public class AddSensorDialogFragment extends DialogFragment {
             setMessage("Confirm adding sensor " + sensorKey + " to room.");
             setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.cancel());
             setPositiveButton("Confirm", ((dialogInterface, i) -> {
-                // update the sensors roomID to this room
-                FirebaseDatabase.getInstance().getReference("sensors/" + sensorKey + "/roomID").setValue(room.getKey());
+                // update the sensors roomKey to this room
+                FirebaseDatabase.getInstance().getReference("sensors/" + sensorKey + "/roomKey").setValue(room.getKey());
                 // print success toast and dismiss dialog fragment
                 Toast.makeText(getContext(), "Added " + sensorKey + " to " + room, Toast.LENGTH_SHORT).show();
                 dialogInterface.dismiss();

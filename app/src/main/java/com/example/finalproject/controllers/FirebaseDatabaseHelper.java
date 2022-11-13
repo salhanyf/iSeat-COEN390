@@ -58,7 +58,7 @@ public class FirebaseDatabaseHelper {
     }
 
     public void listenToSensorsRoom(String roomKey, SensorDataChange dataStatus) {
-        query = mReferenceSensors.orderByChild("roomID").equalTo(roomKey);
+        query = mReferenceSensors.orderByChild("roomKey").equalTo(roomKey);
         listener = query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
