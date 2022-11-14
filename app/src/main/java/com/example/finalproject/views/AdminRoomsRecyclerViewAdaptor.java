@@ -56,8 +56,10 @@ public class AdminRoomsRecyclerViewAdaptor extends RecyclerView.Adapter<AdminRoo
     }
 
     public void hideCheckBoxes() {
-        for (CheckBox box : checkBoxes)
+        for (CheckBox box : checkBoxes) {
+            box.setChecked(false);
             box.setVisibility(View.GONE);
+        }
     }
 
     public List<Room> getCheckedRooms() {
@@ -67,11 +69,6 @@ public class AdminRoomsRecyclerViewAdaptor extends RecyclerView.Adapter<AdminRoo
                 rooms.add(localDatSet.get(i));
         }
         return rooms;
-    }
-
-    public void uncheckBoxes() {
-        for (CheckBox box : checkBoxes)
-            box.setChecked(false);
     }
 
     @Override
