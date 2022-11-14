@@ -31,23 +31,19 @@ inline bool sensorState(bool current) {
     newDataReady = true;
 
   // get smoothed value from the dataset:
-  if (newDataReady)
-  {
-      float i = LoadCell.getData(); // Contains Raw data of load cell!!!
+  if (newDataReady) {
+    float i = LoadCell.getData();  // Contains Raw data of load cell!!!
 
-      // If load cell output is greater than 500, seat is taken else seat is open
-      if (i > 60)
-      {
-        Serial.print("Seat is taken, Current Pressure: ");
-        Serial.println(i);
-        return false;
-      }
-      else
-      {
-        Serial.print("Seat is open, Current Pressure: ");
-        Serial.println(i);
-        return true;
-      }
+    // If load cell output (i) is greater than X, seat is taken else seat is open
+    if (i > 10) {
+      Serial.print("Seat is taken, Current Pressure: ");
+      Serial.println(i);
+      return false;
+    } else {
+      Serial.print("Seat is open, Current Pressure: ");
+      Serial.println(i);
+      return true;
+    }
   }
 
   else return current;
@@ -66,10 +62,10 @@ void loadCellSetup() {
   // check if load cell is calibrated, else calibrate it (Added by Shahin 29/10/2022)
   LoadCell.begin();
 
-  float calibrationValue = 696.0; //calibration value for load cell
-  unsigned long stabilizationTime = 2000; //time in milliseconds to stabilize sensor before reading
-  boolean _tare = true; //set to true to tare before reading
-  
+  float calibrationValue = 696.0;          //calibration value for load cell
+  unsigned long stabilizationTime = 2000;  //time in milliseconds to stabilize sensor before reading
+  boolean _tare = true;                    //set to true to tare before reading
+
   LoadCell.start(stabilizationTime, _tare);
 
   if (LoadCell.getTareStatus()) {
@@ -82,9 +78,27 @@ void loadCellSetup() {
   }
 }
 
+String WiFiStatus() {
+  //An RSSI closer to 0 is stronger, and closer to –100 is weaker.
+  //For best performance, you want your RSSI to be as high as possible. A useful rule of thumb is that if the RSSI is less than –70 dBm
+  //you are unlikely to have good performance over Wi-Fi for bandwidth intensive tasks.
+  long rssi = WiFi.RSSI();
+  // Serial.print("Signal strength (RSSI): " + String(rssi) + " dBm\n");
+
+  if (rssi > -70) {
+    return "Strong";
+  } else if (rssi > -80) {
+    return "Medium";
+  } else if (rssi > -90) {
+    return "Weak";
+  } else {
+    return "Very Weak";
+  }
+}
+
 void setup() {
-  
-  Serial.begin(57600); // start serial communications
+
+  Serial.begin(57600);  // start serial communications
   delay(2 * SLEEP_DELAY_MS);
 
   // setup GPIOs
@@ -96,7 +110,7 @@ void setup() {
   Serial.print("Connecting to Wifi...");
   setupWifi();
   Serial.println(" Done.");
-  
+
   // Print IP and MAC
   Serial.print("IP: ");
   Serial.println(WiFi.localIP());
@@ -115,8 +129,7 @@ void setup() {
     Serial.println("Success.\n" + fbdo.dataPath() + " : " + String(fbdo.stringData()));  // print success
     if (fbdo.stringData() != "")
       hasRoom = true;
-  }
-  else {
+  } else {
     Serial.println("\nError, " + fbdo.errorReason() + ": " + fbdo.dataPath());  // print error
     // add roomID="" entry to sensor if non-existant
     if (fbdo.errorReason() == "path not exist") {
@@ -133,7 +146,6 @@ void setup() {
   loadCellSetup();
 
 #endif
-
 }
 
 void loop() {
@@ -153,13 +165,12 @@ void loop() {
         Serial.println(ROOM_KEY_STR + ": " + fbdo.stringData());
         hasRoom = true;
       }
-      // else roomID = 0, update hasRoom
+        // else roomID = 0, update hasRoom
       else {
         Serial.println("No room.");
         hasRoom = false;
       }
-    }
-    else {
+    } else {
       // error occured during get from Firebase
       Serial.println("\nError, " + fbdo.errorReason());
     }
@@ -170,7 +181,7 @@ void loop() {
   // if sensor has room assigned to it, send status updates to Firebase
   if (hasRoom) {
     Serial.print("Updating status and LED from sensor state... ");
-    status = sensorState(status);     // get status according to sensor used
+    status = sensorState(status);  // get status according to sensor used
     Serial.println("Done.");
 
     // if status changed from last time update Firebase sensor entry
@@ -184,5 +195,12 @@ void loop() {
   } else {
     static unsigned char tog = 0;
     digitalWrite(LED, (tog++) & 0x02);
+  }
+
+  // display Wifi Status in Firebase
+  Firebase.setString(fbdo, "sensors/" + mac + "/" + WIFI_STR, WiFiStatus());
+  // check if WiFi Status is weak, if so, reconnect
+  if (WiFiStatus() == "Very Weak") {
+    Serial.println("WiFi Signal very weak...");
   }
 }

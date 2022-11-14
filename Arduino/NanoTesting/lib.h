@@ -8,10 +8,13 @@
 
 #define ROOM_KEY_STR  String("roomKey")
 #define STATUS_STR    String("status")
+#define WIFI_STR    String("wifi")
 
 // ***** CHANGE FOR YOUR NETWORK *****
-#define SSID  "BELL325"   
-#define PASS  "4217F6E9"  // DONT HACK ME PLZ
+#define SSID  "BELL188"
+#define PASS  "3FAD3755"  // DONT HACK ME PLZ (SHAHIN/SHAYAN)
+//#define SSID  "BELL325"
+//#define PASS  "4217F6E9"  // DONT HACK ME PLZ (SAMSON)
 
 // ***** Uncomment sensor used for current HW setup *****
 #define PB_TEST_SENSOR
@@ -25,20 +28,20 @@
 // timing macros
 #define SLEEP_DELAY_MS      500
 #define CHECK_ROOM_DELAY_S  4
-#define CHECK_ROOM_CNT      ((CHECK_ROOM_DELAY_S * 1000) / SLEEP_DELAY_MS) 
+#define CHECK_ROOM_CNT      ((CHECK_ROOM_DELAY_S * 1000) / SLEEP_DELAY_MS)
 
 #ifdef PB_TEST_SENSOR
-  // define ERROR if other sensor is defined too
-  #ifdef FILM_SENSOR
-    #define SENSOR_DEF_ERROR
-  #endif
-  #ifdef LOAD_CELL
-    #define SENSOR_DEF_ERROR
-  #endif
+// define ERROR if other sensor is defined too
+#ifdef FILM_SENSOR
+#define SENSOR_DEF_ERROR
+#endif
+#ifdef LOAD_CELL
+#define SENSOR_DEF_ERROR
+#endif
 #endif
 
 #ifdef FILM_SENSOR
-  // define ERROR if other sensor is defined too
+// define ERROR if other sensor is defined too
   #ifdef PB_TEST_SENSOR
     #define SENSOR_DEF_ERROR
   #endif
@@ -48,7 +51,7 @@
 #endif
 
 #ifdef LOAD_CELL
-  // define ERROR if other sensor is defined too
+// define ERROR if other sensor is defined too
   #ifdef PB_TEST_SENSOR
     #define SENSOR_DEF_ERROR
   #endif
@@ -59,7 +62,7 @@
 
 // if two+ sensor defines were uncommented
 #ifdef SENSOR_DEF_ERROR
-  #error Please make sure only 1 sensor is defined in lib.h
+#error Please make sure only 1 sensor is defined in lib.h
 #endif
 
 // get mac address of WiFi module (unique)
