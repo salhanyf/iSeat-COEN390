@@ -200,7 +200,7 @@ void loop() {
   // display Wifi Status in Firebase
   Firebase.setString(fbdo, "sensors/" + mac + "/" + WIFI_STR, WiFiStatus());
   // check if WiFi Status is weak, if so, reconnect
-  if (WiFiStatus() == "Very Weak") {
-    Serial.println("WiFi Signal very weak...");
+  if (WiFiStatus() == "Weak" || WiFiStatus() == "Very Weak") {
+    Serial.println("WiFi Signal Weak...");
   }
 }
