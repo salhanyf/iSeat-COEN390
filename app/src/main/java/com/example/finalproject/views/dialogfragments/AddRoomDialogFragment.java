@@ -1,4 +1,4 @@
-package com.example.finalproject.views;
+package com.example.finalproject.views.dialogfragments;
 
 import android.app.AlertDialog;
 import android.content.Context;

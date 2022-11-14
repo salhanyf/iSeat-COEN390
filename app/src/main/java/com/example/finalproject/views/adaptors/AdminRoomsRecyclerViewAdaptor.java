@@ -1,4 +1,4 @@
-package com.example.finalproject.views;
+package com.example.finalproject.views.adaptors;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.finalproject.R;
 import com.example.finalproject.models.Room;
+import com.example.finalproject.views.dialogfragments.AddSensorDialogFragment;
+import com.example.finalproject.views.dialogfragments.RemoveSensorDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
