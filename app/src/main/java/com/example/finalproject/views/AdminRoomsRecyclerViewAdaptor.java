@@ -3,6 +3,7 @@ package com.example.finalproject.views;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -13,15 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.finalproject.R;
 import com.example.finalproject.models.Room;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdminRoomsRecyclerViewAdaptor extends RecyclerView.Adapter<AdminRoomsRecyclerViewAdaptor.ViewHolder> {
-    private FragmentManager fragmentManager;
-    private List<Room> localDatSet;
+    private final FragmentManager fragmentManager;
+    private final List<Room> localDatSet;
+    private final List<CheckBox> checkBoxes;
 
     public AdminRoomsRecyclerViewAdaptor(List<Room> localDatSet, FragmentManager fragmentManager) {
         this.localDatSet = localDatSet;
         this.fragmentManager = fragmentManager;
+        this.checkBoxes = new ArrayList<>();
     }
 
     @NonNull
@@ -33,6 +37,8 @@ public class AdminRoomsRecyclerViewAdaptor extends RecyclerView.Adapter<AdminRoo
 
     @Override
     public void onBindViewHolder(@NonNull AdminRoomsRecyclerViewAdaptor.ViewHolder holder, int position) {
+        holder.checkBox.setVisibility(View.GONE);
+        checkBoxes.add(holder.checkBox);
         holder.textViewRoom.setText(localDatSet.get(position).toString());
         holder.buttonAddSensor.setOnClickListener(view -> {
             Room room = localDatSet.get(holder.getLayoutPosition());
@@ -44,21 +50,44 @@ public class AdminRoomsRecyclerViewAdaptor extends RecyclerView.Adapter<AdminRoo
         });
     }
 
+    public void showCheckBoxes() {
+        for (CheckBox box : checkBoxes)
+            box.setVisibility(View.VISIBLE);
+    }
+
+    public void hideCheckBoxes() {
+        for (CheckBox box : checkBoxes) {
+            box.setChecked(false);
+            box.setVisibility(View.GONE);
+        }
+    }
+
+    public List<Room> getCheckedRooms() {
+        List<Room> rooms = new ArrayList<>();
+        for (int i = 0; i < localDatSet.size(); i++) {
+            if (checkBoxes.get(i).isChecked())
+                rooms.add(localDatSet.get(i));
+        }
+        return rooms;
+    }
+
     @Override
     public int getItemCount() {
         return localDatSet.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        private final CheckBox checkBox;
         private final TextView textViewRoom;
         private final ImageButton buttonAddSensor;
         private final ImageButton buttonRemoveSensor;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewRoom = itemView.findViewById(R.id.itemAdminRoomsRoomTextView);
-            buttonAddSensor = itemView.findViewById(R.id.itemAdminRoomButtonAddSensor);
-            buttonRemoveSensor = itemView.findViewById(R.id.itemAdminRoomButtonRemoveSensor);
+            checkBox = itemView.findViewById(R.id.checkBoxAdminRoomsItem);
+            textViewRoom = itemView.findViewById(R.id.textViewRoomAdminRoomsItem);
+            buttonAddSensor = itemView.findViewById(R.id.buttonAddSensorAdminRoomsItem);
+            buttonRemoveSensor = itemView.findViewById(R.id.buttonRemoveSensorAdminRoomsItem);
         }
     }
 }

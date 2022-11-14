@@ -18,6 +18,7 @@
     <!--    AdminRoomsActivity Strings  -->
     <string name="Extra_adminEmail">admin_email</string>
     <string name="AdminRooms_Toolbar_Tile">\'s Rooms</string>
+    <string name="AdminRooms_TextView_Cancel">Swipe or Press Back to cancel</string>
 
     <!--    AdminRoomsRecyclerView Strings  -->
     <string name="AdminRooms_ContentDescription_AddSensor">Add Sensor</string>
