@@ -1,45 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="?android:attr/listSeparatorTextViewStyle"
-    android:layout_width="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center_vertical"
-    android:orientation="horizontal"
-    android:padding="10dp"
-    android:weightSum="1">
+    android:layout_gravity="center_vertical">
 
-    <CheckBox
-        android:id="@+id/checkBoxAdminRoomsItem"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:checkedState="unchecked"
-        app:useMaterialThemeColors="false" />
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textViewRoomAdminRoomsItem"
-        android:layout_width="0dp"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:gravity="start|center_vertical"
-        android:singleLine="true"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical">
 
-    <ImageButton
-        android:id="@+id/buttonAddSensorAdminRoomsItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/AdminRooms_ContentDescription_AddSensor"
-        app:srcCompat="@drawable/ic_add_sensor" />
+            <CheckBox
+                android:id="@+id/checkBoxAdminRoomsItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:checkedState="unchecked"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:useMaterialThemeColors="false" />
 
-    <ImageButton
-        android:id="@+id/buttonRemoveSensorAdminRoomsItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/AdminRooms_ContentDescription_RemoveSensor"
-        app:srcCompat="@drawable/ic_remove_sensor" />
+            <TextView
+                android:id="@+id/textViewRoomAdminRoomsItem"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="start|center_vertical"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/buttonAddSensorAdminRoomsItem"
+                app:layout_constraintStart_toEndOf="@+id/checkBoxAdminRoomsItem"
+                app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+            <ImageButton
+                android:id="@+id/buttonAddSensorAdminRoomsItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/AdminRooms_ContentDescription_AddSensor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/buttonRemoveSensorAdminRoomsItem"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_add_sensor" />
+
+            <ImageButton
+                android:id="@+id/buttonRemoveSensorAdminRoomsItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/AdminRooms_ContentDescription_RemoveSensor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:srcCompat="@drawable/ic_remove_sensor" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
