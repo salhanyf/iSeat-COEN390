@@ -31,11 +31,15 @@ public class AdminRoomsActivity extends AppCompatActivity {
     private AdminRoomsRecyclerViewAdaptor adaptor;  // adaptor that controls the recycler
     private TextView textViewCancel;                // help text that pops up when deleting
     private MenuItem itemAddRoom, itemRemoveRoom, itemDeleteRoom; // items in the toolbar menu
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_rooms);
+
+        toolbar = findViewById(R.id.appToolbar);
+        setSupportActionBar(toolbar);
         // get the user email passed by intent to activity
         adminEmail = getIntent().getStringExtra(getString(R.string.Extra_adminEmail));
         // setup UI elements
@@ -46,12 +50,12 @@ public class AdminRoomsActivity extends AppCompatActivity {
 
     private void setupUI() {
         // setup custom toolbar for activity, set title for user
-        Toolbar toolbar = findViewById(R.id.toolbarAdminRooms);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle(String.format("%s%s", adminEmail != null ? adminEmail : "", getString(R.string.AdminRooms_Toolbar_Tile)));
+//        Toolbar toolbar = findViewById(R.id.toolbarAdminRooms);
+//        setSupportActionBar(toolbar);
+//        toolbar.setTitle(String.format("%s%s", adminEmail != null ? adminEmail : "", getString(R.string.AdminRooms_Toolbar_Tile)));
         // setup textview that shows how to cancel delete
-        textViewCancel = findViewById(R.id.textViewCancel);
-        textViewCancel.setVisibility(View.GONE);
+        //textViewCancel = findViewById(R.id.textViewCancel);
+        //textViewCancel.setVisibility(View.GONE);
         // find recyclerview and clear adaptor
         recycler = findViewById(R.id.recyclerViewAdminRooms);
         adaptor = null;
@@ -60,7 +64,7 @@ public class AdminRoomsActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // use menu items from "menu_admin_rooms.xml"
-        getMenuInflater().inflate(R.menu.menu_admin_rooms, menu);
+        getMenuInflater().inflate(R.menu.iseat_admin_menu, menu);
         // find items in menu and save
         itemAddRoom = menu.findItem(R.id.action_add_room);
         itemRemoveRoom = menu.findItem(R.id.action_remove_room);
