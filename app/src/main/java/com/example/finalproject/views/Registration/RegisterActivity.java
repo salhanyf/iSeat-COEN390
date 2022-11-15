@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
         loginRedirectButton = findViewById(R.id.loginRedirect);
 
         loginRedirectButton.setOnClickListener(v -> {
-            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
             finish();
         });
 
@@ -66,13 +66,13 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(t -> {
                                 if (t.isSuccessful())
-                                    Toast.makeText(RegisterActivity.this, "User Registration & Login Success", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(this, "User Registration & Login Success", Toast.LENGTH_SHORT).show();
                                 else
-                                    Toast.makeText(RegisterActivity.this, "User Registration Success but Login Failed", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(this, "User Registration Success but Login Failed", Toast.LENGTH_SHORT).show();
                                 finish();
                             });
                         } else {
-                            Toast.makeText(RegisterActivity.this, "User Registration Failed, Try Again", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "User Registration Failed, Try Again", Toast.LENGTH_SHORT).show();
                         }
                     }
                 );
