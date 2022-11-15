@@ -33,6 +33,12 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         auth = FirebaseAuth.getInstance();
+
+        if (auth.getCurrentUser() != null) {
+            Toast.makeText(this, "User " + auth.getCurrentUser().getEmail() + " already signed in!", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
         signupUsername = findViewById(R.id.usernameSignup);
         signupEmail = findViewById(R.id.emailSignup);
         signupPassword = findViewById(R.id.passwordSignup);
