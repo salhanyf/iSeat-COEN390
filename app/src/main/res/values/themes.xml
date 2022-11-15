@@ -1,21 +1,35 @@
+
+<!-- Light theme -->
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme -->
     <style name="Theme.FinalProject" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
-        <!-- Primary brand color. -->
+        <!-- Primary brand color -->
         <item name="colorPrimary">@color/light_teal</item>
-        <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <item name="color">@color/black</item>
-        
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" >?attr/color</item>
+        <item name="colorPrimaryVariant">@color/dark_blue</item>
 
-        <!-- Customize your theme here. -->
-        <item name="actionMenuTextColor">@color/white</item>
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/orange</item>
+        <item name="colorOnSecondary">@color/dark_blue</item>
+        <item name="colorSecondaryVariant">@color/light_grey</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+
+    </style>
+
+    <!-- Toolbar Theme -->
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- title text in the Toolbar  -->
+        <item name="android:textColorPrimary">@color/light_blue</item>
+        <!-- actionMenuTextColor is the color of the text of action (menu) items  -->
+        <item name="actionMenuTextColor">@color/light_blue</item>
+
+        <!-- Enable these below if you want clicking icons to trigger a ripple effect -->
+
+        <item name="selectableItemBackground">?android:selectableItemBackground</item>
+        <item name="selectableItemBackgroundBorderless">?android:selectableItemBackground</item>
+
     </style>
 </resources>
