@@ -6,5 +6,5 @@
         android:width="3dp"
         android:color="@color/light_blue"/>
     <corners
-        android:radius="20dp"/>
+        android:radius="40dp"/>
 </shape>

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">iSeat</string>
-    <string name="slogan">iSeat, You Seat, We All Find a Seat</string>
+    <string name="quote">iSeat, You Seat, We All Find a Seat</string>
 
     <!--    RoomListRecyclerView Strings    -->
     <string name="RoomList_TextView_Capacity">%d/%d</string>
@@ -14,7 +14,7 @@
     <string name="RemoveSensor_TextView_ForRoom">Sensors in room:</string>
     <string name="RemoveSensor_TextView_NoSensors">* No sensors assigned to room *</string>
     <string name="RemoveSensor_TextView_DeleteMsg">Please select a sensor to remove.</string>
-    
+
     <!--    AdminRoomsActivity Strings  -->
     <string name="Extra_adminEmail">admin_email</string>
     <string name="AdminRooms_Toolbar_Tile">\'s Rooms</string>
@@ -31,4 +31,26 @@
     <string name="AddRoom_EditText_HintName">Enter Name Here</string>
     <string name="AddRoom_EditText_HintLocation">Enter Location Here</string>
     <string name="AddRoom_Button_AddRoom">Add Room</string>
+
+    <!--    Welcome/signUp/signIn Activity Strings   -->
+    <string name="iseat_logo">iSeat Logo</string>
+    <string name="getting_started">Getting Started</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="login_here">Login Here</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="login">Login</string>
+    <string name="first_time">First Time?</string>
+    <string name="register_here">Register Here</string>
+    <string name="admin">Are you an admin?</string>
+    <string name="are_you_an_admin">Are you an admin?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="admin_code">Admin code</string>
+
 </resources>
