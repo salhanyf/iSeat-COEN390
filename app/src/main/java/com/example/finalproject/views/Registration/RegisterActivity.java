@@ -62,7 +62,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean checkErrors(String username, String email, String password, String passwordRepeat, String adminPasswordEntered) {
         boolean err = false;
-
         if (username.isEmpty()) {
             signupUsername.setError("Please enter your username");
             err = true;
@@ -79,12 +78,10 @@ public class RegisterActivity extends AppCompatActivity {
             signupPasswordRepeat.setError("Password does not match!");
             err = true;
         }
-
-        if (!adminPasswordEntered.equals(ADMIN_PASSWORD)) {
+        if (anAdmin.isChecked() && !adminPasswordEntered.equals(ADMIN_PASSWORD)) {
             adminCodeSignup.setError("Admin code is incorrect");
             err = true;
         }
-
         return err;
     }
 
@@ -121,16 +118,29 @@ public class RegisterActivity extends AppCompatActivity {
         @Override
         public void onComplete(@NonNull Task<AuthResult> task) {
             if (task.isSuccessful()) {
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(t -> {
-                    if (t.isSuccessful()) {
-                        Toast.makeText(RegisterActivity.this, "User Registration & Login Success", Toast.LENGTH_SHORT).show();
-                        finishAffinity();
-                    } else {
-                        Toast.makeText(RegisterActivity.this, "User Registration Success but Login Failed", Toast.LENGTH_SHORT).show();
-                        finishAffinity();
-                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                    }
-                });
+                if (adminFlag) {
+                    auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(t -> {
+                        if (t.isSuccessful()) {
+                            Toast.makeText(RegisterActivity.this, "User Registration & Login Success", Toast.LENGTH_SHORT).show();
+                            finishAffinity();
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "User Registration Success but Login Failed", Toast.LENGTH_SHORT).show();
+                            finishAffinity();
+                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                        }
+                    });
+                } else {
+                    auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(t -> {
+                        if (t.isSuccessful()) {
+                            Toast.makeText(RegisterActivity.this, "User Registration & Login Success", Toast.LENGTH_SHORT).show();
+                            finishAffinity();
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "User Registration Success but Login Failed", Toast.LENGTH_SHORT).show();
+                            finishAffinity();
+                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                        }
+                    });
+                }
             } else {
                 Toast.makeText(RegisterActivity.this, "User Registration Failed, Try Again", Toast.LENGTH_SHORT).show();
             }
