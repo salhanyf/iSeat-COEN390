@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import com.example.finalproject.R;
 import com.example.finalproject.controllers.FirebaseDatabaseHelper;
 import com.example.finalproject.models.Room;
+import com.example.finalproject.views.adaptors.RoomListRecyclerViewAdaptor;
 
 import java.util.List;
 
