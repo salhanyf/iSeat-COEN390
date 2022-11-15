@@ -8,7 +8,7 @@
 
 #define ROOM_KEY_STR  String("roomKey")
 #define STATUS_STR    String("status")
-#define WIFI_STR    String("wifi")
+#define WIFI_STR    String("wifiStatus")
 
 // ***** CHANGE FOR YOUR NETWORK *****
 #define SSID  "BELL188"

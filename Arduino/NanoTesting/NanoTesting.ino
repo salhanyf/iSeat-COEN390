@@ -35,7 +35,7 @@ inline bool sensorState(bool current) {
     float i = LoadCell.getData();  // Contains Raw data of load cell!!!
 
     // If load cell output (i) is greater than X, seat is taken else seat is open
-    if (i > 10) {
+    if (i > 1000) {
       Serial.print("Seat is taken, Current Pressure: ");
       Serial.println(i);
       return false;
