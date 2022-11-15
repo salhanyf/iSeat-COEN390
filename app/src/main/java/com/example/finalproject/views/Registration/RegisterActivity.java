@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -89,6 +90,9 @@ public class RegisterActivity extends AppCompatActivity {
         if (email.isEmpty()) {
             signupEmail.setError("Please enter your email");
             err = true;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        signupEmail.setError("Please Enter Valid Email");
+        err = true;
         }
         if (password.isEmpty()) {
             signupPassword.setError("Please enter your password");

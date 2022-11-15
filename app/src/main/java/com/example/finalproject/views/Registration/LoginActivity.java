@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         if (email.isEmpty()) {
             loginEmail.setError("Please Enter Email");
             err = true;
-        } else if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             loginEmail.setError("Please Enter Valid Email");
             err = true;
         }
