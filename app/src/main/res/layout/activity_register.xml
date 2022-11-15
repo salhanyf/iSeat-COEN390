@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.RegisterActivity">
-
+    android:background="@drawable/app_background"
+    tools:context=".views.Registration.RegisterActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:background="@drawable/text_bubble_border"
-        app:cardCornerRadius="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/card_view_boarder"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
         app:cardElevation="20dp"
         app:cardPreventCornerOverlap="false"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,75 +28,161 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:background="@drawable/text_bubble_border"
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <TextView
                 android:id="@+id/signupText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Sign Up"
+                android:layout_marginTop="10dp"
+                android:fontFamily="monospace"
+                android:text="@string/sign_up"
                 android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="36sp"
+                android:textColor="@color/light_teal"
+                android:textSize="24sp"
                 android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/usernameSignup"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/text_bubble_border"
+                android:drawableStart="@drawable/email_icon"
+                android:drawablePadding="8dp"
+                android:hint="@string/username"
+                android:inputType="textEmailAddress"
+                android:padding="8dp"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/emailSignup"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
                 android:background="@drawable/text_bubble_border"
-                android:drawableLeft="@drawable/email_icon"
+                android:drawableStart="@drawable/email_icon"
                 android:drawablePadding="8dp"
-                android:hint="Email"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
                 android:padding="8dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background" />
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/passwordSignup"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
                 android:background="@drawable/text_bubble_border"
-                android:drawableLeft="@drawable/lock_icon"
+                android:drawableStart="@drawable/ic_baseline_lock_open_24"
                 android:drawablePadding="8dp"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/passwordRepeatSignup"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/text_bubble_border"
+                android:drawableStart="@drawable/ic_baseline_lock_open_24"
+                android:drawablePadding="8dp"
+                android:hint="@string/repeat_password"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <RadioGroup
+                android:id="@+id/adminRadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/are_you_an_admin"
+                    android:textColor="@color/light_blue" />
+
+                <RadioButton
+                    android:id="@+id/adminYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/light_teal"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/adminNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:buttonTint="@color/light_teal"
+                    android:checked="true"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/adminCodeSignup"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/text_bubble_border"
+                android:hint="@string/admin_code"
+                android:inputType="text"
+                android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background" />
+                android:visibility="gone" />
 
             <Button
-                android:id="@+id/signupButton"
+                android:id="@+id/createAccountButton"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/red"
-                android:text="Sign Up"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/orange"
+                android:text="@string/create_an_account"
                 android:textAlignment="gravity"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 app:cornerRadius="20dp" />
 
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginTop="10dp"
+        android:gravity="top"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,52 +190,24 @@
 
         <TextView
             android:id="@+id/LoginText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Already Have an Account?"
+            android:fontFamily="@font/montserrat_light"
+            android:text="@string/already_have_an_account"
             android:textAlignment="center"
+            android:paddingTop="10dp"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/loginRedirect"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Login Here"
-            android:textColor="@color/red"
-            android:textSize="12sp"
+            android:text="@string/login_here"
+            android:textColor="@color/orange"
+            android:textSize="14sp"
             android:textStyle="italic" />
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/logoImage"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:adjustViewBounds="true"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/iseat_logo_complete" />
-
-    <TextView
-        android:id="@+id/sloganText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/gadugi"
-        android:text="@string/slogan"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/logoImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/logoImage"
-        app:layout_constraintVertical_bias="0.791" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
