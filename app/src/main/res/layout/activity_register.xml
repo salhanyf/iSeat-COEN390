@@ -57,7 +57,6 @@
                 android:drawableStart="@drawable/email_icon"
                 android:drawablePadding="8dp"
                 android:hint="@string/username"
-                android:inputType="textEmailAddress"
                 android:padding="8dp"
                 android:textColor="@color/black" />
 
