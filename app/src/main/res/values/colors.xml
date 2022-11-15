@@ -11,4 +11,16 @@
     <color name="red">#B11905</color>
     <color name="green">#A4E845</color>
     <color name="greenl">#D7E9BD</color>
+
+    <!--    App Colours    -->
+    <color name="dark_red1">#D90429</color>
+    <color name="light_red">#EF233C</color>
+    <color name="light_grey">#8D99AE</color>
+    <color name="dark_grey">#2B2D42</color>
+
+    <color name="dark_blue">#293241</color>
+    <color name="orange">#EE6C4D</color>
+    <color name="white_ish">#E0FBFC</color>
+    <color name="light_teal">#98C1D9</color>
+    <color name="light_blue">#3D5A80</color>
 </resources>
