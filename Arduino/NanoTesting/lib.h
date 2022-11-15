@@ -11,10 +11,10 @@
 #define WIFI_STR    String("wifiStatus")
 
 // ***** CHANGE FOR YOUR NETWORK *****
-#define SSID  "BELL188"
-#define PASS  "3FAD3755"  // DONT HACK ME PLZ (SHAHIN/SHAYAN)
-//#define SSID  "BELL325"
-//#define PASS  "4217F6E9"  // DONT HACK ME PLZ (SAMSON)
+//#define SSID  "BELL188"
+//#define PASS  "3FAD3755"  // DONT HACK ME PLZ (SHAHIN/SHAYAN)
+#define SSID  "BELL325"
+#define PASS  "4217F6E9"  // DONT HACK ME PLZ (SAMSON)
 
 // ***** Uncomment sensor used for current HW setup *****
 #define PB_TEST_SENSOR
