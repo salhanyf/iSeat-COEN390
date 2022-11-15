@@ -17,11 +17,24 @@
         <entry key="app/src/main/res/drawable/lock_icon.xml" value="0.3765" />
         <entry key="app/src/main/res/drawable/login_icon.xml" value="0.102" />
         <entry key="app/src/main/res/drawable/text_bubble_border.xml" value="0.240185546875" />
+        <entry key="app/src/main/res/layout/activity_admin_rooms.xml" value="0.23975409836065573" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.20189971923828126" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.21794586181640624" />
+        <entry key="app/src/main/res/layout/activity_room_info.xml" value="0.23975409836065573" />
+        <entry key="app/src/main/res/layout/activity_room_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_welcome.xml" value="0.22013888888888888" />
+        <entry key="app/src/main/res/layout/app_toolbar.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialogfragment_add_room.xml" value="0.23975409836065573" />
+        <entry key="app/src/main/res/layout/dialogfragment_add_sensor.xml" value="0.23975409836065573" />
+        <entry key="app/src/main/res/layout/dialogfragment_remove_sensor.xml" value="0.23975409836065573" />
         <entry key="app/src/main/res/layout/login_test.xml" value="0.22288055419921876" />
+        <entry key="app/src/main/res/layout/recyclerview_admin_rooms_item.xml" value="0.23975409836065573" />
+        <entry key="app/src/main/res/layout/recyclerview_room_list_item.xml" value="0.23975409836065573" />
+        <entry key="app/src/main/res/menu/iseat_admin_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/iseat_toolbar.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/iseat_user_menu.xml" value="0.2659622192382813" />
+        <entry key="app/src/main/res/menu/menu_admin_rooms.xml" value="0.25069444444444444" />
         <entry key="app/src/main/res/menu/settings.xml" value="0.2791666666666667" />
       </map>
     </option>
