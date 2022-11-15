@@ -122,10 +122,11 @@ public class RegisterActivity extends AppCompatActivity {
                     auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(t -> {
                         if (t.isSuccessful()) {
                             Toast.makeText(RegisterActivity.this, "User Registration & Login Success", Toast.LENGTH_SHORT).show();
-                            finishAffinity();
+                            startActivity(new Intent(RegisterActivity.this, WelcomeActivity.class));
+//                            finishAffinity();
                         } else {
                             Toast.makeText(RegisterActivity.this, "User Registration Success but Login Failed", Toast.LENGTH_SHORT).show();
-                            finishAffinity();
+//                            finishAffinity();
                             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                         }
                     });
@@ -133,10 +134,11 @@ public class RegisterActivity extends AppCompatActivity {
                     auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(t -> {
                         if (t.isSuccessful()) {
                             Toast.makeText(RegisterActivity.this, "User Registration & Login Success", Toast.LENGTH_SHORT).show();
-                            finishAffinity();
+                            startActivity(new Intent(RegisterActivity.this, WelcomeActivity.class));
+//                            finish();
                         } else {
                             Toast.makeText(RegisterActivity.this, "User Registration Success but Login Failed", Toast.LENGTH_SHORT).show();
-                            finishAffinity();
+//                            finishAffinity();
                             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                         }
                     });
