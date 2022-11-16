@@ -1,10 +1,10 @@
 package com.example.finalproject.views.Registration;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,8 +12,10 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.finalproject.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
     private final String ADMIN_PASSWORD = "admin";
@@ -21,6 +23,8 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private EditText signupUsername, signupEmail, signupPassword, signupPasswordRepeat, adminCodeSignup;
     private RadioButton anAdmin, notAnAdmin;
+    private String accountType = "user";
+    private String adminPasswordEntered;
     private Button signupCreateAccountButton, loginRedirectButton;
 
     @Override
@@ -29,12 +33,6 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         auth = FirebaseAuth.getInstance();
-
-        if (auth.getCurrentUser() != null) {
-            Toast.makeText(this, "User " + auth.getCurrentUser().getEmail() + " already signed in!", Toast.LENGTH_SHORT).show();
-            finish();
-        }
-
         signupUsername = findViewById(R.id.usernameSignup);
         signupEmail = findViewById(R.id.emailSignup);
         signupPassword = findViewById(R.id.passwordSignup);
@@ -45,68 +43,73 @@ public class RegisterActivity extends AppCompatActivity {
         signupCreateAccountButton = findViewById(R.id.createAccountButton);
         loginRedirectButton = findViewById(R.id.loginRedirect);
 
-        loginRedirectButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
-        });
+        signupCreateAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = signupUsername.getText().toString().trim();
+                String email = signupEmail.getText().toString().trim();
+                String password = signupPassword.getText().toString().trim();
+                String passwordRepeat = signupPasswordRepeat.getText().toString().trim();
 
-        signupCreateAccountButton.setOnClickListener(v -> {
-            String username = signupUsername.getText().toString().trim();
-            String email = signupEmail.getText().toString().trim();
-            String password = signupPassword.getText().toString().trim();
-            String passwordRepeat = signupPasswordRepeat.getText().toString().trim();
-            String adminPasswordEntered = adminCodeSignup.getText().toString();
-
-            if (!checkErrors(username, email, password, passwordRepeat, adminPasswordEntered)) {
-
-                if (anAdmin.isChecked())
-                    FirebaseDatabase.getInstance().getReference("admins").push().setValue(email);
-
-                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(
-                    task -> {
-                        if (task.isSuccessful()) {
-                            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(t -> {
-                                if (t.isSuccessful())
-                                    Toast.makeText(this, "User Registration & Login Success", Toast.LENGTH_SHORT).show();
-                                else
-                                    Toast.makeText(this, "User Registration Success but Login Failed", Toast.LENGTH_SHORT).show();
-                                finish();
+                if (username.isEmpty()) {
+                    signupUsername.setError("Please enter your username");
+                }
+                if (email.isEmpty()) {
+                    signupEmail.setError("Please enter your email");
+                }
+                if (password.isEmpty()) {
+                    signupPassword.setError("Please enter your password");
+                }
+                if (passwordRepeat.isEmpty() || !passwordRepeat.equals(password)) {
+                    signupPasswordRepeat.setError("Password does not match!");
+                } else {
+                    boolean isAdmin = anAdmin.isChecked();
+                    //if user is an admin
+                    if (isAdmin) {
+                        //Toast.makeText(RegisterActivity.this, "an admin", Toast.LENGTH_SHORT).show();
+                        adminPasswordEntered = adminCodeSignup.getText().toString();
+                        if(adminPasswordEntered.equals(ADMIN_PASSWORD)){
+                            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        //TODO: redirect to main page instead of logging in again?
+                                        Toast.makeText(RegisterActivity.this, "User Successfully Registered", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                    } else {
+                                        Toast.makeText(RegisterActivity.this, "User Registration Failed, Try Again", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
                             });
                         } else {
-                            Toast.makeText(this, "User Registration Failed, Try Again", Toast.LENGTH_SHORT).show();
+                            adminCodeSignup.setError("Admin code is incorrect");
                         }
+                    //if user is not an admin
+                    } else {
+                        //Toast.makeText(RegisterActivity.this, "Not and admin", Toast.LENGTH_SHORT).show();
+                        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    //TODO: redirect to main page instead of logging in again?
+                                    Toast.makeText(RegisterActivity.this, "User Successfully Registered", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                } else {
+                                    Toast.makeText(RegisterActivity.this, "User Registration Failed, Try Again", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                     }
-                );
+                }
             }
         });
-    }
 
-    private boolean checkErrors(String username, String email, String password, String passwordRepeat, String adminPasswordEntered) {
-        boolean err = false;
-        if (username.isEmpty()) {
-            signupUsername.setError("Please enter your username");
-            err = true;
-        }
-        if (email.isEmpty()) {
-            signupEmail.setError("Please enter your email");
-            err = true;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-        signupEmail.setError("Please Enter Valid Email");
-        err = true;
-        }
-        if (password.isEmpty()) {
-            signupPassword.setError("Please enter your password");
-            err = true;
-        }
-        if (passwordRepeat.isEmpty() || !passwordRepeat.equals(password)) {
-            signupPasswordRepeat.setError("Password does not match!");
-            err = true;
-        }
-        if (anAdmin.isChecked() && !adminPasswordEntered.equals(ADMIN_PASSWORD)) {
-            adminCodeSignup.setError("Admin code is incorrect");
-            err = true;
-        }
-        return err;
+        loginRedirectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            }
+        });
     }
 
     public void onRadioButtonClicked(View view) {
@@ -114,13 +117,15 @@ public class RegisterActivity extends AppCompatActivity {
         //check which radio button was clicked
         switch(view.getId()) {
             case R.id.adminYes:
-//                if (checked)
+                if (checked)
                     //Toast.makeText(RegisterActivity.this, "Admin",Toast.LENGTH_SHORT).show();
+                    accountType = "admin";
                     adminCodeSignup.setVisibility(View.VISIBLE);
                     break;
             case R.id.adminNo:
-//                if (checked)
+                if (checked)
                     //Toast.makeText(RegisterActivity.this, "Not Admin",Toast.LENGTH_SHORT).show();
+                    accountType = "user";
                     adminCodeSignup.setVisibility(View.GONE);
                     break;
         }

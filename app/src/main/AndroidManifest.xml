@@ -17,7 +17,8 @@
         <!-- Registration Activities -->
         <activity
             android:name=".views.Registration.WelcomeActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:label="Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -43,25 +44,21 @@
         </activity>
         <activity
             android:name=".views.RoomListActivity"
-            android:exported="true"
-            android:label="Seats"
-            android:parentActivityName=".views.Registration.WelcomeActivity">
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".views.AdminRoomsActivity"
-            android:exported="false"
-            android:label="Manage Your Rooms"
-            android:parentActivityName=".views.Registration.WelcomeActivity">
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".views.MainActivity"
-            android:exported="false">
+            android:exported="true">
         </activity>
 
         <meta-data
