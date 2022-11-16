@@ -1,13 +1,11 @@
 package com.example.finalproject.views;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,9 +16,7 @@ import android.widget.Toast;
 import com.example.finalproject.R;
 import com.example.finalproject.controllers.FirebaseDatabaseHelper;
 import com.example.finalproject.models.Room;
-import com.example.finalproject.views.Registration.LoginActivity;
 import com.example.finalproject.views.adaptors.RoomListRecyclerViewAdaptor;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
@@ -58,7 +54,7 @@ public class RoomListActivity extends AppCompatActivity {
     //toolbar menu behaviour
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.iseat_user_menu, menu);
+        getMenuInflater().inflate(R.menu.menu_user, menu);
         return super.onCreateOptionsMenu(menu);
     }
     @Override

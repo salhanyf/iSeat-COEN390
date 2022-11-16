@@ -64,7 +64,7 @@ public class AdminRoomsActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // use menu items from "menu_admin_rooms.xml"
-        getMenuInflater().inflate(R.menu.iseat_admin_menu, menu);
+        getMenuInflater().inflate(R.menu.menu_admin, menu);
         // find items in menu and save
         itemAddRoom = menu.findItem(R.id.action_add_room);
         itemRemoveRoom = menu.findItem(R.id.action_remove_room);
