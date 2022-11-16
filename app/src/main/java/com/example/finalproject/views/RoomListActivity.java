@@ -48,12 +48,13 @@ public class RoomListActivity extends AppCompatActivity {
         }
     }
 
-    //toolbar menu behaviour
+    //toolbar items behaviour
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_user, menu);
         return super.onCreateOptionsMenu(menu);
     }
+    // behaviour of toolbar items
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -69,13 +70,15 @@ public class RoomListActivity extends AppCompatActivity {
 //                break;
             case R.id.action_sign_out:
                 //TODO: signing out user
+                Toast.makeText(this, "Goodbye", Toast.LENGTH_SHORT).show();
+                Intent signOutIntent = new Intent(this, WelcomeActivity.class);
+                startActivity(signOutIntent);
 //                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
 //                    String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 //                    FirebaseAuth.getInstance().signOut();
 //                    Toast.makeText(this, "User: " + email + " logged off.", Toast.LENGTH_SHORT).show();
 //                    startActivity(new Intent(this, LoginActivity.class));
 //                }
-                Toast.makeText(this, "Goodbye", Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
