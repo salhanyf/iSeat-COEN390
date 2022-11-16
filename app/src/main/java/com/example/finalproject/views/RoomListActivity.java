@@ -22,7 +22,6 @@ import java.util.List;
 
 public class RoomListActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
     private RecyclerView mRecyclerView;
     private ProgressBar progressBar;
 
@@ -31,11 +30,9 @@ public class RoomListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_list);
 
-        toolbar = findViewById(R.id.appToolbar);
+        Toolbar toolbar = findViewById(R.id.appToolbar);
         setSupportActionBar(toolbar);
-
-        //ActionBar upButton = getSupportActionBar();
-        //upButton.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         progressBar = findViewById(R.id.progressBarRecyclerView);
         mRecyclerView = findViewById(R.id.Room_RecyclerViewID);
