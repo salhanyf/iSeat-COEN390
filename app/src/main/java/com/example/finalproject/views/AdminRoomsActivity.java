@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 import com.example.finalproject.R;
 import com.example.finalproject.controllers.FirebaseDatabaseHelper;
 import com.example.finalproject.models.Room;
+import com.example.finalproject.views.Registration.WelcomeActivity;
+import com.example.finalproject.views.Settings.SettingsActivity;
 import com.example.finalproject.views.adaptors.AdminRoomsRecyclerViewAdaptor;
 import com.example.finalproject.views.dialogfragments.AddRoomDialogFragment;
 import com.google.firebase.database.FirebaseDatabase;
@@ -30,7 +33,7 @@ public class AdminRoomsActivity extends AppCompatActivity {
     private RecyclerView recycler;                  // the list of admin's rooms
     private AdminRoomsRecyclerViewAdaptor adaptor;  // adaptor that controls the recycler
     private TextView textViewCancel;                // help text that pops up when deleting
-    private MenuItem itemAddRoom, itemRemoveRoom, itemDeleteRoom; // items in the toolbar menu
+    private MenuItem itemAddRoom, itemRemoveRoom, itemDeleteRoom, settings, signOut; // items in the toolbar menu
     private Toolbar toolbar;
 
     @Override
@@ -61,9 +64,10 @@ public class AdminRoomsActivity extends AppCompatActivity {
         adaptor = null;
     }
 
+    //toolbar items behaviour
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // use menu items from "menu_admin_rooms.xml"
+        // use menu items from "iseat_admin_menu.xml"
         getMenuInflater().inflate(R.menu.iseat_admin_menu, menu);
         // find items in menu and save
         itemAddRoom = menu.findItem(R.id.action_add_room);
@@ -73,32 +77,42 @@ public class AdminRoomsActivity extends AppCompatActivity {
         itemDeleteRoom.setVisible(false);
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // get ID of action item pressed
-        int id = item.getItemId();
-        if (id == R.id.action_add_room) {
-            // open the Add Room dialog fragment for this admin
-            new AddRoomDialogFragment(adminEmail).show(getSupportFragmentManager(), "AddRoomDialogFragment");
-            return true;
-        }
-        else if (id == R.id.action_remove_room) {
-            // toggle the delete button and checkboxes to visible
-            toggleDelete(true);
-            return true;
-        }
-        else if (id == R.id.action_delete) {
-            // get list of selected rooms to delete
-            List<Room> rooms = adaptor.getCheckedRooms();
-            if (rooms.isEmpty()) {
-                // if list empty, display toast and return
-                Toast.makeText(this, "Please select 1+ rooms to delete.", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-            // open delete confirmation dialog for selected rooms
-            new DeleteDialog(this, rooms).show();
-            return true;
+
+        switch (item.getItemId()){
+            case R.id.action_add_room :
+                // open the Add Room dialog fragment for this admin
+                new AddRoomDialogFragment(adminEmail).show(getSupportFragmentManager(), "AddRoomDialogFragment");
+                break;
+            case R.id.action_remove_room :
+                // toggle the delete button and checkboxes to visible
+                toggleDelete(true);
+                break;
+
+            case R.id.action_delete :
+                // get list of selected rooms to delete
+                List<Room> rooms = adaptor.getCheckedRooms();
+                if (rooms.isEmpty()) {
+                    // if list empty, display toast and return
+                    Toast.makeText(this, "Please select 1+ rooms to delete.", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                // open delete confirmation dialog for selected rooms
+                new DeleteDialog(this, rooms).show();
+                break;
+
+            case R.id.settingsActionButton:
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
+                break;
+
+            case R.id.signOutActionButton:
+                //TODO: signing out user
+                Toast.makeText(this, "Goodbye", Toast.LENGTH_SHORT).show();
+                Intent signOutIntent = new Intent(this, WelcomeActivity.class);
+                startActivity(signOutIntent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
