@@ -33,7 +33,9 @@
         <!-- Activities -->
         <activity
             android:name=".views.RoomListActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="Seats"
+            android:parentActivityName=".views.Registration.WelcomeActivity">
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -42,7 +44,9 @@
 
         <activity
             android:name=".views.AdminRoomsActivity"
-            android:exported="false">
+            android:exported="false"
+            android:label="Manage Your Rooms"
+            android:parentActivityName=".views.Registration.WelcomeActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
