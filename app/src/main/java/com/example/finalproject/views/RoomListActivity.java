@@ -38,6 +38,11 @@ public class RoomListActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.appToolbar);
         setSupportActionBar(toolbar);
 
+        //add a profile button to the toolbar on the top left and when clicked, brings you to a profile page
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_account_circle_24);
+
         //ActionBar upButton = getSupportActionBar();
         //upButton.setDisplayHomeAsUpEnabled(true);
 
@@ -54,6 +59,9 @@ public class RoomListActivity extends AppCompatActivity {
             mRecyclerView.setAdapter(new RoomListRecyclerViewAdaptor(RoomListActivity.this, rooms));
         }
     }
+
+
+
 
     //toolbar menu behaviour
     @Override
@@ -84,6 +92,9 @@ public class RoomListActivity extends AppCompatActivity {
 //                }
                 Toast.makeText(this, "Goodbye", Toast.LENGTH_SHORT).show();
                 break;
+                case android.R.id.home:
+                    startActivity(new Intent(this, UserProfileActivity.class));
+                    break;
         }
         return super.onOptionsItemSelected(item);
     }
