@@ -4,23 +4,23 @@
 
     <!-- action button for search -->
     <item android:title="Search"
-        android:id="@+id/searchActionButton"
+        android:id="@+id/action_search"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_baseline_search_24"/>
 
     <!-- action button for refresh -->
     <item android:title="Refresh"
-        android:id="@+id/refreshActionButton"
+        android:id="@+id/action_refresh"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_baseline_refresh_24"/>
 
     <!-- action button for Settings -->
     <item android:title="Settings"
-        android:id="@+id/settingsActionButton"
+        android:id="@+id/action_settings"
         app:showAsAction="never"/>
 
     <!-- action button for signing out -->
     <item android:title="Sign Out"
-        android:id="@+id/signOutActionButton"
+        android:id="@+id/action_sign_out"
         app:showAsAction="never"/>
 </menu>

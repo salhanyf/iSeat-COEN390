@@ -58,16 +58,16 @@ public class RoomListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
-            case R.id.searchActionButton:
-                Toast.makeText(this, "Search Clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.refreshActionButton:
-                Toast.makeText(this, "Refresh Clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.settingsActionButton:
-                Toast.makeText(this, "Settings Clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.signOutActionButton:
+//            case R.id.action_search:
+//                Toast.makeText(this, "Search Clicked", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.action_refresh:
+//                Toast.makeText(this, "Refresh Clicked", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.action_settings:
+//                Toast.makeText(this, "Settings Clicked", Toast.LENGTH_SHORT).show();
+//                break;
+            case R.id.action_sign_out:
                 //TODO: signing out user
 //                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
 //                    String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();

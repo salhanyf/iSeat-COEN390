@@ -61,8 +61,13 @@ public class WelcomeActivity extends AppCompatActivity {
                 startActivity( new Intent(WelcomeActivity.this, RoomListActivity.class));
             }
         });
+    }
 
-        signOutTestButton();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (FirebaseAuth.getInstance().getCurrentUser() != null)
+            signOutTestButton();
     }
 
     private void signOutTestButton() {
@@ -81,6 +86,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 String username = FirebaseAuth.getInstance().getCurrentUser().getEmail();
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(this, "User: " + username + " logged off.", Toast.LENGTH_SHORT).show();
+                button.setVisibility(View.GONE);
             }
         });
         ((ConstraintLayout) findViewById(R.id.layoutWelcome)).addView(button);
