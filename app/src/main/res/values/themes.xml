@@ -21,15 +21,19 @@
 
     <!-- Toolbar Theme -->
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <!-- title text in the Toolbar  -->
         <item name="android:textColorPrimary">@color/light_blue</item>
-        <!-- actionMenuTextColor is the color of the text of action (menu) items  -->
         <item name="actionMenuTextColor">@color/light_blue</item>
-
-        <!-- Enable these below if you want clicking icons to trigger a ripple effect -->
-
         <item name="selectableItemBackground">?android:selectableItemBackground</item>
         <item name="selectableItemBackgroundBorderless">?android:selectableItemBackground</item>
 
+    </style>
+
+    <!-- Settings theme -->
+    <style name="DefaultTheme.ActionBar" parent="Theme.MaterialComponents.DayNight">
+        <item name="colorPrimary">@color/light_teal</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/dark_blue</item>
+        <item name="colorPrimaryVariant">@color/dark_blue</item>
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
     </style>
 </resources>
