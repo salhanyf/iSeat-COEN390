@@ -23,4 +23,9 @@
     <item android:title="Sign Out"
         android:id="@+id/signOutActionButton"
         app:showAsAction="never"/>
+
+    <!-- action button for admin activity-->
+    <item android:title="Manage Rooms"
+        android:id="@+id/manageRoomActionButton"
+        app:showAsAction="never"/>
 </menu>

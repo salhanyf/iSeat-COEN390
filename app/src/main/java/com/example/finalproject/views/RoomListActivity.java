@@ -21,6 +21,10 @@ import com.example.finalproject.views.Registration.WelcomeActivity;
 import com.example.finalproject.views.Settings.SettingsActivity;
 import com.example.finalproject.views.adaptors.RoomListRecyclerViewAdaptor;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -63,6 +67,31 @@ public class RoomListActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // use menu items from "iseat_user_menu.xml"
         getMenuInflater().inflate(R.menu.iseat_user_menu, menu);
+        MenuItem itemManageRooms = menu.findItem(R.id.manageRoomActionButton);
+        itemManageRooms.setVisible(false);
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        if (auth.getCurrentUser() != null) {
+            String email = auth.getCurrentUser().getEmail();
+            FirebaseDatabase.getInstance().getReference("admins").orderByValue().equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot snap : snapshot.getChildren()) {
+                        String e = snap.getValue(String.class);
+                        if (e.equals(email)) {
+                            itemManageRooms.setVisible(true);
+                            break;
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(RoomListActivity.this, "Failure during get admin", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
         return super.onCreateOptionsMenu(menu);
     }
     // behaviour of toolbar items
@@ -86,6 +115,10 @@ public class RoomListActivity extends AppCompatActivity {
                 Toast.makeText(this, "Goodbye", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, WelcomeActivity.class));
                 break;
+            case R.id.manageRoomActionButton:
+                startActivity(new Intent(this, AdminRoomsActivity.class));
+                break;
+
         }
         return super.onOptionsItemSelected(item);
     }
