@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- action button for search -->
+<!--    <item android:title="Search"-->
+<!--        android:id="@+id/searchActionButton"-->
+<!--        app:showAsAction="ifRoom"-->
+<!--        android:icon="@drawable/ic_baseline_search_24"/>-->
+
+    <!-- action button for refresh -->
+<!--    <item android:title="Refresh"-->
+<!--        android:id="@+id/refreshActionButton"-->
+<!--        app:showAsAction="ifRoom"-->
+<!--        android:icon="@drawable/ic_baseline_refresh_24"/>-->
+
+    <!-- action button for adding a room -->
+    <item
+        android:title="Add room"
+        android:id="@+id/action_add_room"
+        android:icon="@drawable/ic_baseline_add_24"
+        app:showAsAction="never" />
+
+    <!-- action button for removing a room -->
+    <item
+        android:title="Remove room"
+        android:id="@+id/action_remove_room"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_remove_room" />
+
+    <!-- action button for deleting a room -->
+    <item
+        android:title="Delete"
+        android:id="@+id/action_delete"
+        app:showAsAction="always" />
+
+    <!-- action button for Settings -->
+    <item android:title="Settings"
+        android:id="@+id/settingsActionButton"
+        app:showAsAction="never"/>
+
+    <!-- action button for signing out -->
+    <item android:title="Sign Out"
+        android:id="@+id/signOutActionButton"
+        app:showAsAction="never"/>
+</menu>
