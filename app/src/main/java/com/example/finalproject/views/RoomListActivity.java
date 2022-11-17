@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.finalproject.R;
 import com.example.finalproject.controllers.FirebaseDatabaseHelper;
 import com.example.finalproject.models.Room;
+import com.example.finalproject.views.Registration.WelcomeActivity;
 import com.example.finalproject.views.Settings.SettingsActivity;
 import com.example.finalproject.views.adaptors.RoomListRecyclerViewAdaptor;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,11 +35,19 @@ public class RoomListActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.appToolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         progressBar = findViewById(R.id.progressBarRecyclerView);
         mRecyclerView = findViewById(R.id.Room_RecyclerViewID);
         new FirebaseDatabaseHelper().readRooms(new UpdateRoomsRecyclerView());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            startActivity(new Intent(this, WelcomeActivity.class));
+        }
     }
 
     private class UpdateRoomsRecyclerView implements FirebaseDatabaseHelper.DataStatusRoom {
@@ -75,7 +84,7 @@ public class RoomListActivity extends AppCompatActivity {
                 //TODO: signing out user
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(this, "Goodbye", Toast.LENGTH_SHORT).show();
-                finish();
+                startActivity(new Intent(this, WelcomeActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);

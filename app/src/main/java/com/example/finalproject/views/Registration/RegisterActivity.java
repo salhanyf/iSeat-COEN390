@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.finalproject.R;
+import com.example.finalproject.views.RoomListActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -70,7 +71,8 @@ public class RegisterActivity extends AppCompatActivity {
                                     Toast.makeText(this, "User Registration & Login Success", Toast.LENGTH_SHORT).show();
                                 else
                                     Toast.makeText(this, "User Registration Success but Login Failed", Toast.LENGTH_SHORT).show();
-                                finish();
+                                startActivity(new Intent(this, RoomListActivity.class));
+                                finishAffinity();
                             });
                         } else {
                             Toast.makeText(this, "User Registration Failed, Try Again", Toast.LENGTH_SHORT).show();
