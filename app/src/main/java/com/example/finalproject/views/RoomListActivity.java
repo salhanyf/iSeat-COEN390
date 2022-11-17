@@ -20,12 +20,11 @@ import com.example.finalproject.models.Room;
 import com.example.finalproject.views.Registration.WelcomeActivity;
 import com.example.finalproject.views.Settings.SettingsActivity;
 import com.example.finalproject.views.adaptors.RoomListRecyclerViewAdaptor;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
 public class RoomListActivity extends AppCompatActivity {
-
-    private Toolbar toolbar;
     private RecyclerView mRecyclerView;
     private ProgressBar progressBar;
 
@@ -36,10 +35,19 @@ public class RoomListActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.appToolbar);
         setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         progressBar = findViewById(R.id.progressBarRecyclerView);
         mRecyclerView = findViewById(R.id.Room_RecyclerViewID);
         new FirebaseDatabaseHelper().readRooms(new UpdateRoomsRecyclerView());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            startActivity(new Intent(this, WelcomeActivity.class));
+        }
     }
 
     private class UpdateRoomsRecyclerView implements FirebaseDatabaseHelper.DataStatusRoom {
@@ -51,7 +59,6 @@ public class RoomListActivity extends AppCompatActivity {
         }
     }
 
-    //toolbar items behaviour
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // use menu items from "iseat_user_menu.xml"
@@ -75,15 +82,9 @@ public class RoomListActivity extends AppCompatActivity {
                 break;
             case R.id.signOutActionButton:
                 //TODO: signing out user
+                FirebaseAuth.getInstance().signOut();
                 Toast.makeText(this, "Goodbye", Toast.LENGTH_SHORT).show();
-                Intent signOutIntent = new Intent(this, WelcomeActivity.class);
-                startActivity(signOutIntent);
-//                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-//                    String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-//                    FirebaseAuth.getInstance().signOut();
-//                    Toast.makeText(this, "User: " + email + " logged off.", Toast.LENGTH_SHORT).show();
-//                    startActivity(new Intent(this, LoginActivity.class));
-//                }
+                startActivity(new Intent(this, WelcomeActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);

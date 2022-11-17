@@ -72,6 +72,8 @@ public class AdminRoomsActivity extends AppCompatActivity {
         // find items in menu and save
         itemAddRoom = menu.findItem(R.id.action_add_room);
         itemRemoveRoom = menu.findItem(R.id.action_remove_room);
+        itemSettings = menu.findItem(R.id.settingsActionButton);
+        itemSignOut = menu.findItem(R.id.signOutActionButton);
         itemDeleteRoom = menu.findItem(R.id.action_delete);
         // DELETE action invisible until needed
         itemDeleteRoom.setVisible(false);
@@ -109,6 +111,7 @@ public class AdminRoomsActivity extends AppCompatActivity {
 
             case R.id.signOutActionButton:
                 //TODO: signing out user
+                FirebaseAuth.getInstance().signOut();
                 Toast.makeText(this, "Goodbye", Toast.LENGTH_SHORT).show();
                 Intent signOutIntent = new Intent(this, WelcomeActivity.class);
                 startActivity(signOutIntent);

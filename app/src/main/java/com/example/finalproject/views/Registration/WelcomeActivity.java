@@ -22,13 +22,14 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        //TODO: Check if user already signed in - if yes check if user is admin or not and go straight to the room activity
+        if (FirebaseAuth.getInstance().getCurrentUser() != null)
+            finish();
 
         gettingStartedButton = findViewById(R.id.gettingStartedButton);
         loginHereButton = findViewById(R.id.loginRedirect);
 
-        testAdmin = findViewById(R.id.adminRedirect);
-        testUser = findViewById(R.id.userRedirect);
+//        testAdmin = findViewById(R.id.adminRedirect);
+//        testUser = findViewById(R.id.userRedirect);
 
         //redirect to sign up
         gettingStartedButton.setOnClickListener(new View.OnClickListener() {
@@ -46,18 +47,18 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
-        testAdmin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity( new Intent(WelcomeActivity.this, AdminRoomsActivity.class));
-            }
-        });
-
-        testUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity( new Intent(WelcomeActivity.this, RoomListActivity.class));
-            }
-        });
+//        testAdmin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity( new Intent(WelcomeActivity.this, AdminRoomsActivity.class));
+//            }
+//        });
+//
+//        testUser.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity( new Intent(WelcomeActivity.this, RoomListActivity.class));
+//            }
+//        });
     }
 }
