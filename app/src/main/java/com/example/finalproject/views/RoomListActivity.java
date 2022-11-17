@@ -33,7 +33,7 @@ public class RoomListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_list);
 
-        Toolbar toolbar = findViewById(R.id.appToolbar);
+        toolbar = findViewById(R.id.appToolbar);
         setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

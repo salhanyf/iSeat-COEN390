@@ -23,28 +23,28 @@ import com.example.finalproject.views.Registration.WelcomeActivity;
 import com.example.finalproject.views.Settings.SettingsActivity;
 import com.example.finalproject.views.adaptors.AdminRoomsRecyclerViewAdaptor;
 import com.example.finalproject.views.dialogfragments.AddRoomDialogFragment;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
 public class AdminRoomsActivity extends AppCompatActivity {
 
-    private String adminEmail = null;               // email of admin user (to use when get/set firebase data)
+    private String adminEmail;                      // email of admin user (to use when get/set firebase data)
     private RecyclerView recycler;                  // the list of admin's rooms
     private AdminRoomsRecyclerViewAdaptor adaptor;  // adaptor that controls the recycler
     private TextView textViewCancel;                // help text that pops up when deleting
-
-    // items in the toolbar menu
-    private MenuItem itemAddRoom, itemRemoveRoom, itemDeleteRoom, itemSettings, itemSignOut;
+    private MenuItem itemAddRoom, itemRemoveRoom, itemDeleteRoom, settings, signOut; // items in the toolbar menu
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_rooms);
-        // get the user email
-        if (FirebaseAuth.getInstance().getCurrentUser() != null)
-            adminEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
+        toolbar = findViewById(R.id.appToolbar);
+        setSupportActionBar(toolbar);
+        // get the user email passed by intent to activity
+        adminEmail = getIntent().getStringExtra(getString(R.string.Extra_adminEmail));
         // setup UI elements
         setupUI();
         // setup listener to Firebase for admin's rooms
@@ -52,13 +52,13 @@ public class AdminRoomsActivity extends AppCompatActivity {
     }
 
     private void setupUI() {
-        // setup custom toolbar for activity
-        Toolbar toolbar = findViewById(R.id.appToolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // setup custom toolbar for activity, set title for user
+//        Toolbar toolbar = findViewById(R.id.toolbarAdminRooms);
+//        setSupportActionBar(toolbar);
+//        toolbar.setTitle(String.format("%s%s", adminEmail != null ? adminEmail : "", getString(R.string.AdminRooms_Toolbar_Tile)));
         // setup textview that shows how to cancel delete
-        textViewCancel = findViewById(R.id.textViewCancel);
-        textViewCancel.setVisibility(View.GONE);
+        //textViewCancel = findViewById(R.id.textViewCancel);
+        //textViewCancel.setVisibility(View.GONE);
         // find recyclerview and clear adaptor
         recycler = findViewById(R.id.recyclerViewAdminRooms);
         adaptor = null;
@@ -135,8 +135,6 @@ public class AdminRoomsActivity extends AppCompatActivity {
         itemDeleteRoom.setVisible(show);
         itemAddRoom.setVisible(!show);
         itemRemoveRoom.setVisible(!show);
-        itemSettings.setVisible(!show);
-        itemSignOut.setVisible(!show);
         // show/hide help message for exiting delete mode
         textViewCancel.setVisibility(show ? View.VISIBLE : View.GONE);
         // if the recyclerview adaptor is set
@@ -188,7 +186,7 @@ public class AdminRoomsActivity extends AppCompatActivity {
         // converts the list of rooms to string
         private String toString(List<Room> rooms) {
             String str = "";
-            for (Room room : rooms) str = String.format("%s\n%s", str, room);
+            for (Room room : rooms) str = String.format("\n%s", room);
             return str;
         }
     }
