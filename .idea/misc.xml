@@ -23,6 +23,7 @@
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.21794586181640624" />
         <entry key="app/src/main/res/layout/activity_room_info.xml" value="0.23975409836065573" />
         <entry key="app/src/main/res/layout/activity_room_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.21909722222222222" />
         <entry key="app/src/main/res/layout/activity_welcome.xml" value="0.22013888888888888" />
         <entry key="app/src/main/res/layout/admin_list_items.xml" value="0.1" />
         <entry key="app/src/main/res/layout/app_toolbar.xml" value="0.1" />
@@ -33,11 +34,13 @@
         <entry key="app/src/main/res/layout/recyclerview_admin_rooms_item.xml" value="0.20658135283363802" />
         <entry key="app/src/main/res/layout/recyclerview_room_list_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/room_list_items.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/settings_activity.xml" value="0.20173611111111112" />
         <entry key="app/src/main/res/menu/iseat_admin_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/iseat_toolbar.xml" value="0.25" />
         <entry key="app/src/main/res/menu/iseat_user_menu.xml" value="0.2659622192382813" />
         <entry key="app/src/main/res/menu/menu_admin_rooms.xml" value="0.25069444444444444" />
         <entry key="app/src/main/res/menu/settings.xml" value="0.2791666666666667" />
+        <entry key="app/src/main/res/xml/root_preferences.xml" value="0.18993055555555555" />
       </map>
     </option>
   </component>
