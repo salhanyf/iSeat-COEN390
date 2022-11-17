@@ -2,7 +2,7 @@
 <!-- Dark theme -->
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme -->
-    <style name="Theme.FinalProject" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.FinalProject" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
         <!-- Primary brand color -->
         <item name="colorPrimary">@color/dark_blue</item>
