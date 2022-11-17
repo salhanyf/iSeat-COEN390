@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,12 +17,13 @@ import android.widget.Toast;
 import com.example.finalproject.R;
 import com.example.finalproject.controllers.FirebaseDatabaseHelper;
 import com.example.finalproject.models.Room;
+import com.example.finalproject.views.Settings.SettingsActivity;
 import com.example.finalproject.views.adaptors.RoomListRecyclerViewAdaptor;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
 public class RoomListActivity extends AppCompatActivity {
-
     private RecyclerView mRecyclerView;
     private ProgressBar progressBar;
 
@@ -48,34 +50,32 @@ public class RoomListActivity extends AppCompatActivity {
         }
     }
 
-    //toolbar menu behaviour
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_user, menu);
+        // use menu items from "iseat_user_menu.xml"
+        getMenuInflater().inflate(R.menu.iseat_user_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
+    // behaviour of toolbar items
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
-//            case R.id.action_search:
-//                Toast.makeText(this, "Search Clicked", Toast.LENGTH_SHORT).show();
-//                break;
-//            case R.id.action_refresh:
-//                Toast.makeText(this, "Refresh Clicked", Toast.LENGTH_SHORT).show();
-//                break;
-//            case R.id.action_settings:
-//                Toast.makeText(this, "Settings Clicked", Toast.LENGTH_SHORT).show();
-//                break;
-            case R.id.action_sign_out:
+            case R.id.searchActionButton:
+                Toast.makeText(this, "Search Clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.refreshActionButton:
+                Toast.makeText(this, "Refresh Clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.settingsActionButton:
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
+                break;
+            case R.id.signOutActionButton:
                 //TODO: signing out user
-//                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-//                    String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-//                    FirebaseAuth.getInstance().signOut();
-//                    Toast.makeText(this, "User: " + email + " logged off.", Toast.LENGTH_SHORT).show();
-//                    startActivity(new Intent(this, LoginActivity.class));
-//                }
+                FirebaseAuth.getInstance().signOut();
                 Toast.makeText(this, "Goodbye", Toast.LENGTH_SHORT).show();
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
