@@ -114,15 +114,11 @@ public class RegisterActivity extends AppCompatActivity {
         //check which radio button was clicked
         switch(view.getId()) {
             case R.id.adminYes:
-//                if (checked)
-                    //Toast.makeText(RegisterActivity.this, "Admin",Toast.LENGTH_SHORT).show();
-                    adminCodeSignup.setVisibility(View.VISIBLE);
-                    break;
+                adminCodeSignup.setVisibility(View.VISIBLE);
+                break;
             case R.id.adminNo:
-//                if (checked)
-                    //Toast.makeText(RegisterActivity.this, "Not Admin",Toast.LENGTH_SHORT).show();
-                    adminCodeSignup.setVisibility(View.GONE);
-                    break;
+                adminCodeSignup.setVisibility(View.GONE);
+                break;
         }
     }
 }
