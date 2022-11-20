@@ -23,17 +23,16 @@
     <color name="secondaryDarkColor">#c53619</color>
     <color name="secondaryTextColor">@color/black</color>
 
-    <!--    App Colours - Light Mode    -->
-    <color name="page_background_color">@color/white</color>
-    <color name="toolbar_color">@color/teal_light</color>
+    <!--    App Colours - Dark Mode    -->
+    <color name="page_background_color">@color/black</color>
     <color name="button_background_color">@color/orange</color>
-    <color name="button_text_color">@color/white</color>
+    <color name="button_text_color">@color/black</color>
     <color name="icons_color">@color/teal_light</color>
 
-    <color name="border">@color/blue</color>
+    <color name="border">@color/black</color>
 
     <color name="text_header">@color/teal_light</color>
-    <color name="text_small">@color/black</color>
-    <color name="text_grey">@color/light_grey</color>
+    <color name="text_small">@color/white</color>
+    <color name="text_grey">@color/dark_grey</color>
 
 </resources>

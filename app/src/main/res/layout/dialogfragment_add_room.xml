@@ -38,7 +38,7 @@
                 android:minHeight="48dp"
                 android:padding="10dp"
                 android:text="@string/AddRoom_TextView_RoomName"
-                android:textColor="@color/grey"
+                android:textColor="@color/dark_grey"
                 android:textSize="18sp" />
 
             <TextView
@@ -50,7 +50,7 @@
                 android:minHeight="48dp"
                 android:padding="10dp"
                 android:text="@string/AddRoom_TextView_RoomLocation"
-                android:textColor="@color/grey"
+                android:textColor="@color/dark_grey"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -71,7 +71,7 @@
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 android:padding="10dp"
-                android:textColorHint="@color/grey"
+                android:textColorHint="@color/dark_grey"
                 android:textSize="18sp" />
 
             <EditText
@@ -84,7 +84,7 @@
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 android:padding="10dp"
-                android:textColorHint="@color/grey"
+                android:textColorHint="@color/dark_grey"
                 android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>

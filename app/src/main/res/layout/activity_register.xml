@@ -41,7 +41,7 @@
                 android:fontFamily="monospace"
                 android:text="@string/sign_up"
                 android:textAlignment="center"
-                android:textColor="@color/light_teal"
+                android:textColor="@color/teal_light"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -123,13 +123,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/are_you_an_admin"
-                    android:textColor="@color/light_blue" />
+                    android:textColor="@color/blue" />
 
                 <RadioButton
                     android:id="@+id/adminYes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/light_teal"
+                    android:buttonTint="@color/teal_light"
                     android:onClick="onRadioButtonClicked"
                     android:text="@string/yes" />
 
@@ -138,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
-                    android:buttonTint="@color/light_teal"
+                    android:buttonTint="@color/teal_light"
                     android:checked="true"
                     android:onClick="onRadioButtonClicked"
                     android:text="@string/no" />
