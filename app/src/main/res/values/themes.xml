@@ -6,7 +6,6 @@
 
         <!-- Status bar color -->
         <item name="android:statusBarColor" >@color/teal_light</item>
-
         <!-- Status bar color -->
         <item name="colorPrimary">@color/teal_light</item>
 
@@ -24,16 +23,17 @@
 
     <!-- Toolbar Theme -->
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:statusBarColor" >@color/teal_light</item>
         <item name="android:textColorPrimary">@color/blue</item>
-        <item name="actionMenuTextColor">@color/teal_light</item>
-        <item name="selectableItemBackgroundBorderless">@color/white</item>
+        <item name="actionMenuTextColor">@color/blue</item>
+        <item name="selectableItemBackgroundBorderless">@color/page_background_color</item>
     </style>
 
     <!-- Settings theme -->
     <style name="DefaultTheme.ActionBar" parent="Theme.MaterialComponents.DayNight">
         <item name="android:statusBarColor" >@color/teal_light</item>
-        <item name="colorPrimary">@color/teal_light</item>
         <item name="android:textColorPrimary">@color/blue</item>
+        <item name="colorPrimary">@color/teal_light</item>
         <item name="colorAccent">@color/orange</item>
     </style>
 

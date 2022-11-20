@@ -11,9 +11,9 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/appToolbar"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/toolbar_background_color"
         android:elevation="4dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ToolbarTheme" />
@@ -33,7 +33,7 @@
         android:gravity="center_horizontal"
         android:padding="15dp"
         android:text="@string/AdminRooms_TextView_Cancel"
-        android:textColor="@color/black"
+        android:textColor="@color/text_small"
         android:textStyle="italic" />
 
 

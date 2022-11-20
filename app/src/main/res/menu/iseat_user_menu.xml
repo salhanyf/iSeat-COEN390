@@ -2,30 +2,25 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- action button for search -->
-    <item android:title="Search"
-        android:id="@+id/searchActionButton"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_baseline_search_24"/>
-
     <!-- action button for refresh -->
-    <item android:title="Refresh"
+    <item android:title="@string/refresh"
         android:id="@+id/refreshActionButton"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:icon="@drawable/ic_baseline_refresh_24"/>
 
     <!-- action button for Settings -->
-    <item android:title="Settings"
+    <item android:title="@string/settings"
         android:id="@+id/settingsActionButton"
         app:showAsAction="never"/>
 
+    <!-- action button for admin activity-->
+    <item android:title="@string/manage_rooms"
+        android:id="@+id/manageRoomActionButton"
+        app:showAsAction="never"/>
+
     <!-- action button for signing out -->
-    <item android:title="Sign Out"
+    <item android:title="@string/sign_out"
         android:id="@+id/signOutActionButton"
         app:showAsAction="never"/>
 
-    <!-- action button for admin activity-->
-    <item android:title="Manage Rooms"
-        android:id="@+id/manageRoomActionButton"
-        app:showAsAction="never"/>
 </menu>
