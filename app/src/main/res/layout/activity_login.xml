@@ -15,8 +15,8 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/card_view_boarder"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="@color/page_background_color"
+        app:cardCornerRadius="22dp"
         app:cardElevation="20dp"
         app:cardPreventCornerOverlap="false"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,7 +39,7 @@
                 android:fontFamily="monospace"
                 android:text="@string/login"
                 android:textAlignment="center"
-                android:textColor="@color/teal_light"
+                android:textColor="@color/text_header"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -56,7 +56,7 @@
                 android:drawablePadding="8dp"
                 android:hint="@string/email"
                 android:padding="8dp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_small"
                 android:inputType="textEmailAddress" />
 
             <EditText
@@ -73,7 +73,7 @@
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:padding="8dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/text_small"/>
 
             <Button
                 android:id="@+id/forgotPassword"
@@ -85,7 +85,7 @@
                 android:padding="8dp"
                 android:text="@string/forgot_password"
                 android:textAlignment="textEnd"
-                android:textColor="@color/dark_grey"
+                android:textColor="@color/text_small"
                 android:textSize="14sp"/>
 
             <Button
@@ -96,9 +96,9 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/orange"
+                android:backgroundTint="@color/button_background_color"
                 android:text="@string/login"
-                android:textColor="@color/white"
+                android:textColor="@color/button_text_color"
                 android:textAlignment="gravity"
                 android:textSize="14sp"
                 app:cornerRadius="20dp" />
@@ -127,7 +127,7 @@
             android:text="@string/first_time"
             android:textAlignment="center"
             android:paddingTop="10dp"
-            android:textColor="@color/black"
+            android:textColor="@color/text_on_background_image"
             android:textSize="14sp" />
 
         <Button
@@ -137,7 +137,7 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="@string/register_here"
-            android:textColor="@color/orange"
+            android:textColor="@color/button_background_color"
             android:textSize="14sp"
             android:textStyle="italic" />
     </LinearLayout>

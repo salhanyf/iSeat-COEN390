@@ -66,5 +66,14 @@
     <!-- Messages Preferences -->
     <string name="signature_title">Your signature</string>
     <string name="reply_title">Default reply action</string>
+    <string name="seats_available">Seats Available:</string>
+    <string name="search">Search</string>
+    <string name="refresh">Refresh</string>
+    <string name="settings">Settings</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="manage_rooms">Manage Rooms</string>
+    <string name="add_room">Add room</string>
+    <string name="remove_room">Remove room</string>
+    <string name="delete">Delete</string>
 
 </resources>
