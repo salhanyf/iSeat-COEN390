@@ -3,6 +3,7 @@
 
     <!--    App Colours    -->
     <color name="black">#FF000000</color>
+    <color name="grey_black">#2a2828</color>
     <color name="white">#FFFFFFFF</color>
 
     <color name="dark_grey">#FF757575</color>
@@ -25,15 +26,22 @@
 
     <!--    App Colours - Light Mode    -->
     <color name="page_background_color">@color/white</color>
-    <color name="toolbar_color">@color/teal_light</color>
+
+    <color name="toolbar_background_color">@color/teal_light</color>
+    <color name="toolbar_text_color">@color/blue_dark</color>
+    <color name="toolbar_icon_color">@color/blue</color>
+
     <color name="button_background_color">@color/orange</color>
     <color name="button_text_color">@color/white</color>
-    <color name="icons_color">@color/teal_light</color>
 
+    <color name="icons_color">@color/teal_light</color>
     <color name="border">@color/blue</color>
+
+    <color name="card_rooms_background">@color/white</color>
 
     <color name="text_header">@color/teal_light</color>
     <color name="text_small">@color/black</color>
-    <color name="text_grey">@color/light_grey</color>
+    <color name="text_on_background_image">@color/black</color>
+    <color name="text_grey">@color/dark_grey</color>
 
 </resources>

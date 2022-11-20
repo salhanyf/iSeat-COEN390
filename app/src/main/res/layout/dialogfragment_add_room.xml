@@ -1,100 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:orientation="vertical"
-    android:padding="25dp">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textViewAddRoomInfo"
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/AddRoom_TextView_AddRoomInfo"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/card_view_boarder"
+        app:cardBackgroundColor="@color/page_background_color"
+        app:cardCornerRadius="22dp"
+        app:cardElevation="20dp"
+        app:cardPreventCornerOverlap="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/text_bubble_border"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textViewRoomName"
-                android:layout_width="wrap_content"
+                android:id="@+id/textViewAddRoomInfo"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:gravity="center_vertical|end"
-                android:minHeight="48dp"
-                android:padding="10dp"
-                android:text="@string/AddRoom_TextView_RoomName"
-                android:textColor="@color/dark_grey"
-                android:textSize="18sp" />
+                android:layout_gravity="center"
+                android:text="@string/AddRoom_TextView_AddRoomInfo"
+                android:textColor="@color/text_header"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textViewRoomLocation"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:gravity="center_vertical|end"
-                android:minHeight="48dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="0"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewRoomName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_gravity="end"
+                        android:gravity="center_vertical|end"
+                        android:minHeight="48dp"
+                        android:padding="10dp"
+                        android:text="@string/AddRoom_TextView_RoomName"
+                        android:textColor="@color/text_small"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textViewRoomLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_gravity="end"
+                        android:gravity="center_vertical|end"
+                        android:minHeight="48dp"
+                        android:padding="10dp"
+                        android:text="@string/AddRoom_TextView_RoomLocation"
+                        android:textColor="@color/text_small"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/editTextRoomName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:hint="@string/AddRoom_EditText_HintName"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:padding="8dp"
+                        android:textColorHint="@color/text_grey"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editTextRoomLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:hint="@string/AddRoom_EditText_HintLocation"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:minHeight="48dp"
+                        android:padding="8dp"
+                        android:textColorHint="@color/text_grey"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonAddRoom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/button_background_color"
                 android:padding="10dp"
-                android:text="@string/AddRoom_TextView_RoomLocation"
-                android:textColor="@color/dark_grey"
-                android:textSize="18sp" />
+                android:text="@string/AddRoom_Button_AddRoom"
+                android:textColor="@color/button_text_color"
+                android:textAlignment="gravity"
+                android:textSize="18sp"
+                app:cornerRadius="20dp" />
 
         </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editTextRoomName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/AddRoom_EditText_HintName"
-                android:importantForAutofill="no"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:padding="10dp"
-                android:textColorHint="@color/dark_grey"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/editTextRoomLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/AddRoom_EditText_HintLocation"
-                android:importantForAutofill="no"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:padding="10dp"
-                android:textColorHint="@color/dark_grey"
-                android:textSize="18sp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/buttonAddRoom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="@string/AddRoom_Button_AddRoom"
-        android:textSize="18sp" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

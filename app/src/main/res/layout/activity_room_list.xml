@@ -12,7 +12,7 @@
         android:id="@+id/appToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/toolbar_color"
+        android:background="@color/toolbar_background_color"
         android:elevation="4dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ToolbarTheme"
@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
         <TextView
             android:id="@+id/toolbar_title"
+            android:textColor="@color/toolbar_text_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </androidx.appcompat.widget.Toolbar>
@@ -32,7 +33,7 @@
         android:gravity="center"
         android:padding="10dp"
         android:text="Rooms"
-        android:textColor="@color/teal_light"
+        android:textColor="@color/text_header"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

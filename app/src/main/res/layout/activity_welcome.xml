@@ -45,8 +45,9 @@
             android:id="@+id/gettingStartedButton"
             android:layout_width="200dp"
             android:layout_height="60dp"
-            android:backgroundTint="@color/orange"
+            android:backgroundTint="@color/button_background_color"
             android:text="@string/getting_started"
+            android:textColor="@color/button_text_color"
             android:textSize="14sp"
             app:cornerRadius="20dp"
             android:layout_marginStart="40dp"/>
@@ -58,7 +59,7 @@
             android:layout_marginStart="60dp"
             android:fontFamily="@font/montserrat_light"
             android:text="@string/already_have_an_account"
-            android:textColor="@color/black"
+            android:textColor="@color/text_on_background_image"
             android:textSize="12sp" />
 
         <Button
@@ -69,7 +70,7 @@
             android:layout_marginStart="90dp"
             android:text="@string/login_here"
             android:textAlignment="textStart"
-            android:textColor="@color/orange"
+            android:textColor="@color/button_background_color"
             android:textSize="12sp"
             android:textStyle="italic" />
     </LinearLayout>

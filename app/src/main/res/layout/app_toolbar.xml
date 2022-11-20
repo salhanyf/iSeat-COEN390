@@ -13,7 +13,10 @@
         android:layout_height="wrap_content"
         android:elevation="4dp"
         android:minHeight="?attr/actionBarSize"
+        android:background="@color/toolbar_background_color"
+        app:titleTextColor="@color/toolbar_text_color"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
