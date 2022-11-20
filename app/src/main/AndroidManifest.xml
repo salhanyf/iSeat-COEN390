@@ -17,8 +17,7 @@
         <!-- Registration Activities -->
         <activity
             android:name=".views.Registration.WelcomeActivity"
-            android:exported="true"
-            android:label="Welcome">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -50,11 +49,7 @@
         </activity>
         <activity
             android:name=".views.MainActivity"
-            android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            android:exported="false">
         </activity>
 
         <meta-data
