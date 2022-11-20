@@ -18,15 +18,18 @@ import android.widget.Toast;
 import com.example.finalproject.R;
 import com.example.finalproject.controllers.FirebaseDatabaseHelper;
 import com.example.finalproject.models.Room;
-import com.example.finalproject.views.Registration.LoginActivity;
+import com.example.finalproject.views.Registration.WelcomeActivity;
+import com.example.finalproject.views.Settings.SettingsActivity;
 import com.example.finalproject.views.adaptors.RoomListRecyclerViewAdaptor;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
 public class RoomListActivity extends AppCompatActivity {
-
-    private Toolbar toolbar;
     private RecyclerView mRecyclerView;
     private ProgressBar progressBar;
 
@@ -35,7 +38,7 @@ public class RoomListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_list);
 
-        toolbar = findViewById(R.id.appToolbar);
+        Toolbar toolbar = findViewById(R.id.appToolbar);
         setSupportActionBar(toolbar);
 
         //add a profile button to the toolbar on the top left and when clicked, brings you to a profile page
@@ -45,10 +48,19 @@ public class RoomListActivity extends AppCompatActivity {
 
         //ActionBar upButton = getSupportActionBar();
         //upButton.setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         progressBar = findViewById(R.id.progressBarRecyclerView);
         mRecyclerView = findViewById(R.id.Room_RecyclerViewID);
         new FirebaseDatabaseHelper().readRooms(new UpdateRoomsRecyclerView());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            startActivity(new Intent(this, WelcomeActivity.class));
+        }
     }
 
     private class UpdateRoomsRecyclerView implements FirebaseDatabaseHelper.DataStatusRoom {
@@ -66,9 +78,36 @@ public class RoomListActivity extends AppCompatActivity {
     //toolbar menu behaviour
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // use menu items from "iseat_user_menu.xml"
         getMenuInflater().inflate(R.menu.iseat_user_menu, menu);
+        MenuItem itemManageRooms = menu.findItem(R.id.manageRoomActionButton);
+        itemManageRooms.setVisible(false);
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        if (auth.getCurrentUser() != null) {
+            String email = auth.getCurrentUser().getEmail();
+            FirebaseDatabase.getInstance().getReference("admins").orderByValue().equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot snap : snapshot.getChildren()) {
+                        String e = snap.getValue(String.class);
+                        if (e.equals(email)) {
+                            itemManageRooms.setVisible(true);
+                            break;
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(RoomListActivity.this, "Failure during get admin", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
         return super.onCreateOptionsMenu(menu);
     }
+    // behaviour of toolbar items
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -80,21 +119,22 @@ public class RoomListActivity extends AppCompatActivity {
                 Toast.makeText(this, "Refresh Clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.settingsActionButton:
-                Toast.makeText(this, "Settings Clicked", Toast.LENGTH_SHORT).show();
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
                 break;
             case R.id.signOutActionButton:
                 //TODO: signing out user
-//                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-//                    String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-//                    FirebaseAuth.getInstance().signOut();
-//                    Toast.makeText(this, "User: " + email + " logged off.", Toast.LENGTH_SHORT).show();
-//                    startActivity(new Intent(this, LoginActivity.class));
-//                }
+                FirebaseAuth.getInstance().signOut();
                 Toast.makeText(this, "Goodbye", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, WelcomeActivity.class));
+                break;
+            case R.id.manageRoomActionButton:
+                startActivity(new Intent(this, AdminRoomsActivity.class));
                 break;
                 case android.R.id.home:
                     startActivity(new Intent(this, UserProfileActivity.class));
                     break;
+
         }
         return super.onOptionsItemSelected(item);
     }

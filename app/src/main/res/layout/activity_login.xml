@@ -39,7 +39,7 @@
                 android:fontFamily="monospace"
                 android:text="@string/login"
                 android:textAlignment="center"
-                android:textColor="@color/light_teal"
+                android:textColor="@color/teal_light"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -85,7 +85,7 @@
                 android:padding="8dp"
                 android:text="@string/forgot_password"
                 android:textAlignment="textEnd"
-                android:textColor="@color/grey"
+                android:textColor="@color/dark_grey"
                 android:textSize="14sp"/>
 
             <Button

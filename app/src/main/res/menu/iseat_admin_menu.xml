@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- action button for search -->
-    <item android:title="Search"
-        android:id="@+id/searchActionButton"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_baseline_search_24"/>
+<!--    <item android:title="Search"-->
+<!--        android:id="@+id/searchActionButton"-->
+<!--        app:showAsAction="ifRoom"-->
+<!--        android:icon="@drawable/ic_baseline_search_24"/>-->
 
     <!-- action button for refresh -->
-    <item android:title="Refresh"
-        android:id="@+id/refreshActionButton"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_baseline_refresh_24"/>
+<!--    <item android:title="Refresh"-->
+<!--        android:id="@+id/refreshActionButton"-->
+<!--        app:showAsAction="ifRoom"-->
+<!--        android:icon="@drawable/ic_baseline_refresh_24"/>-->
 
     <!-- action button for adding a room -->
     <item
@@ -32,7 +32,7 @@
     <item
         android:title="Delete"
         android:id="@+id/action_delete"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
 
     <!-- action button for Settings -->
     <item android:title="Settings"

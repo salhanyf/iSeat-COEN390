@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.finalproject.R;
+import com.example.finalproject.views.RoomListActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -63,19 +64,20 @@ public class RegisterActivity extends AppCompatActivity {
                     FirebaseDatabase.getInstance().getReference("admins").push().setValue(email);
 
                 auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(
-                    task -> {
-                        if (task.isSuccessful()) {
-                            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(t -> {
-                                if (t.isSuccessful())
-                                    Toast.makeText(this, "User Registration & Login Success", Toast.LENGTH_SHORT).show();
-                                else
-                                    Toast.makeText(this, "User Registration Success but Login Failed", Toast.LENGTH_SHORT).show();
-                                finish();
-                            });
-                        } else {
-                            Toast.makeText(this, "User Registration Failed, Try Again", Toast.LENGTH_SHORT).show();
+                        task -> {
+                            if (task.isSuccessful()) {
+                                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(t -> {
+                                    if (t.isSuccessful())
+                                        Toast.makeText(this, "User Registration & Login Success", Toast.LENGTH_SHORT).show();
+                                    else
+                                        Toast.makeText(this, "User Registration Success but Login Failed", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(this, RoomListActivity.class));
+                                    finishAffinity();
+                                });
+                            } else {
+                                Toast.makeText(this, "User Registration Failed, Try Again", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
                 );
             }
         });
@@ -91,8 +93,8 @@ public class RegisterActivity extends AppCompatActivity {
             signupEmail.setError("Please enter your email");
             err = true;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-        signupEmail.setError("Please Enter Valid Email");
-        err = true;
+            signupEmail.setError("Please Enter Valid Email");
+            err = true;
         }
         if (password.isEmpty()) {
             signupPassword.setError("Please enter your password");
@@ -114,15 +116,11 @@ public class RegisterActivity extends AppCompatActivity {
         //check which radio button was clicked
         switch(view.getId()) {
             case R.id.adminYes:
-//                if (checked)
-                    //Toast.makeText(RegisterActivity.this, "Admin",Toast.LENGTH_SHORT).show();
-                    adminCodeSignup.setVisibility(View.VISIBLE);
-                    break;
+                adminCodeSignup.setVisibility(View.VISIBLE);
+                break;
             case R.id.adminNo:
-//                if (checked)
-                    //Toast.makeText(RegisterActivity.this, "Not Admin",Toast.LENGTH_SHORT).show();
-                    adminCodeSignup.setVisibility(View.GONE);
-                    break;
+                adminCodeSignup.setVisibility(View.GONE);
+                break;
         }
     }
 }

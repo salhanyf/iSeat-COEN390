@@ -1,0 +1,47 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Account">
+        <EditTextPreference
+            app:key="settingsUsername"
+            app:title="Your username"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Notifications">
+        <SwitchPreferenceCompat
+            app:key="settingsAppNotifications"
+            app:title="Receive app notifications"
+            app:summaryOff="Off"
+            app:summaryOn="On"/>
+        <SwitchPreferenceCompat
+            app:key="settingsTextNotifications"
+            app:title="Receive text notifications"
+            app:summaryOff="Off"
+            app:summaryOn="On"/>
+        <SwitchPreferenceCompat
+            app:key="settingsEmailNotifications"
+            app:title="Receive email notifications"
+            app:summaryOff="Off"
+            app:summaryOn="On"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="My Preferences">
+        <ListPreference
+            app:key="settingsAppAppearance"
+            app:title="Appearance"
+            app:entries="@array/appearance_entries"
+            app:entryValues="@array/appearance_values"
+            app:defaultValue="light"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="App Permissions">
+        <SwitchPreferenceCompat
+            app:key="SettingsLocation"
+            app:title="Your Location"
+            app:icon="@drawable/ic_baseline_location_on_24" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

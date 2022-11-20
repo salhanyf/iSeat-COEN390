@@ -1,0 +1,13 @@
+<resources>
+    <!-- Appearance Preferences -->
+    <string-array name="appearance_entries">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+
+    <string-array name="appearance_values">
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
+
+</resources>

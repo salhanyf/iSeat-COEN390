@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,30 +19,32 @@ import android.widget.Toast;
 import com.example.finalproject.R;
 import com.example.finalproject.controllers.FirebaseDatabaseHelper;
 import com.example.finalproject.models.Room;
+import com.example.finalproject.views.Registration.WelcomeActivity;
+import com.example.finalproject.views.Settings.SettingsActivity;
 import com.example.finalproject.views.adaptors.AdminRoomsRecyclerViewAdaptor;
 import com.example.finalproject.views.dialogfragments.AddRoomDialogFragment;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
 public class AdminRoomsActivity extends AppCompatActivity {
 
-    private String adminEmail;                      // email of admin user (to use when get/set firebase data)
+    private String adminEmail = null;               // email of admin user (to use when get/set firebase data)
     private RecyclerView recycler;                  // the list of admin's rooms
     private AdminRoomsRecyclerViewAdaptor adaptor;  // adaptor that controls the recycler
     private TextView textViewCancel;                // help text that pops up when deleting
-    private MenuItem itemAddRoom, itemRemoveRoom, itemDeleteRoom; // items in the toolbar menu
-    private Toolbar toolbar;
+
+    // items in the toolbar menu
+    private MenuItem itemAddRoom, itemRemoveRoom, itemDeleteRoom, itemSettings, itemSignOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_rooms);
-
-        toolbar = findViewById(R.id.appToolbar);
-        setSupportActionBar(toolbar);
-        // get the user email passed by intent to activity
-        adminEmail = getIntent().getStringExtra(getString(R.string.Extra_adminEmail));
+        // get the user email
+        if (FirebaseAuth.getInstance().getCurrentUser() != null)
+            adminEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         // setup UI elements
         setupUI();
         // setup listener to Firebase for admin's rooms
@@ -49,56 +52,70 @@ public class AdminRoomsActivity extends AppCompatActivity {
     }
 
     private void setupUI() {
-        // setup custom toolbar for activity, set title for user
-//        Toolbar toolbar = findViewById(R.id.toolbarAdminRooms);
-//        setSupportActionBar(toolbar);
-//        toolbar.setTitle(String.format("%s%s", adminEmail != null ? adminEmail : "", getString(R.string.AdminRooms_Toolbar_Tile)));
+        // setup custom toolbar for activity
+        Toolbar toolbar = findViewById(R.id.appToolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // setup textview that shows how to cancel delete
-        //textViewCancel = findViewById(R.id.textViewCancel);
-        //textViewCancel.setVisibility(View.GONE);
+        textViewCancel = findViewById(R.id.textViewCancel);
+        textViewCancel.setVisibility(View.GONE);
         // find recyclerview and clear adaptor
         recycler = findViewById(R.id.recyclerViewAdminRooms);
         adaptor = null;
     }
 
+    //toolbar items behaviour
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // use menu items from "menu_admin_rooms.xml"
+        // use menu items from "iseat_admin_menu.xml"
         getMenuInflater().inflate(R.menu.iseat_admin_menu, menu);
         // find items in menu and save
         itemAddRoom = menu.findItem(R.id.action_add_room);
         itemRemoveRoom = menu.findItem(R.id.action_remove_room);
+        itemSettings = menu.findItem(R.id.settingsActionButton);
+        itemSignOut = menu.findItem(R.id.signOutActionButton);
         itemDeleteRoom = menu.findItem(R.id.action_delete);
         // DELETE action invisible until needed
         itemDeleteRoom.setVisible(false);
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // get ID of action item pressed
-        int id = item.getItemId();
-        if (id == R.id.action_add_room) {
-            // open the Add Room dialog fragment for this admin
-            new AddRoomDialogFragment(adminEmail).show(getSupportFragmentManager(), "AddRoomDialogFragment");
-            return true;
-        }
-        else if (id == R.id.action_remove_room) {
-            // toggle the delete button and checkboxes to visible
-            toggleDelete(true);
-            return true;
-        }
-        else if (id == R.id.action_delete) {
-            // get list of selected rooms to delete
-            List<Room> rooms = adaptor.getCheckedRooms();
-            if (rooms.isEmpty()) {
-                // if list empty, display toast and return
-                Toast.makeText(this, "Please select 1+ rooms to delete.", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-            // open delete confirmation dialog for selected rooms
-            new DeleteDialog(this, rooms).show();
-            return true;
+
+        switch (item.getItemId()){
+            case R.id.action_add_room :
+                // open the Add Room dialog fragment for this admin
+                new AddRoomDialogFragment(adminEmail).show(getSupportFragmentManager(), "AddRoomDialogFragment");
+                break;
+            case R.id.action_remove_room :
+                // toggle the delete button and checkboxes to visible
+                toggleDelete(true);
+                break;
+
+            case R.id.action_delete :
+                // get list of selected rooms to delete
+                List<Room> rooms = adaptor.getCheckedRooms();
+                if (rooms.isEmpty()) {
+                    // if list empty, display toast and return
+                    Toast.makeText(this, "Please select 1+ rooms to delete.", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                // open delete confirmation dialog for selected rooms
+                new DeleteDialog(this, rooms).show();
+                break;
+
+            case R.id.settingsActionButton:
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
+                break;
+
+            case R.id.signOutActionButton:
+                //TODO: signing out user
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(this, "Goodbye", Toast.LENGTH_SHORT).show();
+                Intent signOutIntent = new Intent(this, WelcomeActivity.class);
+                startActivity(signOutIntent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -108,7 +125,7 @@ public class AdminRoomsActivity extends AppCompatActivity {
         // when back button / back swipe is detected
         // if in delete mode, go back to normal (hide checkboxes)
         if (itemDeleteRoom.isVisible()) toggleDelete(false);
-        // else normal behavior (go back)
+            // else normal behavior (go back)
         else super.onBackPressed();
     }
 
@@ -118,13 +135,15 @@ public class AdminRoomsActivity extends AppCompatActivity {
         itemDeleteRoom.setVisible(show);
         itemAddRoom.setVisible(!show);
         itemRemoveRoom.setVisible(!show);
+        itemSettings.setVisible(!show);
+        itemSignOut.setVisible(!show);
         // show/hide help message for exiting delete mode
         textViewCancel.setVisibility(show ? View.VISIBLE : View.GONE);
         // if the recyclerview adaptor is set
         if (adaptor != null) {
             // show checkboxes beside rooms if true
             if (show) adaptor.showCheckBoxes();
-            // hide checkboxes beside rooms if false
+                // hide checkboxes beside rooms if false
             else adaptor.hideCheckBoxes();
         }
     }
@@ -169,7 +188,7 @@ public class AdminRoomsActivity extends AppCompatActivity {
         // converts the list of rooms to string
         private String toString(List<Room> rooms) {
             String str = "";
-            for (Room room : rooms) str = String.format("\n%s", room);
+            for (Room room : rooms) str = String.format("%s\n%s", str, room);
             return str;
         }
     }
