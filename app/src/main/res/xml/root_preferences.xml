@@ -3,7 +3,7 @@
 
     <PreferenceCategory app:title="Account">
         <EditTextPreference
-            app:key="username"
+            app:key="settingsUsername"
             app:title="Your username"
             app:useSimpleSummaryProvider="true" />
 
@@ -11,36 +11,37 @@
 
     <PreferenceCategory app:title="Notifications">
         <SwitchPreferenceCompat
-            app:key="getAppNotifications"
+            app:key="settingsAppNotifications"
+            app:title="Receive app notifications"
             app:summaryOff="Off"
-            app:summaryOn="On"
-            app:title="Receive app notifications" />
+            app:summaryOn="On"/>
         <SwitchPreferenceCompat
-            app:key="getTextNotifications"
+            app:key="settingsTextNotifications"
+            app:title="Receive text notifications"
             app:summaryOff="Off"
-            app:summaryOn="On"
-            app:title="Receive text notifications" />
+            app:summaryOn="On"/>
         <SwitchPreferenceCompat
-            app:key="getEmailNotifications"
+            app:key="settingsEmailNotifications"
+            app:title="Receive email notifications"
             app:summaryOff="Off"
-            app:summaryOn="On"
-            app:title="Receive email notifications" />
+            app:summaryOn="On"/>
     </PreferenceCategory>
 
     <PreferenceCategory app:title="My Preferences">
         <ListPreference
-            app:defaultValue="system_appearance"
+            app:key="settingsAppAppearance"
+            app:title="Appearance"
             app:entries="@array/appearance_entries"
             app:entryValues="@array/appearance_values"
-            app:key="appearance"
-            app:title="Appearance"
+            app:defaultValue="light"
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
     <PreferenceCategory app:title="App Permissions">
         <SwitchPreferenceCompat
-            app:icon="@drawable/ic_baseline_location_on_24"
-            app:key="location"
-            app:title="Your Location" />
+            app:key="SettingsLocation"
+            app:title="Your Location"
+            app:icon="@drawable/ic_baseline_location_on_24" />
     </PreferenceCategory>
+
 </PreferenceScreen>

@@ -4,36 +4,37 @@
     <!-- Base application theme -->
     <style name="Theme.FinalProject" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
-        <!-- Primary brand color -->
-        <item name="colorPrimary">@color/light_teal</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryVariant">@color/dark_blue</item>
+        <!-- Status bar color -->
+        <item name="android:statusBarColor" >@color/teal_light</item>
+
+        <!-- Status bar color -->
+        <item name="colorPrimary">@color/teal_light</item>
+
+        <!-- Title color -->
+        <item name="colorOnPrimary">@color/blue_dark</item>
+
+        <item name="colorPrimaryVariant">@color/blue_dark</item>
 
         <!-- Secondary brand color -->
         <item name="colorSecondary">@color/orange</item>
-        <item name="colorOnSecondary">@color/dark_blue</item>
-        <item name="colorSecondaryVariant">@color/light_grey</item>
-
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <item name="colorOnSecondary">@color/blue_dark</item>
+        <item name="colorSecondaryVariant">@color/blue_dark</item>
 
     </style>
 
     <!-- Toolbar Theme -->
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:textColorPrimary">@color/light_blue</item>
-        <item name="actionMenuTextColor">@color/light_blue</item>
-        <item name="selectableItemBackground">?android:selectableItemBackground</item>
-        <item name="selectableItemBackgroundBorderless">?android:selectableItemBackground</item>
-
+        <item name="android:textColorPrimary">@color/blue</item>
+        <item name="actionMenuTextColor">@color/teal_light</item>
+        <item name="selectableItemBackgroundBorderless">@color/white</item>
     </style>
 
     <!-- Settings theme -->
     <style name="DefaultTheme.ActionBar" parent="Theme.MaterialComponents.DayNight">
-        <item name="colorPrimary">@color/light_teal</item>
-        <item name="colorPrimaryDark">@color/white</item>
-        <item name="colorAccent">@color/dark_blue</item>
-        <item name="colorPrimaryVariant">@color/dark_blue</item>
-        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" >@color/teal_light</item>
+        <item name="colorPrimary">@color/teal_light</item>
+        <item name="android:textColorPrimary">@color/blue</item>
+        <item name="colorAccent">@color/orange</item>
     </style>
+
 </resources>

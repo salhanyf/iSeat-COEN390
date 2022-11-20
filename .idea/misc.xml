@@ -18,7 +18,7 @@
         <entry key="app/src/main/res/drawable/login_icon.xml" value="0.102" />
         <entry key="app/src/main/res/drawable/text_bubble_border.xml" value="0.240185546875" />
         <entry key="app/src/main/res/layout/activity_admin_rooms.xml" value="0.23975409836065573" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.20189971923828126" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.21794586181640624" />
         <entry key="app/src/main/res/layout/activity_room_info.xml" value="0.23975409836065573" />
@@ -27,7 +27,7 @@
         <entry key="app/src/main/res/layout/activity_welcome.xml" value="0.22013888888888888" />
         <entry key="app/src/main/res/layout/admin_list_items.xml" value="0.1" />
         <entry key="app/src/main/res/layout/app_toolbar.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/dialogfragment_add_room.xml" value="0.23975409836065573" />
+        <entry key="app/src/main/res/layout/dialogfragment_add_room.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialogfragment_add_sensor.xml" value="0.23975409836065573" />
         <entry key="app/src/main/res/layout/dialogfragment_remove_sensor.xml" value="0.23975409836065573" />
         <entry key="app/src/main/res/layout/login_test.xml" value="0.22288055419921876" />
