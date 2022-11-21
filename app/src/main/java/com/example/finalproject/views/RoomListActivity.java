@@ -2,7 +2,9 @@ package com.example.finalproject.views;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,7 +41,6 @@ public class RoomListActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.appToolbar);
         setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         progressBar = findViewById(R.id.progressBarRecyclerView);
         mRecyclerView = findViewById(R.id.Room_RecyclerViewID);
@@ -52,6 +53,16 @@ public class RoomListActivity extends AppCompatActivity {
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             startActivity(new Intent(this, WelcomeActivity.class));
         }
+        //checking app appearance to apply the appropriate theme
+        final String[] appearanceValues = getResources().getStringArray(R.array.appearance_values);
+        String pref = PreferenceManager.getDefaultSharedPreferences(this)
+                .getString("settingsAppAppearance", "MODE_NIGHT_FOLLOW_SYSTEM");
+        if (pref.equals(appearanceValues[0]))
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        if (pref.equals(appearanceValues[1]))
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        if (pref.equals(appearanceValues[2]))
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
     }
 
     private class UpdateRoomsRecyclerView implements FirebaseDatabaseHelper.DataStatusRoom {
@@ -65,13 +76,11 @@ public class RoomListActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // use menu items from "iseat_user_menu.xml"
         getMenuInflater().inflate(R.menu.iseat_user_menu, menu);
+
         MenuItem itemManageRooms = menu.findItem(R.id.manageRoomActionButton);
         itemManageRooms.setVisible(false);
-
         FirebaseAuth auth = FirebaseAuth.getInstance();
-
         if (auth.getCurrentUser() != null) {
             String email = auth.getCurrentUser().getEmail();
             FirebaseDatabase.getInstance().getReference("admins").orderByValue().equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -91,16 +100,16 @@ public class RoomListActivity extends AppCompatActivity {
                 }
             });
         }
-
         return super.onCreateOptionsMenu(menu);
     }
+
     // behaviour of toolbar items
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
         switch (item.getItemId()){
             case R.id.refreshActionButton:
-                Toast.makeText(this, "Refresh Clicked", Toast.LENGTH_SHORT).show();
+                new FirebaseDatabaseHelper().readRooms(new UpdateRoomsRecyclerView());
+                Toast.makeText(this, "List is up-to-date", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.settingsActionButton:
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
@@ -109,14 +118,23 @@ public class RoomListActivity extends AppCompatActivity {
             case R.id.signOutActionButton:
                 //TODO: signing out user
                 FirebaseAuth.getInstance().signOut();
-                Toast.makeText(this, "Goodbye", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Goodbye!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, WelcomeActivity.class));
                 break;
             case R.id.manageRoomActionButton:
                 startActivity(new Intent(this, AdminRoomsActivity.class));
                 break;
-
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 }
