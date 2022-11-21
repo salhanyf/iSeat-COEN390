@@ -34,14 +34,6 @@ public class UserProfileActivity extends AppCompatActivity {
         phoneNumber = firebaseAuth.getCurrentUser().getPhoneNumber();
 
         //set the text of the text views to the user's information
-        usernameTextView = findViewById(R.id.UserNameTextView);
-        usernameTextView.setText("Username: " + username);
-        emailTextView = findViewById(R.id.EmailTextView);
-        emailTextView.setText("Email: " + email);
-//        passwordTextView = findViewById(R.id.passwordTextView);
-//        passwordTextView.setText(password);
-        phoneNumberTextView = findViewById(R.id.PhoneNumberTextView);
-        phoneNumberTextView.setText("Phone Number: " + phoneNumber);
 
 
         // Display the user's information in the user profile activity
