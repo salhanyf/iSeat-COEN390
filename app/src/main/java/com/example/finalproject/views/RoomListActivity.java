@@ -1,7 +1,6 @@
 package com.example.finalproject.views;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
@@ -31,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-public class RoomListActivity extends AppCompatActivity {
+public class RoomListActivity extends AppCompatActivity{
     private RecyclerView mRecyclerView;
     private ProgressBar progressBar;
 

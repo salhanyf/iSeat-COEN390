@@ -1,6 +1,8 @@
 package com.example.finalproject.views.adaptors;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import com.example.finalproject.R;
 import com.example.finalproject.controllers.FirebaseDatabaseHelper;
 import com.example.finalproject.models.Room;
 import com.example.finalproject.models.Sensor;
+import com.example.finalproject.views.RoomClickedActivity;
 
 import java.util.List;
 
@@ -37,6 +40,14 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(mRooms.get(position));
         new FirebaseDatabaseHelper().listenToSensorsRoom(mRooms.get(position).getKey(), new UpdateCapacityTextView(holder.mRoomCapacity));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, RoomClickedActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -66,7 +77,9 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
     private class UpdateCapacityTextView implements FirebaseDatabaseHelper.SensorDataChange {
         private final TextView textView;
 
-        public UpdateCapacityTextView(TextView textView) { this.textView = textView; }
+        public UpdateCapacityTextView(TextView textView) {
+            this.textView = textView;
+        }
 
         @Override
         public void dataUpdated(List<Sensor> sensors) {

@@ -17,11 +17,11 @@
         <!-- Registration Activities -->
         <activity
             android:name=".views.Registration.WelcomeActivity"
-            android:exported="true" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            android:exported="true">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".views.Registration.RegisterActivity"
@@ -33,13 +33,13 @@
         <!-- Settings -->
         <activity
             android:name=".views.Settings.SettingsActivity"
-            android:parentActivityName=".views.RoomListActivity"
-            android:theme="@style/DefaultTheme.ActionBar"
+            android:exported="false"
             android:label="Settings"
-            android:exported="false">
+            android:parentActivityName=".views.RoomListActivity"
+            android:theme="@style/DefaultTheme.ActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views.RoomListActivity"/>
+                android:value=".views.RoomListActivity" />
         </activity>
         <activity
             android:name=".views.RoomListActivity"
@@ -62,8 +62,7 @@
         </activity>
         <activity
             android:name=".views.MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
 
         <!-- UserProfileActivityPage -->
         <activity
@@ -78,6 +77,17 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <!--    RoomClickedActivity-->
+        <activity
+            android:name=".views.RoomClickedActivity"
+            android:exported="false"
+            android:parentActivityName=".views.RoomListActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
     </application>
 
 </manifest>
