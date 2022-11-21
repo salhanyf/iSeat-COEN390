@@ -14,6 +14,7 @@
         <entry key="app/src/debug/res/drawable-anydpi/ic_remove_room.xml" value="0.168" />
         <entry key="app/src/debug/res/drawable-anydpi/ic_remove_sensor.xml" value="0.168" />
         <entry key="app/src/main/res/drawable/card_view_boarder.xml" value="0.2755" />
+        <entry key="app/src/main/res/drawable/dialog_background.xml" value="0.203" />
         <entry key="app/src/main/res/drawable/email_icon.xml" value="0.2025" />
         <entry key="app/src/main/res/drawable/ic_baseline_lock_open_24.xml" value="0.102" />
         <entry key="app/src/main/res/drawable/ic_baseline_refresh_24.xml" value="0.1" />
@@ -34,7 +35,7 @@
         <entry key="app/src/main/res/layout/app_toolbar.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialogfragment_add_room.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialogfragment_add_sensor.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/dialogfragment_remove_sensor.xml" value="0.23975409836065573" />
+        <entry key="app/src/main/res/layout/dialogfragment_remove_sensor.xml" value="0.5" />
         <entry key="app/src/main/res/layout/login_test.xml" value="0.22288055419921876" />
         <entry key="app/src/main/res/layout/recyclerview_admin_rooms_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/recyclerview_room_list_item.xml" value="0.335" />
@@ -54,12 +55,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.33" />
-      </ProjectState>
-    </option>
   </component>
 </project>

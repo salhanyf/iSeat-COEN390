@@ -1,48 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:padding="10dp">
+    android:background="@drawable/dialog_background">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_view_boarder"
+        app:cardBackgroundColor="@color/card_rooms_background"
+        app:cardCornerRadius="22dp"
+        app:cardElevation="20dp"
+        app:cardPreventCornerOverlap="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
         <TextView
             android:id="@+id/textViewForRoom"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:fontFamily="monospace"
             android:text="@string/RemoveSensor_TextView_ForRoom"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textColor="@color/text_header"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textViewNoneAssigned"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="10dp"
             android:text="@string/RemoveSensor_TextView_NoSensors"
+            android:textColor="@color/text_small"
+            android:textAlignment="center"
             android:textStyle="italic" />
 
         <ListView
             android:id="@+id/listViewSensorsInRoom"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/textViewDeleteMsg"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:padding="10dp"
             android:text="@string/RemoveSensor_TextView_DeleteMsg"
+            android:textColor="@color/text_grey"
             android:textStyle="italic" />
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
