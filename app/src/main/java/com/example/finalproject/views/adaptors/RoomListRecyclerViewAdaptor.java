@@ -44,7 +44,12 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // add the room key to the intent and start the activity
                 Intent intent = new Intent(context, RoomClickedActivity.class);
+                intent.putExtra("roomKey", mRooms.get(holder.getAdapterPosition()).getKey());
+                intent.putExtra("roomName", mRooms.get(holder.getAdapterPosition()).getName());
+                intent.putExtra("roomCapacity", mRooms.get(holder.getAdapterPosition()).getCapacity());
+                intent.putExtra("roomLocation", mRooms.get(holder.getAdapterPosition()).getLocation());
                 context.startActivity(intent);
             }
         });
@@ -90,6 +95,7 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
                 total++;
             }
             textView.setText(String.format(context.getString(R.string.RoomList_TextView_Capacity), open, total));
+            mRooms.get(0).setCapacity(String.format(context.getString(R.string.RoomList_TextView_Capacity), open, total));
         }
     }
 }

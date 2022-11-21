@@ -9,7 +9,7 @@
     tools:context=".views.RoomListActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/appToolbar"
+        android:id="@+id/room_clicked_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/toolbar_background_color"
@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <TextView
-            android:id="@+id/toolbar_title"
+            android:id="@+id/toolbar_title_room_clicked"
             android:textColor="@color/toolbar_text_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appToolbar" />
+        app:layout_constraintTop_toBottomOf="@id/room_clicked_tool_bar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Room_RecyclerViewID"

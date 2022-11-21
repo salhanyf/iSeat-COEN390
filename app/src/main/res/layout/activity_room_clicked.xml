@@ -9,11 +9,32 @@
     android:outlineProvider="none"
     tools:context=".views.RoomClickedActivity">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_room_clicked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar_background_color"
+            android:elevation="4dp"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ToolbarTheme"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/toolbar_title_room_clicked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gadugi"
+                android:text="(???) Room Info"
+                android:textAllCaps="true"
+                android:textColor="@color/toolbar_text_color"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
@@ -28,7 +49,7 @@
             <ImageView
                 android:id="@+id/room_info_picture"
                 android:layout_width="260dp"
-                android:layout_height="match_parent"
+                android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="centerCrop" />
 
@@ -37,6 +58,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             app:cardBackgroundColor="#E8F5E9"
             app:cardCornerRadius="4dp"
@@ -57,6 +79,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             app:cardBackgroundColor="#E8F5E9"
             app:cardCornerRadius="4dp"
@@ -77,6 +100,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             app:cardBackgroundColor="#E8F5E9"
             app:cardCornerRadius="4dp"
@@ -107,7 +131,7 @@
             <TextView
                 android:id="@+id/room_info_description"
                 android:layout_width="369dp"
-                android:layout_height="106dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/gadugi"
                 android:text="Room Description"

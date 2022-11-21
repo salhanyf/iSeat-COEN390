@@ -9,7 +9,7 @@
     tools:context="com.example.finalproject.views.UserProfileActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/appToolbar"
+        android:id="@+id/room_clicked_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/toolbar_background_color"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/toolbar_title"
+            android:id="@+id/toolbar_title_room_clicked"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/toolbar_text_color" />
@@ -40,7 +40,7 @@
         app:layout_constraintBottom_toTopOf="@+id/cardView3"
         app:layout_constraintEnd_toStartOf="@+id/cardView2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appToolbar" >
+        app:layout_constraintTop_toBottomOf="@+id/room_clicked_tool_bar" >
 
         <ImageView
             android:id="@+id/imageView"
@@ -75,7 +75,7 @@
         app:layout_constraintBottom_toTopOf="@+id/cardView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardView4"
-        app:layout_constraintTop_toBottomOf="@+id/appToolbar" >
+        app:layout_constraintTop_toBottomOf="@+id/room_clicked_tool_bar" >
 
         <TextView
             android:id="@+id/FavoriteRoomsTextView"
@@ -133,7 +133,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:tint="#9C9C9C"
-            app:srcCompat="@android:drawable/ic_delete" />
+            app:srcCompat="@android:drawable/ic_delete"
+            tools:ignore="UseAppTint" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView

@@ -39,7 +39,7 @@ public class RoomListActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_list);
 
-        Toolbar toolbar = findViewById(R.id.appToolbar);
+        Toolbar toolbar = findViewById(R.id.room_clicked_tool_bar);
         setSupportActionBar(toolbar);
 
         //add a profile button to the toolbar
