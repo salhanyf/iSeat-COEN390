@@ -54,6 +54,8 @@
     <string name="admin_code">Admin code</string>
     <string name="title_activity_settings">SettingsActivity</string>
 
+    <!-- ActivityUserProfile Strings -->
+
     <!-- Preferences -->
     <string name="sync_title">Sync email periodically</string>
     <string name="attachment_title">Download incoming attachments</string>
