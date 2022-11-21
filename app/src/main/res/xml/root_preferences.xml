@@ -33,7 +33,7 @@
             app:title="Appearance"
             app:entries="@array/appearance_entries"
             app:entryValues="@array/appearance_values"
-            app:defaultValue="light"
+            app:defaultValue="system"
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
