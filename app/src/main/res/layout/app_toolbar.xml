@@ -17,6 +17,7 @@
         app:titleTextColor="@color/toolbar_text_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:contentInsetStart="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

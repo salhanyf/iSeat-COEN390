@@ -43,14 +43,15 @@ public class RoomListActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.appToolbar);
         setSupportActionBar(toolbar);
 
-        //add a profile button to the toolbar on the top left and when clicked, brings you to a profile page
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_account_circle_24);
-
-        //ActionBar upButton = getSupportActionBar();
-        //upButton.setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //add a profile button to the toolbar
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_account_circle_24);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RoomListActivity.this, UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         progressBar = findViewById(R.id.progressBarRecyclerView);
         mRecyclerView = findViewById(R.id.Room_RecyclerViewID);

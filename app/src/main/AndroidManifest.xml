@@ -65,6 +65,16 @@
             android:exported="true">
         </activity>
 
+        <!-- UserProfileActivityPage -->
+        <activity
+            android:name=".views.UserProfileActivity"
+            android:exported="false"
+            android:parentActivityName=".views.RoomListActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
