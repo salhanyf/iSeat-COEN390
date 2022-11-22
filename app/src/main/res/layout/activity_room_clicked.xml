@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            app:cardBackgroundColor="#E8F5E9"
+            app:cardBackgroundColor="@color/card_rooms_background"
             app:cardCornerRadius="4dp"
             app:cardElevation="10dp"
             app:contentPadding="10dp">
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            app:cardBackgroundColor="#E8F5E9"
+            app:cardBackgroundColor="@color/card_rooms_background"
             app:cardCornerRadius="4dp"
             app:cardElevation="10dp"
             app:contentPadding="10dp">
@@ -72,7 +72,7 @@
                 android:fontFamily="@font/gadugi"
                 android:text="Room Location"
                 android:textAllCaps="false"
-                android:textColor="@android:color/black"
+                android:textColor="@color/text_small"
                 android:textSize="18sp" />
         </androidx.cardview.widget.CardView>
 
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            app:cardBackgroundColor="#E8F5E9"
+            app:cardBackgroundColor="@color/card_rooms_background"
             app:cardCornerRadius="4dp"
             app:cardElevation="10dp"
             app:contentPadding="10dp">
@@ -93,7 +93,7 @@
                 android:fontFamily="@font/gadugi"
                 android:text="Room ID"
                 android:textAllCaps="false"
-                android:textColor="@android:color/black"
+                android:textColor="@color/text_small"
                 android:textSize="18sp" />
         </androidx.cardview.widget.CardView>
 
@@ -102,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            app:cardBackgroundColor="#E8F5E9"
+            app:cardBackgroundColor="@color/card_rooms_background"
             app:cardCornerRadius="4dp"
             app:cardElevation="10dp"
             app:contentPadding="10dp">
@@ -114,7 +114,7 @@
                 android:fontFamily="@font/gadugi"
                 android:text="Room Capacity"
                 android:textAllCaps="false"
-                android:textColor="@android:color/black"
+                android:textColor="@color/text_small"
                 android:textSize="18sp" />
         </androidx.cardview.widget.CardView>
 
@@ -123,7 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            app:cardBackgroundColor="#E8F5E9"
+            app:cardBackgroundColor="@color/card_rooms_background"
             app:cardCornerRadius="4dp"
             app:cardElevation="10dp"
             app:contentPadding="10dp">
@@ -136,7 +136,7 @@
                 android:fontFamily="@font/gadugi"
                 android:text="Room Description"
                 android:textAllCaps="false"
-                android:textColor="@android:color/black"
+                android:textColor="@color/text_small"
                 android:textSize="14sp" />
         </androidx.cardview.widget.CardView>
 

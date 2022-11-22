@@ -62,7 +62,7 @@
             android:text="User Info"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@color/orange"
+            android:textColor="@color/text_small"
             android:textSize="16sp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
@@ -95,7 +95,7 @@
             android:text="Favorite Rooms"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@color/orange"
+            android:textColor="@color/text_small"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -136,7 +136,7 @@
             android:text="Delete Account"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@color/orange"
+            android:textColor="@color/text_small"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -189,7 +189,7 @@
             android:text="History"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@color/orange"
+            android:textColor="@color/text_small"
             android:textSize="16sp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
@@ -222,7 +222,7 @@
             android:text="Settings"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@color/orange"
+            android:textColor="@color/text_small"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -275,7 +275,7 @@
             android:text="Friend's List"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@color/orange"
+            android:textColor="@color/text_small"
             android:textSize="16sp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
