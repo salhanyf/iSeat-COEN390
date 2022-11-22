@@ -1,6 +1,7 @@
 package com.example.finalproject.views.adaptors;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.example.finalproject.R;
 import com.example.finalproject.controllers.FirebaseDatabaseHelper;
 import com.example.finalproject.models.Room;
 import com.example.finalproject.models.Sensor;
+import com.example.finalproject.views.RoomClickedActivity;
 
 import java.util.List;
 
@@ -36,7 +38,20 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(mRooms.get(position));
-        new FirebaseDatabaseHelper().listenToSensorsRoom(mRooms.get(position).getKey(), new UpdateCapacityTextView(holder.mRoomCapacity));
+        new FirebaseDatabaseHelper().listenToSensorsRoom(mRooms.get(position).getKey(), new UpdateCapacityTextView(holder.mRoomCapacity, holder));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // add the room key to the intent and start the activity
+                Intent intent = new Intent(context, RoomClickedActivity.class);
+                intent.putExtra("roomKey", mRooms.get(holder.getAdapterPosition()).getKey());
+                intent.putExtra("roomName", mRooms.get(holder.getAdapterPosition()).getName());
+                intent.putExtra("roomCapacity", mRooms.get(holder.getAdapterPosition()).getCapacity());
+                intent.putExtra("roomLocation", mRooms.get(holder.getAdapterPosition()).getLocation());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -65,8 +80,12 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
 
     private class UpdateCapacityTextView implements FirebaseDatabaseHelper.SensorDataChange {
         private final TextView textView;
+        private final ViewHolder viewHolder;
 
-        public UpdateCapacityTextView(TextView textView) { this.textView = textView; }
+        public UpdateCapacityTextView(TextView textView, ViewHolder holder) {
+            this.textView = textView;
+            this.viewHolder = holder;
+        }
 
         @Override
         public void dataUpdated(List<Sensor> sensors) {
@@ -77,6 +96,8 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
                 total++;
             }
             textView.setText(String.format(context.getString(R.string.RoomList_TextView_Capacity), open, total));
+            //makes seats update in class Room
+            mRooms.get(viewHolder.getAdapterPosition()).setCapacity(String.format(context.getString(R.string.RoomList_TextView_Capacity), open, total));
         }
     }
 }

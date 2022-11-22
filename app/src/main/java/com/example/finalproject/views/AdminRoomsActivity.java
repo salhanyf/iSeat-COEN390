@@ -53,7 +53,7 @@ public class AdminRoomsActivity extends AppCompatActivity {
 
     private void setupUI() {
         // setup custom toolbar for activity
-        Toolbar toolbar = findViewById(R.id.appToolbar);
+        Toolbar toolbar = findViewById(R.id.room_clicked_tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // setup textview that shows how to cancel delete

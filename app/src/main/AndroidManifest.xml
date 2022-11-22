@@ -76,7 +76,9 @@
             android:exported="false" />
         <activity
             android:name=".views.Registration.LoginActivity"
-            android:exported="false" /> <!-- Settings -->
+            android:exported="false" />
+
+        <!-- Settings -->
         <activity
             android:name=".views.Settings.SettingsActivity"
             android:exported="false"
@@ -110,7 +112,9 @@
         </activity>
         <activity
             android:name=".views.MainActivity"
-            android:exported="true" /> <!-- UserProfileActivityPage -->
+            android:exported="true" />
+
+        <!-- UserProfileActivityPage -->
         <activity
             android:name=".views.UserProfileActivity"
             android:exported="false"
@@ -123,6 +127,17 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <!--    RoomClickedActivity-->
+        <activity
+            android:name=".views.RoomClickedActivity"
+            android:exported="false"
+            android:parentActivityName=".views.RoomListActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
     </application>
 
 </manifest>

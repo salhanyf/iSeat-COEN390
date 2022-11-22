@@ -1,7 +1,6 @@
 package com.example.finalproject.views;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
@@ -31,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-public class RoomListActivity extends AppCompatActivity {
+public class RoomListActivity extends AppCompatActivity{
     private RecyclerView mRecyclerView;
     private ProgressBar progressBar;
 
@@ -40,8 +39,9 @@ public class RoomListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_list);
 
-        Toolbar toolbar = findViewById(R.id.appToolbar);
+        Toolbar toolbar = findViewById(R.id.room_clicked_tool_bar);
         setSupportActionBar(toolbar);
+
 
         //add a profile button to the toolbar
         toolbar.setNavigationIcon(R.drawable.ic_baseline_account_circle_24);
