@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/appToolbar">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageViewUser"
             style="@style/profilepage"
             android:layout_width="122dp"
             android:layout_height="120dp"
@@ -62,7 +62,7 @@
             android:text="User Info"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@color/text_small"
+            android:textColor="@color/orange"
             android:textSize="16sp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
@@ -95,12 +95,12 @@
             android:text="Favorite Rooms"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@color/text_small"
+            android:textColor="@color/orange"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imageViewFavorite"
             style="@style/profilepage"
             android:layout_width="90dp"
             android:layout_height="90dp"
@@ -136,12 +136,12 @@
             android:text="Delete Account"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@color/text_small"
+            android:textColor="@color/orange"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imageViewDeleteAccount"
             style="@style/profilepage"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -169,7 +169,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardViewUser">
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/imageViewHistory"
             style="@style/profilepage"
             android:layout_width="110dp"
             android:layout_height="101dp"
@@ -189,7 +189,7 @@
             android:text="History"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@color/text_small"
+            android:textColor="@color/orange"
             android:textSize="16sp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
@@ -222,12 +222,12 @@
             android:text="Settings"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@color/text_small"
+            android:textColor="@color/orange"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/imageViewSettings"
             style="@style/profilepage"
             android:layout_width="98dp"
             android:layout_height="100dp"
@@ -255,7 +255,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardViewFavorite">
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/imageViewFriendsList"
             style="@style/profilepage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -275,7 +275,7 @@
             android:text="Friend's List"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@color/text_small"
+            android:textColor="@color/orange"
             android:textSize="16sp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>

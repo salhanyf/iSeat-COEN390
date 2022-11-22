@@ -1,68 +1,94 @@
 package com.example.finalproject.views;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finalproject.R;
-import com.google.firebase.auth.FirebaseAuth;
-
+import com.example.finalproject.views.Cards.DeleteAccountCard;
+import com.example.finalproject.views.Cards.FavoriteRoomCard;
+import com.example.finalproject.views.Cards.FriendCard;
+import com.example.finalproject.views.Cards.HistoryCard;
+import com.example.finalproject.views.Cards.UserInfoCard;
+import com.example.finalproject.views.Settings.SettingsActivity;
 
 public class UserProfileActivity extends AppCompatActivity {
-    // Create a new user profile activity
-    private String username;
-    private String email;
-    private String password;
-    private String phoneNumber;
 
-    private TextView usernameTextView;
-    private TextView emailTextView;
-    private TextView passwordTextView;
-    private TextView phoneNumberTextView;
+    private ImageView userInfoImage;
+    private ImageView userSettingsImage;
+    private ImageView favoriteRoomImage;
+    private ImageView friendImage;
+    private ImageView historyImage;
+    private ImageView deleteAccountImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        // Get the username, email, password, and phone number from the user from firebase and display it on the screen
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        username = firebaseAuth.getCurrentUser().getDisplayName();
-        email = firebaseAuth.getCurrentUser().getEmail();
-//        password = firebaseAuth.getCurrentUser().getPassword();
-        phoneNumber = firebaseAuth.getCurrentUser().getPhoneNumber();
+        userInfoImage = (ImageView) findViewById(R.id.imageViewUser);
+        userSettingsImage = (ImageView) findViewById(R.id.imageViewSettings);
+        favoriteRoomImage = (ImageView) findViewById(R.id.imageViewFavorite);
+        friendImage = (ImageView) findViewById(R.id.imageViewFriendsList);
+        historyImage = (ImageView) findViewById(R.id.imageViewHistory);
+        deleteAccountImage = (ImageView) findViewById(R.id.imageViewDeleteAccount);
 
-        //set the text of the text views to the user's information
+        // Go to user info activity
+        userInfoImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserProfileActivity.this, UserInfoCard.class);
+                startActivity(intent);
+            }
+        });
 
+        // Go to user settings activity
+        userSettingsImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserProfileActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        // Display the user's information in the user profile activity
+        // Go to favorite room activity
+        favoriteRoomImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserProfileActivity.this, FavoriteRoomCard.class);
+                startActivity(intent);
+            }
+        });
+
+        // Go to friend activity
+        friendImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserProfileActivity.this, FriendCard.class);
+                startActivity(intent);
+            }
+        });
+
+        // Go to history activity
+        historyImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserProfileActivity.this, HistoryCard.class);
+                startActivity(intent);
+            }
+        });
+
+        // Go to delete account activity
+        deleteAccountImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserProfileActivity.this, DeleteAccountCard.class);
+                startActivity(intent);
+            }
+        });
     }
-
-    // Create a method to update the user's information
-    public void updateUserInfo() {
-        // Update the user's information
-    }
-
-    // Create a method to delete the user's account
-    public void deleteUser() {
-        // Delete the user's account
-    }
-
-    // Create a method to log the user out
-    public void logout() {
-        // Log the user out
-    }
-
-    // Create a method to display the user's information
-    public void displayUserInfo() {
-        // Display the user's information
-    }
-
-    // Create a method to display the user's saved rooms
-    public void displaySavedRooms() {
-        // Display the user's saved rooms
-    }
-
 
 }

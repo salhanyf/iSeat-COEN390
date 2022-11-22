@@ -40,5 +40,11 @@
     <style name="CustomDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/dialog_background</item>
     </style>
+    <style name="Theme.FinalProject.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.FinalProject.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.FinalProject.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
