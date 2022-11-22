@@ -4,13 +4,13 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finalproject.R;
 
-public class RoomClickedActivity extends AppCompatActivity {
+public class RoomClickedActivity extends AppCompatActivity{
+    TextView roomCapacity;
 
 
     @SuppressLint("SetTextI18n")
@@ -19,19 +19,18 @@ public class RoomClickedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_clicked);
 
-        TextView roomCapacity = findViewById(R.id.room_Capacity);
+        ImageView roomImage = findViewById(R.id.room_info_picture);
+
         TextView roomLocation = findViewById(R.id.room_info_title);
         TextView roomID = findViewById(R.id.room_info_ID);
+        roomCapacity = findViewById(R.id.room_Capacity);
         TextView roomDescription = findViewById(R.id.room_info_description);
-
-        ImageView roomImage = findViewById(R.id.room_info_picture);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             roomLocation.setText("Location: " + bundle.getString("roomLocation"));
             roomID.setText("Room ID: " + bundle.getString("roomName"));
-            roomCapacity.setText("Capacity: " + bundle.getString("roomCapacity"));
-
+            roomCapacity.setText("Seats Available: " + bundle.getString("roomCapacity"));
         }
 
 
@@ -66,7 +65,7 @@ public class RoomClickedActivity extends AppCompatActivity {
             roomDescription.setText("Guy-Maisonnette Building is a building on the Sir George" +
                     " Williams Campus of Concordia University in Montreal, Quebec, Canada. It is" +
                     " located on the corner of de Maisonneuve Boulevard and Concordia Avenue.");
-        } else if (roomLocation.getText().toString().startsWith("Location: JMSB") || roomLocation.getText().toString().startsWith("John")) {
+        } else if (roomLocation.getText().toString().startsWith("Location: JMSB") || roomLocation.getText().toString().startsWith("Location: John")) {
             roomImage.setImageResource(R.drawable.jmsb);
 
             roomDescription.setText("John Molson School of Business is a business school located " +
@@ -78,4 +77,6 @@ public class RoomClickedActivity extends AppCompatActivity {
         }
 
     }
+
+
 }
