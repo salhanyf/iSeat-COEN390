@@ -93,26 +93,25 @@ public class RoomListActivity extends AppCompatActivity {
                                 }
                             });
                             break;
-                        }else {
-                            //add a user profile button to the toolbar
-                            toolbar.setNavigationIcon(R.drawable.ic_baseline_account_circle_24);
-                            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent(RoomListActivity.this, UserProfileActivity.class);
-                                    startActivity(intent);
-                                }
-                            });
                         }
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                     Toast.makeText(RoomListActivity.this, "Failure during get admin", Toast.LENGTH_SHORT).show();
                 }
             });
         }
+        //add a user profile button to the toolbar
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_account_circle_24);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RoomListActivity.this, UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return super.onCreateOptionsMenu(menu);
     }
 
