@@ -38,7 +38,7 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(mRooms.get(position));
-        new FirebaseDatabaseHelper().listenToSensorsRoom(mRooms.get(position).getKey(), new UpdateCapacityTextView(holder.mRoomCapacity, holder));
+        new FirebaseDatabaseHelper().listenToSensorsRoom(mRooms.get(position).getKey(), new UpdateCapacityTextView(holder.mRoomCapacity));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,13 +78,11 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
         }
     }
 
-    private class UpdateCapacityTextView implements FirebaseDatabaseHelper.SensorDataChange {
+    public class UpdateCapacityTextView implements FirebaseDatabaseHelper.SensorDataChange {
         private final TextView textView;
-        private final ViewHolder viewHolder;
 
-        public UpdateCapacityTextView(TextView textView, ViewHolder holder) {
+        public UpdateCapacityTextView(TextView textView) {
             this.textView = textView;
-            this.viewHolder = holder;
         }
 
         @Override
@@ -96,8 +94,6 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
                 total++;
             }
             textView.setText(String.format(context.getString(R.string.RoomList_TextView_Capacity), open, total));
-            //makes seats update in class Room
-            mRooms.get(viewHolder.getAdapterPosition()).setCapacity(String.format(context.getString(R.string.RoomList_TextView_Capacity), open, total));
         }
     }
 }
