@@ -10,15 +10,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finalproject.R;
+import com.example.finalproject.controllers.FirebaseDatabaseHelper;
+import com.example.finalproject.models.Sensor;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class RoomClickedActivity extends AppCompatActivity {
     TextView roomCapacity;
     String roomKey;
+    List<Sensor> sensors = new ArrayList<>();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -39,14 +44,25 @@ public class RoomClickedActivity extends AppCompatActivity {
             roomKey = bundle.getString("roomKey");
             roomLocation.setText("Location: " + bundle.getString("roomLocation"));
             roomID.setText("Room ID: " + bundle.getString("roomName"));
-            roomCapacity.setText("Seats Available: " + bundle.getString("roomCapacity"));
         }
         //get room capacity on change using addValueEventListener
-        FirebaseDatabase.getInstance().getReference("rooms").child(roomKey).child("capacity").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabaseHelper firebaseDatabaseHelper = new FirebaseDatabaseHelper();
+        UpdateCapacityTextView updateCapacityTextView = new UpdateCapacityTextView(roomCapacity);
+        updateCapacityTextView.dataUpdated(sensors);
+        firebaseDatabaseHelper.getReferenceSensors().addValueEventListener(new ValueEventListener() {
+
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                    Log.i("RoomClickedActivity", "!@!@!@!@!onDataChange:!@@!@!@!@!!@ " + dataSnapshot.getValue());
-                    roomCapacity.setText("Seats Available: " + dataSnapshot.getValue());
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                sensors.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Sensor sensor = dataSnapshot.getValue(Sensor.class).setKey(dataSnapshot.getKey());
+                    if (sensor != null) {
+                        if (sensor.getRoomKey().equals(roomKey)) {
+                            sensors.add(sensor);
+                        }
+                    }
+                }
+                updateCapacityTextView.dataUpdated(sensors);
             }
 
             @Override
@@ -100,4 +116,25 @@ public class RoomClickedActivity extends AppCompatActivity {
 
     }
 
+    private class UpdateCapacityTextView implements FirebaseDatabaseHelper.SensorDataChange {
+        private final TextView textView;
+
+        public UpdateCapacityTextView(TextView textView) {
+            this.textView = textView;
+        }
+
+        @Override
+        public void dataUpdated(List<Sensor> sensors) {
+            int open = 0, total = 0;
+            for (Sensor sensor : sensors) {
+                if (sensor.getStatus()) {
+                    open++;
+                }
+                    total++;
+                Log.w("RoomClickedActivity", "dataUpdated: " + sensor.getStatus() + "Capacity: " + open + "/" + total);
+                textView.setText("Capacity: " + open + "/" + total);
+            }
+        }
+    }
 }
+

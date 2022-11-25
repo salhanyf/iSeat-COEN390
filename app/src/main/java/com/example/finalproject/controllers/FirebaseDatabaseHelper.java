@@ -95,4 +95,9 @@ public class FirebaseDatabaseHelper {
             }
         });
     }
+
+    public DatabaseReference getReferenceProfiles() { return mReferenceProfiles; }
+    public DatabaseReference getReferenceRooms() { return mReferenceRooms; }
+    public DatabaseReference getReferenceSensors() { return mReferenceSensors; }
+
 }
