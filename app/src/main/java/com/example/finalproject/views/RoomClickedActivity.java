@@ -44,6 +44,7 @@ public class RoomClickedActivity extends AppCompatActivity {
             roomKey = bundle.getString("roomKey");
             roomLocation.setText("Location: " + bundle.getString("roomLocation"));
             roomID.setText("Room ID: " + bundle.getString("roomName"));
+            roomCapacity.setText("Available Seats: " + bundle.getString("roomCapacity"));
         }
         //get room capacity on change using addValueEventListener
         FirebaseDatabaseHelper firebaseDatabaseHelper = new FirebaseDatabaseHelper();
@@ -61,6 +62,9 @@ public class RoomClickedActivity extends AppCompatActivity {
                             sensors.add(sensor);
                         }
                     }
+                }
+                if (sensors.size() == 0) {
+                    roomCapacity.setText("Available Seats: 0/0");
                 }
                 updateCapacityTextView.dataUpdated(sensors);
             }
@@ -130,9 +134,9 @@ public class RoomClickedActivity extends AppCompatActivity {
                 if (sensor.getStatus()) {
                     open++;
                 }
-                    total++;
+                total++;
                 Log.w("RoomClickedActivity", "dataUpdated: " + sensor.getStatus() + "Capacity: " + open + "/" + total);
-                textView.setText("Capacity: " + open + "/" + total);
+                textView.setText("Available Seats: " + open + "/" + total);
             }
         }
     }
