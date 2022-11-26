@@ -103,7 +103,7 @@ public class RoomListActivity extends AppCompatActivity {
             });
         }
         //add a user profile button to the toolbar
-        toolbar.setNavigationIcon(R.drawable.ic_baseline_account_circle_24);
+        toolbar.setNavigationIcon(R.drawable.ic_account_circle);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
