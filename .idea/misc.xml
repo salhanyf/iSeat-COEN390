@@ -9,27 +9,52 @@
         <entry key="..\:/Users/saaba/Documents/Classes/Fall 2022/COEN 390/Final-Project-COEN390/app/src/main/res/drawable/email_icon.xml" value="0.1995" />
         <entry key="..\:/Users/saaba/Documents/Classes/Fall 2022/COEN 390/Final-Project-COEN390/app/src/main/res/drawable/text_bubble_border.xml" value="0.1995" />
         <entry key="..\:/Users/saaba/Documents/Classes/Fall 2022/COEN 390/Final-Project-COEN390/app/src/main/res/layout/activity_main.xml" value="0.4519025224454895" />
+        <entry key="app/src/debug/res/drawable-anydpi/admin_ic_add_room.xml" value="0.1705" />
+        <entry key="app/src/debug/res/drawable-anydpi/admin_ic_add_sensor.xml" value="0.1705" />
+        <entry key="app/src/debug/res/drawable-anydpi/admin_ic_remove_room.xml" value="0.1705" />
+        <entry key="app/src/debug/res/drawable-anydpi/admin_ic_remove_sensor.xml" value="0.1705" />
         <entry key="app/src/debug/res/drawable-anydpi/ic_add_room.xml" value="0.168" />
         <entry key="app/src/debug/res/drawable-anydpi/ic_add_sensor.xml" value="0.168" />
         <entry key="app/src/debug/res/drawable-anydpi/ic_remove_room.xml" value="0.168" />
         <entry key="app/src/debug/res/drawable-anydpi/ic_remove_sensor.xml" value="0.168" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/account_activity_ic_delete.xml" value="0.1075" />
+        <entry key="app/src/main/res/drawable/account_activity_ic_friends.xml" value="0.1075" />
+        <entry key="app/src/main/res/drawable/account_activity_ic_history.xml" value="0.1075" />
+        <entry key="app/src/main/res/drawable/account_activity_ic_manage_account.xml" value="0.1705" />
+        <entry key="app/src/main/res/drawable/account_activity_ic_settings.xml" value="0.1075" />
+        <entry key="app/src/main/res/drawable/card_text_border.xml" value="0.1705" />
         <entry key="app/src/main/res/drawable/card_view_boarder.xml" value="0.2755" />
         <entry key="app/src/main/res/drawable/dialog_background.xml" value="0.203" />
         <entry key="app/src/main/res/drawable/email_icon.xml" value="0.2025" />
+        <entry key="app/src/main/res/drawable/ic_account_circle.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/ic_add.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.204" />
+        <entry key="app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/ic_baseline_lock_open_24.xml" value="0.102" />
         <entry key="app/src/main/res/drawable/ic_baseline_refresh_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.102" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/ic_refresh.xml" value="0.1705" />
         <entry key="app/src/main/res/drawable/ic_twotone_signal_cellular_alt_24.xml" value="0.3765" />
         <entry key="app/src/main/res/drawable/lock_icon.xml" value="0.3765" />
         <entry key="app/src/main/res/drawable/login_icon.xml" value="0.102" />
         <entry key="app/src/main/res/drawable/text_bubble_border.xml" value="0.240185546875" />
         <entry key="app/src/main/res/layout/activity_admin_rooms.xml" value="0.23975409836065573" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_delete_account_card.xml" value="0.34479166666666666" />
+        <entry key="app/src/main/res/layout/activity_favorite_room_card.xml" value="0.34479166666666666" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_room_info.xml" value="0.23975409836065573" />
         <entry key="app/src/main/res/layout/activity_room_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.21909722222222222" />
+        <entry key="app/src/main/res/layout/activity_user_info_card.xml" value="0.34479166666666666" />
+        <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_welcome.xml" value="0.22013888888888888" />
         <entry key="app/src/main/res/layout/admin_list_items.xml" value="0.1" />
         <entry key="app/src/main/res/layout/app_toolbar.xml" value="0.1" />

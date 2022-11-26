@@ -6,7 +6,7 @@
     <item android:title="@string/refresh"
         android:id="@+id/refreshActionButton"
         app:showAsAction="always"
-        android:icon="@drawable/ic_baseline_refresh_24"/>
+        android:icon="@drawable/rooms_refresh_icon"/>
 
     <!-- action button for Settings -->
     <item android:title="@string/settings"

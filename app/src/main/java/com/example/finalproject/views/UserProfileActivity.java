@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import com.example.finalproject.R;
 import com.example.finalproject.views.Cards.DeleteAccountCard;
@@ -27,14 +28,18 @@ public class UserProfileActivity extends AppCompatActivity {
     private ImageView historyImage;
     private ImageView deleteAccountImage;
 
+    private CardView userInfoCard;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        Toolbar toolbar = findViewById(R.id.profileActivityToolbar);
+        Toolbar toolbar = findViewById(R.id.appToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        userInfoCard = findViewById(R.id.cardViewUser);
 
         userInfoImage = (ImageView) findViewById(R.id.imageViewUser);
         userSettingsImage = (ImageView) findViewById(R.id.imageViewSettings);
@@ -44,7 +49,7 @@ public class UserProfileActivity extends AppCompatActivity {
         deleteAccountImage = (ImageView) findViewById(R.id.imageViewDeleteAccount);
 
         // Go to user info activity
-        userInfoImage.setOnClickListener(new View.OnClickListener() {
+        userInfoCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserProfileActivity.this, UserInfoCard.class);
