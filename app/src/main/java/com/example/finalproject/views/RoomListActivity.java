@@ -43,7 +43,6 @@ public class RoomListActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.room_clicked_tool_bar);
         setSupportActionBar(toolbar);
 
-
         progressBar = findViewById(R.id.progressBarRecyclerView);
         mRecyclerView = findViewById(R.id.Room_RecyclerViewID);
         new FirebaseDatabaseHelper().readRooms(new UpdateRoomsRecyclerView());
@@ -111,7 +110,6 @@ public class RoomListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         return super.onCreateOptionsMenu(menu);
     }
 
