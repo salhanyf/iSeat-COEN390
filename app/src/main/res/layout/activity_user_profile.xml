@@ -101,17 +101,17 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/account_activity_ic_favorite"/>
-        <TextView
-            android:id="@+id/FavoriteRoomsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="Favorite Rooms"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="@color/orange"
-            android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/FavoriteRoomsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Favorite Rooms"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/orange"
+                android:textSize="20sp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
