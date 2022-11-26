@@ -42,9 +42,8 @@ public class RoomListActivity extends AppCompatActivity{
         Toolbar toolbar = findViewById(R.id.room_clicked_tool_bar);
         setSupportActionBar(toolbar);
 
-
         //add a profile button to the toolbar
-        toolbar.setNavigationIcon(R.drawable.ic_baseline_account_circle_24);
+        toolbar.setNavigationIcon(R.drawable.ic_account_circle);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

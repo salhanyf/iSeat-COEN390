@@ -26,7 +26,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/text_bubble_border"
+            android:background="@drawable/card_text_border"
             android:orientation="vertical">
 
             <TextView
@@ -50,7 +50,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:background="@drawable/text_bubble_border"
+                android:background="@drawable/card_text_border"
                 android:hint="@string/AddRoom_EditText_HintName"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
@@ -65,7 +65,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
-                android:background="@drawable/text_bubble_border"
+                android:background="@drawable/card_text_border"
                 android:hint="@string/AddRoom_EditText_HintLocation"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
