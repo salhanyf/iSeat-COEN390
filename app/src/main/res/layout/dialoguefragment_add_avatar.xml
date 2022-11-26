@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="406dp"
+        android:layout_height="490dp"
         android:layout_marginTop="79dp"
         android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,16 +29,14 @@
             android:layout_width="119dp"
             android:layout_height="129dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_marginTop="10dp" />
 
         <ImageButton
             android:id="@+id/editAvatarButton2"
             android:layout_width="119dp"
             android:layout_height="129dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_marginTop="10dp" />
 
         <ImageButton
             android:id="@+id/editAvatarButton3"
@@ -46,8 +44,7 @@
             android:layout_height="129dp"
             android:layout_gravity="right"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_marginRight="20dp" />
 
         <ImageButton
             android:id="@+id/editAvatarButton6"
@@ -56,16 +53,14 @@
             android:layout_gravity="center|right"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="35dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_marginBottom="68dp" />
 
         <ImageButton
             android:id="@+id/editAvatarButton5"
             android:layout_width="119dp"
             android:layout_height="129dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="35dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_marginBottom="68dp" />
 
         <ImageButton
             android:id="@+id/editAvatarButton4"
@@ -73,8 +68,7 @@
             android:layout_height="129dp"
             android:layout_gravity="center|left"
             android:layout_marginLeft="20dp"
-            android:layout_marginBottom="35dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_marginBottom="68dp" />
 
         <ImageButton
             android:id="@+id/editAvatarButton9"
@@ -83,8 +77,7 @@
             android:layout_gravity="bottom|right"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="80dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_marginBottom="80dp" />
 
         <ImageButton
             android:id="@+id/editAvatarButton7"
@@ -92,17 +85,15 @@
             android:layout_height="129dp"
             android:layout_gravity="bottom|left"
             android:layout_marginLeft="20dp"
-            android:layout_marginBottom="80dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_marginBottom="80dp" />
 
         <ImageButton
             android:id="@+id/editAvatarButton8"
             android:layout_width="119dp"
             android:layout_height="129dp"
             android:layout_gravity="bottom|center"
-            android:layout_marginBottom="80dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_marginBottom="80dp" />
 
-    </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

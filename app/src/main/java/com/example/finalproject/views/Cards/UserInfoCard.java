@@ -20,15 +20,14 @@ public class UserInfoCard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info_card);
 
-
-        // TODO: FIX THIS
         avatarButton = (Button) findViewById(R.id.changeAvatarButton);
+
         // Add avatar selection dialogue fragment
         avatarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserInfoCard.this, insertAvatarDialogueFragment.class);
-                startActivity(intent);
+                insertAvatarDialogueFragment avatarDialogueFragment = new insertAvatarDialogueFragment();
+                avatarDialogueFragment.show(getSupportFragmentManager(), "avatarDialogueFragment");
             }
         });
 
