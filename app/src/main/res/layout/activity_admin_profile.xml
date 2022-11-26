@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:clickable="false"
-    tools:context="com.example.finalproject.views.UserProfileActivity">
+    tools:context="com.example.finalproject.views.AdminProfileActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/profileActivityToolbar"
+        android:id="@+id/appToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/toolbar_background_color"
@@ -41,7 +41,7 @@
         app:layout_constraintBottom_toTopOf="@+id/cardViewHistory"
         app:layout_constraintEnd_toStartOf="@+id/cardViewFavorite"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileActivityToolbar">
+        app:layout_constraintTop_toBottomOf="@+id/appToolbar">
 
         <ImageView
             android:id="@+id/imageViewUser"
@@ -49,7 +49,7 @@
             android:layout_width="122dp"
             android:layout_height="120dp"
             android:clickable="true"
-            app:srcCompat="@drawable/user_profile_png_image" />
+            app:srcCompat="@drawable/ic_baseline_admin_panel_settings_24" />
 
         <TextView
             android:id="@+id/ProfilePageUserInfoTextView"
@@ -59,7 +59,7 @@
             android:layout_marginBottom="10dp"
             android:clickable="true"
             android:fontFamily="@font/gadugi"
-            android:text="User Info"
+            android:text="Admin Info"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/text_small"
@@ -82,7 +82,7 @@
         app:layout_constraintBottom_toTopOf="@+id/cardViewFriend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardViewUser"
-        app:layout_constraintTop_toBottomOf="@+id/profileActivityToolbar">
+        app:layout_constraintTop_toBottomOf="@+id/appToolbar">
 
         <TextView
             android:id="@+id/FavoriteRoomsTextView"
@@ -92,7 +92,7 @@
             android:layout_marginBottom="10dp"
             android:clickable="true"
             android:fontFamily="@font/gadugi"
-            android:text="Favorite Rooms"
+            android:text="Manage Rooms"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/text_small"
@@ -232,7 +232,7 @@
             android:layout_width="98dp"
             android:layout_height="100dp"
             android:clickable="true"
-            android:tint="#FF7983A2"
+            android:tint="#7983A2"
             app:srcCompat="@drawable/ic_baseline_settings_24"
             tools:ignore="UseAppTint" />
     </androidx.cardview.widget.CardView>
@@ -272,7 +272,7 @@
             android:layout_marginBottom="10dp"
             android:clickable="true"
             android:fontFamily="@font/gadugi"
-            android:text="Friend's List"
+            android:text="User List"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/text_small"
