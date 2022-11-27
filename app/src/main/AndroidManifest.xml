@@ -29,7 +29,8 @@
             android:exported="false" />
         <activity
             android:name=".views.Registration.LoginActivity"
-            android:exported="false" /> <!-- Rooms Activities -->
+            android:exported="false" />
+        <!-- Rooms Activities -->
         <activity
             android:name=".views.RoomListActivity"
             android:exported="true">
@@ -110,13 +111,6 @@
         </activity> <!-- HistoryCard -->
         <activity
             android:name=".views.Cards.HistoryCard"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity> <!-- DeleteAccountCard -->
-        <activity
-            android:name=".views.Cards.DeleteAccountCard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

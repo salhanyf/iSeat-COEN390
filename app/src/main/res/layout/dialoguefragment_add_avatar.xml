@@ -17,26 +17,28 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/saveDialogueButton"
+            android:id="@+id/closeDialogueButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="10dp"
-            android:text="Save" />
+            android:text="Close" />
 
         <ImageButton
             android:id="@+id/editAvatarButton1"
             android:layout_width="119dp"
             android:layout_height="129dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:src="@drawable/avatars1" />
 
         <ImageButton
             android:id="@+id/editAvatarButton2"
             android:layout_width="119dp"
             android:layout_height="129dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:src="@drawable/avatars2" />
 
         <ImageButton
             android:id="@+id/editAvatarButton3"
@@ -44,7 +46,8 @@
             android:layout_height="129dp"
             android:layout_gravity="right"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp" />
+            android:layout_marginRight="20dp"
+            android:src="@drawable/avatars3" />
 
         <ImageButton
             android:id="@+id/editAvatarButton6"
@@ -53,14 +56,16 @@
             android:layout_gravity="center|right"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="68dp" />
+            android:layout_marginBottom="68dp"
+            android:src="@drawable/avatars6" />
 
         <ImageButton
             android:id="@+id/editAvatarButton5"
             android:layout_width="119dp"
             android:layout_height="129dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="68dp" />
+            android:layout_marginBottom="68dp"
+            android:src="@drawable/avatars5" />
 
         <ImageButton
             android:id="@+id/editAvatarButton4"
@@ -68,7 +73,8 @@
             android:layout_height="129dp"
             android:layout_gravity="center|left"
             android:layout_marginLeft="20dp"
-            android:layout_marginBottom="68dp" />
+            android:layout_marginBottom="68dp"
+            android:src="@drawable/avatars4" />
 
         <ImageButton
             android:id="@+id/editAvatarButton9"
@@ -77,7 +83,8 @@
             android:layout_gravity="bottom|right"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="80dp" />
+            android:layout_marginBottom="80dp"
+            android:src="@drawable/avatars9" />
 
         <ImageButton
             android:id="@+id/editAvatarButton7"
@@ -85,14 +92,16 @@
             android:layout_height="129dp"
             android:layout_gravity="bottom|left"
             android:layout_marginLeft="20dp"
-            android:layout_marginBottom="80dp" />
+            android:layout_marginBottom="80dp"
+            android:src="@drawable/avatars7" />
 
         <ImageButton
             android:id="@+id/editAvatarButton8"
             android:layout_width="119dp"
             android:layout_height="129dp"
             android:layout_gravity="bottom|center"
-            android:layout_marginBottom="80dp" />
+            android:layout_marginBottom="80dp"
+            android:src="@drawable/avatars8" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
