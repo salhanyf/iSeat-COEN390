@@ -47,8 +47,6 @@ public class UserProfileActivity extends AppCompatActivity {
         historyCard = findViewById(R.id.cardViewHistory);
         userDeleteAccountCard = findViewById(R.id.cardViewDeleteUserAccount);
 
-
-
         // Go to user info activity
         userInfoCard.setOnClickListener(v -> {
             Intent intent = new Intent(UserProfileActivity.this, User_InfoCard.class);
