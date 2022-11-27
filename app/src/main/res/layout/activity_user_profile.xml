@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +10,7 @@
     tools:context="com.example.finalproject.views.UserProfileActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/profileActivityToolbar"
+        android:id="@+id/appToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/toolbar_background_color"
@@ -28,7 +29,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
-        android:id="@+id/userProfileTitle"
+        android:id="@+id/adminProfileTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
@@ -44,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@id/appToolbar"/>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewUser"
+        android:id="@+id/cardViewUserInfo"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:clickable="true"
@@ -53,21 +54,18 @@
         app:cardElevation="5dp"
         android:layout_margin="30dp"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/userProfileTitle"
+        app:layout_constraintTop_toBottomOf="@+id/adminProfileTitle"
         app:layout_constraintEnd_toEndOf="parent"
         android:focusable="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/imageViewUser"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/account_activity_ic_manage_account" />
             <TextView
-                android:id="@+id/ProfilePageUserInfoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -82,7 +80,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewFavorite"
+        android:id="@+id/cardViewFavoriteRooms"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:clickable="true"
@@ -91,21 +89,18 @@
         app:cardElevation="5dp"
         android:layout_margin="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/cardViewUser"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewUserInfo"
         app:layout_constraintStart_toStartOf="parent"
         android:focusable="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/imageViewFavorite"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/account_activity_ic_favorite"/>
             <TextView
-                android:id="@+id/FavoriteRoomsTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -116,11 +111,10 @@
                 android:textColor="@color/orange"
                 android:textSize="20sp"/>
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewFriend"
+        android:id="@+id/cardViewFriendsList"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:clickable="true"
@@ -129,20 +123,18 @@
         app:cardElevation="5dp"
         android:layout_margin="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewFavorite"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewFavoriteRooms"
         app:layout_constraintEnd_toEndOf="parent"
         android:focusable="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/imageViewFriendsList"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/account_activity_ic_friends"/>
             <TextView
-                android:id="@+id/profilePageUserInfoTextView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -156,7 +148,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewHistory"
+        android:id="@+id/cardViewUserHistory"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:clickable="true"
@@ -165,20 +157,18 @@
         app:cardElevation="5dp"
         android:layout_margin="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewFriend"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewFriendsList"
         app:layout_constraintStart_toStartOf="parent"
         android:focusable="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/imageViewHistory"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/account_activity_ic_history"/>
             <TextView
-                android:id="@+id/profilePageUserInfoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -192,7 +182,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewSettings"
+        android:id="@+id/cardViewUserSettings"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:clickable="true"
@@ -202,20 +192,18 @@
         android:layout_margin="30dp"
         app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@+id/cardViewHistory"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewUserHistory"
         app:layout_constraintEnd_toEndOf="parent"
         android:focusable="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/imageViewSettings"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/account_activity_ic_settings"/>
             <TextView
-                android:id="@+id/profilePageUserInfoTextView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -230,7 +218,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewDelete"
+        android:id="@+id/cardViewDeleteUserAccount"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:clickable="true"
@@ -239,20 +227,18 @@
         app:cardElevation="5dp"
         android:layout_margin="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewSettings"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewUserSettings"
         app:layout_constraintStart_toStartOf="parent"
         android:focusable="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/imageViewDeleteAccount"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/account_activity_ic_delete"/>
             <TextView
-                android:id="@+id/profilePageUserInfoTextView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"

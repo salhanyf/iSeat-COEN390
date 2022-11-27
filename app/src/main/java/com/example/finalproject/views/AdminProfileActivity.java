@@ -15,6 +15,7 @@ import com.example.finalproject.R;
 import com.example.finalproject.views.Registration.WelcomeActivity;
 import com.example.finalproject.views.Settings.SettingsActivity;
 import com.google.firebase.auth.FirebaseAuth;
+
 public class AdminProfileActivity extends AppCompatActivity {
 
     private CardView adminInfoCard, manageRoomsCard, userListCard, adminHistoryCard, adminSettingsCard, adminDeleteAccountCard;
@@ -35,7 +36,7 @@ public class AdminProfileActivity extends AppCompatActivity {
         adminSettingsCard = findViewById(R.id.cardViewAdminSettings);
         adminDeleteAccountCard = findViewById(R.id.cardViewDeleteAdminAccount);
 
-        //admin info card
+        // Admin Info card
         adminInfoCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,7 +44,7 @@ public class AdminProfileActivity extends AppCompatActivity {
             }
         });
 
-        //manage rooms card
+        // Manage Rooms card
         manageRoomsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +52,7 @@ public class AdminProfileActivity extends AppCompatActivity {
             }
         });
 
-        //user list card
+        // Admin User List card
         userListCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,7 +60,7 @@ public class AdminProfileActivity extends AppCompatActivity {
             }
         });
 
-        //history card
+        // Admin History card
         adminHistoryCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,7 +68,7 @@ public class AdminProfileActivity extends AppCompatActivity {
             }
         });
 
-        //settings card
+        // Admin settings card
         adminSettingsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +76,7 @@ public class AdminProfileActivity extends AppCompatActivity {
             }
         });
 
-        //deleting account card
+        // Admin Delete Account card
         adminDeleteAccountCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
