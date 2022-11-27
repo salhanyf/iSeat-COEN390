@@ -21,13 +21,6 @@ import com.example.finalproject.views.Settings.SettingsActivity;
 
 public class UserProfileActivity extends AppCompatActivity {
 
-    private ImageView userInfoImage;
-    private ImageView userSettingsImage;
-    private ImageView favoriteRoomImage;
-    private ImageView friendImage;
-    private ImageView historyImage;
-    private ImageView deleteAccountImage;
-
     private CardView userInfoCard;
     private CardView userSettingsCard;
     private CardView favoriteRoomCard;
@@ -42,12 +35,12 @@ public class UserProfileActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.profileActivityToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//
-//        userInfoCard = findViewById(R.id.cardViewUser);
-//        userSettingsCard = findViewById(R.id.settingsImage);
-//        favoriteRoomCard = findViewById(R.id.favoriteRoomImage);
-//        friendCard = findViewById(R.id.friendImage);
-//        historyCard = findViewById(R.id.historyImage);
+
+        userInfoCard = findViewById(R.id.cardViewUser);
+        userSettingsCard = findViewById(R.id.cardViewSettings);
+        favoriteRoomCard = findViewById(R.id.cardViewFavorite);
+        friendCard = findViewById(R.id.cardViewFriend);
+        historyCard = findViewById(R.id.cardViewHistory);
 
 
         // Go to user info activity
@@ -57,25 +50,25 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
         // Go to user settings activity
-        userSettingsImage.setOnClickListener(v -> {
+        userSettingsCard.setOnClickListener(v -> {
             Intent intent = new Intent(UserProfileActivity.this, SettingsActivity.class);
             startActivity(intent);
         });
 
         // Go to favorite room activity
-        favoriteRoomImage.setOnClickListener(v -> {
+        favoriteRoomCard.setOnClickListener(v -> {
             Intent intent = new Intent(UserProfileActivity.this, FavoriteRoomCard.class);
             startActivity(intent);
         });
 
         // Go to friend activity
-        friendImage.setOnClickListener(v -> {
+        friendCard.setOnClickListener(v -> {
             Intent intent = new Intent(UserProfileActivity.this, FriendCard.class);
             startActivity(intent);
         });
 
         // Go to history activity
-        historyImage.setOnClickListener(v -> {
+        historyCard.setOnClickListener(v -> {
             Intent intent = new Intent(UserProfileActivity.this, HistoryCard.class);
             startActivity(intent);
         });
