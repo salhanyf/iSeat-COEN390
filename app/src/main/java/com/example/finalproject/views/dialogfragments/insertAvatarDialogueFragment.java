@@ -17,7 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.finalproject.R;
-import com.example.finalproject.views.Cards.UserInfoCard;
+import com.example.finalproject.views.Cards.User_InfoCard;
 
 public class insertAvatarDialogueFragment extends DialogFragment {
 
@@ -93,6 +93,6 @@ public class insertAvatarDialogueFragment extends DialogFragment {
         editor.putInt("imageID", imageID);
         editor.commit();
         Toast.makeText(getActivity(), "Avatar changed!", Toast.LENGTH_SHORT).show();
-        ((UserInfoCard) getActivity()).updateImage();
+        ((User_InfoCard) getActivity()).updateImage();
     }
 }

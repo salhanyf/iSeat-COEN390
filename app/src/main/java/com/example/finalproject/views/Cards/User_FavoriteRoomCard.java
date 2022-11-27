@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 import com.example.finalproject.R;
 
-public class FavoriteRoomCard extends AppCompatActivity {
+public class User_FavoriteRoomCard extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

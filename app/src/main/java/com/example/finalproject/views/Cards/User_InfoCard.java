@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import com.example.finalproject.R;
 import com.example.finalproject.views.dialogfragments.insertAvatarDialogueFragment;
 
-public class UserInfoCard extends AppCompatActivity {
+public class User_InfoCard extends AppCompatActivity {
 
     private Button avatarButton;
     private SharedPreferences sharedPreferences;

@@ -77,32 +77,32 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity> <!-- UserInfoCard -->
+        </activity> <!-- User_InfoCard -->
         <activity
-            android:name=".views.Cards.UserInfoCard"
+            android:name=".views.Cards.User_InfoCard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity> <!-- FavoriteRoomCard -->
+        </activity> <!-- User_FavoriteRoomCard -->
         <activity
-            android:name=".views.Cards.FavoriteRoomCard"
+            android:name=".views.Cards.User_FavoriteRoomCard"
             android:exported="false"
             android:label="@string/title_activity_favorite_room_card"
             android:theme="@style/Theme.FinalProject.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity> <!-- FriendCard -->
+        </activity> <!-- User_FriendCard -->
         <activity
-            android:name=".views.Cards.FriendCard"
+            android:name=".views.Cards.User_FriendCard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity> <!-- HistoryCard -->
+        </activity> <!-- User_HistoryCard -->
         <activity
-            android:name=".views.Cards.HistoryCard"
+            android:name=".views.Cards.User_HistoryCard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

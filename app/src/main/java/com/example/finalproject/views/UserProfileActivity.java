@@ -3,8 +3,6 @@ package com.example.finalproject.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,10 +11,10 @@ import androidx.cardview.widget.CardView;
 
 
 import com.example.finalproject.R;
-import com.example.finalproject.views.Cards.FavoriteRoomCard;
-import com.example.finalproject.views.Cards.FriendCard;
-import com.example.finalproject.views.Cards.HistoryCard;
-import com.example.finalproject.views.Cards.UserInfoCard;
+import com.example.finalproject.views.Cards.User_FavoriteRoomCard;
+import com.example.finalproject.views.Cards.User_FriendCard;
+import com.example.finalproject.views.Cards.User_HistoryCard;
+import com.example.finalproject.views.Cards.User_InfoCard;
 import com.example.finalproject.views.Settings.SettingsActivity;
 
 public class UserProfileActivity extends AppCompatActivity {
@@ -45,7 +43,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
         // Go to user info activity
         userInfoCard.setOnClickListener(v -> {
-            Intent intent = new Intent(UserProfileActivity.this, UserInfoCard.class);
+            Intent intent = new Intent(UserProfileActivity.this, User_InfoCard.class);
             startActivity(intent);
         });
 
@@ -57,19 +55,19 @@ public class UserProfileActivity extends AppCompatActivity {
 
         // Go to favorite room activity
         favoriteRoomCard.setOnClickListener(v -> {
-            Intent intent = new Intent(UserProfileActivity.this, FavoriteRoomCard.class);
+            Intent intent = new Intent(UserProfileActivity.this, User_FavoriteRoomCard.class);
             startActivity(intent);
         });
 
         // Go to friend activity
         friendCard.setOnClickListener(v -> {
-            Intent intent = new Intent(UserProfileActivity.this, FriendCard.class);
+            Intent intent = new Intent(UserProfileActivity.this, User_FriendCard.class);
             startActivity(intent);
         });
 
         // Go to history activity
         historyCard.setOnClickListener(v -> {
-            Intent intent = new Intent(UserProfileActivity.this, HistoryCard.class);
+            Intent intent = new Intent(UserProfileActivity.this, User_HistoryCard.class);
             startActivity(intent);
         });
 

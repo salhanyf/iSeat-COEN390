@@ -9,17 +9,17 @@ import android.view.MenuItem;
 
 import com.example.finalproject.R;
 
-public class HistoryCard extends AppCompatActivity {
+public class User_FriendCard extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history_card);
+        setContentView(R.layout.activity_friend_card);
 
-        Toolbar toolbar = findViewById(R.id.historyToolbar);
+        Toolbar toolbar = findViewById(R.id.friendToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("History");
+        getSupportActionBar().setTitle("Friend's List");
     }
 
     @Override
