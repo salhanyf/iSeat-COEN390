@@ -9,7 +9,7 @@
     tools:context="com.example.finalproject.views.UserProfileActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/appToolbar"
+        android:id="@+id/profileActivityToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/toolbar_background_color"
@@ -41,7 +41,7 @@
         app:layout_constraintBottom_toTopOf="@+id/cardViewHistory"
         app:layout_constraintEnd_toStartOf="@+id/cardViewFavorite"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appToolbar">
+        app:layout_constraintTop_toBottomOf="@+id/profileActivityToolbar">
 
         <ImageView
             android:id="@+id/imageViewUser"
@@ -82,7 +82,7 @@
         app:layout_constraintBottom_toTopOf="@+id/cardViewFriend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardViewUser"
-        app:layout_constraintTop_toBottomOf="@+id/appToolbar">
+        app:layout_constraintTop_toBottomOf="@+id/profileActivityToolbar">
 
         <TextView
             android:id="@+id/FavoriteRoomsTextView"
@@ -232,7 +232,7 @@
             android:layout_width="98dp"
             android:layout_height="100dp"
             android:clickable="true"
-            android:tint="#0040FF"
+            android:tint="#FF7983A2"
             app:srcCompat="@drawable/ic_baseline_settings_24"
             tools:ignore="UseAppTint" />
     </androidx.cardview.widget.CardView>

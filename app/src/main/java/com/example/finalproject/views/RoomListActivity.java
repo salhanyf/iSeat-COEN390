@@ -1,13 +1,5 @@
 package com.example.finalproject.views;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.Toolbar;
-import androidx.preference.PreferenceManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +7,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.finalproject.R;
 import com.example.finalproject.controllers.FirebaseDatabaseHelper;
@@ -30,28 +30,19 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-public class RoomListActivity extends AppCompatActivity{
+public class RoomListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ProgressBar progressBar;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_list);
 
-        Toolbar toolbar = findViewById(R.id.room_clicked_tool_bar);
+        toolbar = findViewById(R.id.room_clicked_tool_bar);
         setSupportActionBar(toolbar);
 
-
-        //add a profile button to the toolbar
-        toolbar.setNavigationIcon(R.drawable.ic_baseline_account_circle_24);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RoomListActivity.this, UserProfileActivity.class);
-                startActivity(intent);
-            }
-        });
 
         progressBar = findViewById(R.id.progressBarRecyclerView);
         mRecyclerView = findViewById(R.id.Room_RecyclerViewID);
@@ -76,15 +67,6 @@ public class RoomListActivity extends AppCompatActivity{
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
     }
 
-    private class UpdateRoomsRecyclerView implements FirebaseDatabaseHelper.DataStatusRoom {
-        @Override
-        public void DataIsLoaded(List<Room> rooms) {
-            if (progressBar.getVisibility() != View.GONE) progressBar.setVisibility(View.GONE);
-            mRecyclerView.setLayoutManager(new LinearLayoutManager(RoomListActivity.this));
-            mRecyclerView.setAdapter(new RoomListRecyclerViewAdaptor(RoomListActivity.this, rooms));
-        }
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.iseat_user_menu, menu);
@@ -101,6 +83,15 @@ public class RoomListActivity extends AppCompatActivity{
                         String e = snap.getValue(String.class);
                         if (e.equals(email)) {
                             itemManageRooms.setVisible(true);
+                            //add an admin profile button to the toolbar
+                            toolbar.setNavigationIcon(R.drawable.ic_baseline_admin_panel_settings_24);
+                            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(RoomListActivity.this, AdminProfileActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
                             break;
                         }
                     }
@@ -111,13 +102,23 @@ public class RoomListActivity extends AppCompatActivity{
                 }
             });
         }
+        //add a user profile button to the toolbar
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_account_circle_24);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RoomListActivity.this, UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return super.onCreateOptionsMenu(menu);
     }
 
     // behaviour of toolbar items
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.refreshActionButton:
                 new FirebaseDatabaseHelper().readRooms(new UpdateRoomsRecyclerView());
                 Toast.makeText(this, "List is up-to-date", Toast.LENGTH_SHORT).show();
@@ -147,5 +148,14 @@ public class RoomListActivity extends AppCompatActivity{
     @Override
     public void onPause() {
         super.onPause();
+    }
+
+    private class UpdateRoomsRecyclerView implements FirebaseDatabaseHelper.DataStatusRoom {
+        @Override
+        public void DataIsLoaded(List<Room> rooms) {
+            if (progressBar.getVisibility() != View.GONE) progressBar.setVisibility(View.GONE);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(RoomListActivity.this));
+            mRecyclerView.setAdapter(new RoomListRecyclerViewAdaptor(RoomListActivity.this, rooms));
+        }
     }
 }
