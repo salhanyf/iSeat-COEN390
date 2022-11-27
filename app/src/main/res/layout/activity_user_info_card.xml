@@ -25,12 +25,12 @@
             android:theme="?attr/actionBarTheme" />
 
         <ImageView
-            android:id="@+id/avatarImageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/shownAvatar"
+            android:layout_width="253dp"
+            android:layout_height="231dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:src="@drawable/defaultavatar" />
 
         <Button
             android:id="@+id/changeAvatarButton"

@@ -9,7 +9,7 @@
     tools:context="com.example.finalproject.views.UserProfileActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/appToolbar"
+        android:id="@+id/profileActivityToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/toolbar_background_color"
@@ -53,6 +53,7 @@
         app:cardElevation="5dp"
         android:layout_margin="30dp"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/userProfileTitle"
         app:layout_constraintEnd_toEndOf="parent"
         android:focusable="true">
@@ -77,6 +78,7 @@
                 android:textColor="@color/orange"
                 android:textSize="20sp"/>
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -89,6 +91,7 @@
         app:cardElevation="5dp"
         android:layout_margin="30dp"
         app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/cardViewUser"
         app:layout_constraintStart_toStartOf="parent"
         android:focusable="true">
@@ -113,6 +116,7 @@
                 android:textColor="@color/orange"
                 android:textSize="20sp"/>
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -197,6 +201,7 @@
         app:cardElevation="5dp"
         android:layout_margin="30dp"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/cardViewHistory"
         app:layout_constraintEnd_toEndOf="parent"
         android:focusable="true">
@@ -221,6 +226,7 @@
                 android:textColor="@color/orange"
                 android:textSize="20sp"/>
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView

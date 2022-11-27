@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+
 import com.example.finalproject.R;
-import com.example.finalproject.views.Cards.DeleteAccountCard;
 import com.example.finalproject.views.Cards.FavoriteRoomCard;
 import com.example.finalproject.views.Cards.FriendCard;
 import com.example.finalproject.views.Cards.HistoryCard;
@@ -35,7 +35,8 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        Toolbar toolbar = findViewById(R.id.appToolbar);
+
+        Toolbar toolbar = findViewById(R.id.profileActivityToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -94,13 +95,8 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
         // Go to delete account activity
-        deleteAccountImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UserProfileActivity.this, DeleteAccountCard.class);
-                startActivity(intent);
-            }
-        });
+        // Create dialogue fragment asking user if they are sure they want to delete their account
+
     }
 
     @Override

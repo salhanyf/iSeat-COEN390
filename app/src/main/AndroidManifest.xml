@@ -14,20 +14,39 @@
         android:theme="@style/Theme.FinalProject"
         tools:targetApi="31">
 
+        <activity
+            android:name=".views.AdminProfileActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <!-- DeleteAccountCard -->
+        <!-- HistoryCard -->
+
+
         <!-- Registration Activities -->
         <activity
             android:name=".views.Registration.WelcomeActivity"
             android:exported="true">
         </activity>
+
         <activity
             android:name=".views.Registration.RegisterActivity"
             android:exported="false">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- FriendCard -->
+
         </activity>
         <activity
             android:name=".views.Registration.LoginActivity"
             android:exported="false" />
 
         <!-- Rooms Activities -->
+
         <activity
             android:name=".views.RoomListActivity"
             android:exported="true">
@@ -38,7 +57,11 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
+        </activity> <!-- FavoriteRoomCard -->
+
         </activity>
+
         <activity
             android:name=".views.AdminRoomsActivity"
             android:exported="false"
@@ -46,8 +69,12 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
+        </activity> <!-- UserInfoCard -->
+
         </activity>
         <!--    RoomClickedActivity-->
+
         <activity
             android:name=".views.RoomClickedActivity"
             android:exported="false"
@@ -55,7 +82,27 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
+        </activity> <!-- Registration Activities -->
+        <activity
+            android:name=".views.Registration.WelcomeActivity"
+            android:exported="true">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+
         </activity>
+        <activity
+            android:name=".views.Registration.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.Registration.LoginActivity"
+            android:exported="false" />
+
+        </activity>
+
 
         <!-- Settings -->
         <activity
@@ -79,15 +126,32 @@
                 android:value="" />
         </activity>
         <activity
+
+            android:name=".views.AdminRoomsActivity"
+            android:exported="true"
+
             android:name=".views.AdminProfileActivity"
             android:exported="false"
+
             android:parentActivityName=".views.RoomListActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+
         </activity>
 
+        <activity
+            android:name=".views.MainActivity"
+            android:exported="true" /> <!-- UserProfileActivityPage -->
+
+
         <!-- UserInfoCard -->
+
         <activity
             android:name=".views.Cards.UserInfoCard"
             android:exported="false">
@@ -95,7 +159,14 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" /> <!-- RoomClickedActivity -->
+
         <!-- FavoriteRoomCard -->
+
         <activity
             android:name=".views.Cards.FavoriteRoomCard"
             android:exported="false"

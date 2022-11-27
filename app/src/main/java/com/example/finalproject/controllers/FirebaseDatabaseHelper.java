@@ -1,6 +1,7 @@
 package com.example.finalproject.controllers;
 
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import com.example.finalproject.models.Room;
@@ -21,6 +22,28 @@ public class FirebaseDatabaseHelper {
     private final DatabaseReference mReferenceSensors; // Object for Shahin, Shayan, and Samson
     Query query;
     ValueEventListener listener;
+
+    public String[] getAdminInfo() {
+        final String[] strings = new String[3];
+        query = mReferenceProfiles.orderByChild("username").equalTo("admin");
+        listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    strings[0] = ds.child("username").getValue(String.class);
+                    strings[1] = ds.child("email").getValue(String.class);
+                    strings[2] = ds.child("password").getValue(String.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("Error", error.getMessage());
+            }
+        };
+        query.addListenerForSingleValueEvent(listener);
+        return strings;
+    }
 
     public interface DataStatusRoom {
         void DataIsLoaded(List<Room> rooms);
@@ -64,7 +87,7 @@ public class FirebaseDatabaseHelper {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<Sensor> sensors = new ArrayList<>();
                 for (DataSnapshot snap : snapshot.getChildren()) {
-                     sensors.add(snap.getValue(Sensor.class).setKey(snap.getKey()));
+                    sensors.add(snap.getValue(Sensor.class).setKey(snap.getKey()));
                 }
                 dataStatus.dataUpdated(sensors);
             }
