@@ -19,6 +19,7 @@ public class FriendCard extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.friendToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Friend's List");
     }
 
     @Override

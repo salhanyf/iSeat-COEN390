@@ -34,6 +34,7 @@ public class UserInfoCard extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.userToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("User Info");
 
         avatarButton = (Button) findViewById(R.id.changeAvatarButton);
 

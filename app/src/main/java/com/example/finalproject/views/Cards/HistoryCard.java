@@ -19,6 +19,7 @@ public class HistoryCard extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.historyToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("History");
     }
 
     @Override
