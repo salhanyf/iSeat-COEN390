@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,7 +29,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
-        android:id="@+id/userProfileTitle"
+        android:id="@+id/adminProfileTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
@@ -53,20 +54,18 @@
         app:cardElevation="5dp"
         android:layout_margin="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userProfileTitle"
+        app:layout_constraintTop_toBottomOf="@+id/adminProfileTitle"
         app:layout_constraintEnd_toEndOf="parent"
         android:focusable="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/imageViewUser"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/account_activity_ic_manage_account" />
             <TextView
-                android:id="@+id/ProfilePageUserInfoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -92,20 +91,15 @@
         app:layout_constraintTop_toBottomOf="@+id/cardViewAdminInfo"
         app:layout_constraintStart_toStartOf="parent"
         android:focusable="true">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <ImageView
-                android:id="@+id/imageViewFavorite"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/account_activity_ic_edit" />
-
             <TextView
-                android:id="@+id/FavoriteRoomsTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -135,13 +129,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/imageViewFriendsList"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/account_activity_ic_friends"/>
             <TextView
-                android:id="@+id/profilePageUserInfoTextView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -171,13 +163,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/imageViewHistory"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/account_activity_ic_history"/>
             <TextView
-                android:id="@+id/profilePageUserInfoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -207,13 +197,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/imageViewSettings"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/account_activity_ic_settings"/>
             <TextView
-                android:id="@+id/profilePageUserInfoTextView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -243,13 +231,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/imageViewDeleteAccount"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/account_activity_ic_delete"/>
             <TextView
-                android:id="@+id/profilePageUserInfoTextView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
