@@ -83,7 +83,7 @@ public class RoomListActivity extends AppCompatActivity {
                         if (e.equals(email)) {
                             itemManageRooms.setVisible(true);
                             //add an admin profile button to the toolbar
-                            toolbar.setNavigationIcon(R.drawable.ic_baseline_admin_panel_settings_24);
+                            toolbar.setNavigationIcon(R.drawable.ic_account_admin_settings);
                             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
