@@ -92,26 +92,30 @@
         app:layout_constraintTop_toBottomOf="@+id/cardViewUser"
         app:layout_constraintStart_toStartOf="parent"
         android:focusable="true">
+
         <LinearLayout
+            android:id="@+id/cardViewManageRooms"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
                 android:id="@+id/imageViewFavorite"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
-                app:srcCompat="@drawable/account_activity_ic_edit"/>
+                app:srcCompat="@drawable/account_activity_ic_edit" />
+
             <TextView
                 android:id="@+id/FavoriteRoomsTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:text="Manage Rooms"
-                android:layout_gravity="center"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="@color/orange"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

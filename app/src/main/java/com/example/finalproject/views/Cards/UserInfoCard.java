@@ -27,7 +27,6 @@ public class UserInfoCard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info_card);
 
-
         this.sharedPreferences = getSharedPreferences("profile_Shared_Pref", MODE_PRIVATE);
         chosenAvatar = findViewById(R.id.shownAvatar);
         updateImage();

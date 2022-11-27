@@ -29,73 +29,58 @@ public class UserProfileActivity extends AppCompatActivity {
     private ImageView deleteAccountImage;
 
     private CardView userInfoCard;
+    private CardView userSettingsCard;
+    private CardView favoriteRoomCard;
+    private CardView friendCard;
+    private CardView historyCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-
         Toolbar toolbar = findViewById(R.id.profileActivityToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//
+//        userInfoCard = findViewById(R.id.cardViewUser);
+//        userSettingsCard = findViewById(R.id.settingsImage);
+//        favoriteRoomCard = findViewById(R.id.favoriteRoomImage);
+//        friendCard = findViewById(R.id.friendImage);
+//        historyCard = findViewById(R.id.historyImage);
 
-        userInfoCard = findViewById(R.id.cardViewUser);
-
-        userInfoImage = (ImageView) findViewById(R.id.imageViewUser);
-        userSettingsImage = (ImageView) findViewById(R.id.imageViewSettings);
-        favoriteRoomImage = (ImageView) findViewById(R.id.imageViewFavorite);
-        friendImage = (ImageView) findViewById(R.id.imageViewFriendsList);
-        historyImage = (ImageView) findViewById(R.id.imageViewHistory);
-        deleteAccountImage = (ImageView) findViewById(R.id.imageViewDeleteAccount);
 
         // Go to user info activity
-        userInfoCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UserProfileActivity.this, UserInfoCard.class);
-                startActivity(intent);
-            }
+        userInfoCard.setOnClickListener(v -> {
+            Intent intent = new Intent(UserProfileActivity.this, UserInfoCard.class);
+            startActivity(intent);
         });
 
         // Go to user settings activity
-        userSettingsImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UserProfileActivity.this, SettingsActivity.class);
-                startActivity(intent);
-            }
+        userSettingsImage.setOnClickListener(v -> {
+            Intent intent = new Intent(UserProfileActivity.this, SettingsActivity.class);
+            startActivity(intent);
         });
 
         // Go to favorite room activity
-        favoriteRoomImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UserProfileActivity.this, FavoriteRoomCard.class);
-                startActivity(intent);
-            }
+        favoriteRoomImage.setOnClickListener(v -> {
+            Intent intent = new Intent(UserProfileActivity.this, FavoriteRoomCard.class);
+            startActivity(intent);
         });
 
         // Go to friend activity
-        friendImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UserProfileActivity.this, FriendCard.class);
-                startActivity(intent);
-            }
+        friendImage.setOnClickListener(v -> {
+            Intent intent = new Intent(UserProfileActivity.this, FriendCard.class);
+            startActivity(intent);
         });
 
         // Go to history activity
-        historyImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UserProfileActivity.this, HistoryCard.class);
-                startActivity(intent);
-            }
+        historyImage.setOnClickListener(v -> {
+            Intent intent = new Intent(UserProfileActivity.this, HistoryCard.class);
+            startActivity(intent);
         });
 
-        // Go to delete account activity
-        // Create dialogue fragment asking user if they are sure they want to delete their account
+        // Go to delete account popup
 
     }
 
