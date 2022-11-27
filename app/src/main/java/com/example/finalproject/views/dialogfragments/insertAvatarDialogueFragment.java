@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.finalproject.R;
+import com.example.finalproject.views.Cards.Admin_InfoCard;
 import com.example.finalproject.views.Cards.User_InfoCard;
 
 public class insertAvatarDialogueFragment extends DialogFragment {
@@ -33,6 +35,12 @@ public class insertAvatarDialogueFragment extends DialogFragment {
     protected ImageButton avatarButton9;
     protected Button closeButton;
     private SharedPreferences sharedPreferences;
+    private boolean isUser;
+
+    public insertAvatarDialogueFragment(boolean isUser) {
+        // Required empty public constructor
+        this.isUser = isUser;
+    }
 
     @Nullable
     @Override
@@ -43,7 +51,7 @@ public class insertAvatarDialogueFragment extends DialogFragment {
         View view1 = inflater.inflate(R.layout.dialoguefragment_add_avatar, container);
         View view2 = inflater.inflate(R.layout.activity_user_info_card, container);
 
-        chosenAvatar = view2.findViewById(R.id.shownAvatar);
+        chosenAvatar = view2.findViewById(R.id.shownUserAvatar);
         avatarButton1 = view1.findViewById(R.id.editAvatarButton1);
         avatarButton2 = view1.findViewById(R.id.editAvatarButton2);
         avatarButton3 = view1.findViewById(R.id.editAvatarButton3);
@@ -90,9 +98,16 @@ public class insertAvatarDialogueFragment extends DialogFragment {
 
     private void setImageID(int imageID) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("imageID", imageID);
-        editor.commit();
-        Toast.makeText(getActivity(), "Avatar changed!", Toast.LENGTH_SHORT).show();
-        ((User_InfoCard) getActivity()).updateImage();
+        if(isUser == true) {
+            editor.putInt("ImageID", imageID);
+            editor.commit();
+            Toast.makeText(getActivity(), "Avatar changed!", Toast.LENGTH_SHORT).show();
+            ((User_InfoCard) getActivity()).updateImage();
+        } else {
+            editor.putInt("ImageID", imageID);
+            editor.commit();
+            Toast.makeText(getActivity(), "Avatar changed!", Toast.LENGTH_SHORT).show();
+            ((Admin_InfoCard) getActivity()).updateImage();
+        }
     }
 }

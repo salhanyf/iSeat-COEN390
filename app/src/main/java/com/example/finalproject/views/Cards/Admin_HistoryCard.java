@@ -9,17 +9,17 @@ import android.view.MenuItem;
 
 import com.example.finalproject.R;
 
-public class Admin_ManageRoomsCard extends AppCompatActivity {
+public class Admin_HistoryCard extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_manage_rooms_card);
+        setContentView(R.layout.activity_admin_history_card);
 
-        Toolbar toolbar = findViewById(R.id.adminManageRoomsToolbar);
+        Toolbar toolbar = findViewById(R.id.adminHistoryToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Manage Rooms");
+        getSupportActionBar().setTitle("History");
     }
 
 
@@ -31,3 +31,4 @@ public class Admin_ManageRoomsCard extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

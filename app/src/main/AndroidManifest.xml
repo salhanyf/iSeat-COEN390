@@ -61,7 +61,46 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".views.RoomListActivity" />
-        </activity> <!-- UserProfileActivityPage -->
+        </activity>
+
+        <!-- AdminProfileActivityPage -->
+        <activity
+            android:name=".views.AdminProfileActivity"
+            android:exported="false"
+            android:parentActivityName=".views.RoomListActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <!-- Admin_InfoCard -->
+        <activity
+            android:name=".views.Cards.Admin_InfoCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <!-- Admin_ManageRoomsCard -->
+        <activity
+            android:name=".views.Cards.Admin_ManageRoomsCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <!-- Admin_HistoryCard -->
+        <activity
+            android:name=".views.Cards.Admin_HistoryCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <!-- UserProfileActivityPage -->
         <activity
             android:name=".views.UserProfileActivity"
             android:exported="false"
@@ -70,21 +109,17 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".views.AdminProfileActivity"
-            android:exported="false"
-            android:parentActivityName=".views.RoomListActivity">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity> <!-- User_InfoCard -->
+
+        <!-- User_InfoCard -->
         <activity
             android:name=".views.Cards.User_InfoCard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity> <!-- User_FavoriteRoomCard -->
+        </activity>
+
+        <!-- User_FavoriteRoomCard -->
         <activity
             android:name=".views.Cards.User_FavoriteRoomCard"
             android:exported="false"
@@ -100,7 +135,8 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity> <!-- User_HistoryCard -->
+        </activity>
+        <!-- User_HistoryCard -->
         <activity
             android:name=".views.Cards.User_HistoryCard"
             android:exported="false">

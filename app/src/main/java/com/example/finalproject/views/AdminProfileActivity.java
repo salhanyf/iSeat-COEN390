@@ -12,12 +12,22 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.finalproject.R;
+import com.example.finalproject.views.Cards.Admin_HistoryCard;
+import com.example.finalproject.views.Cards.Admin_InfoCard;
+import com.example.finalproject.views.Cards.Admin_ManageRoomsCard;
+import com.example.finalproject.views.Cards.User_HistoryCard;
 import com.example.finalproject.views.Registration.WelcomeActivity;
 import com.example.finalproject.views.Settings.SettingsActivity;
 import com.google.firebase.auth.FirebaseAuth;
+
 public class AdminProfileActivity extends AppCompatActivity {
 
-    private CardView adminInfoCard, manageRoomsCard, userListCard, adminHistoryCard, adminSettingsCard, adminDeleteAccountCard;
+    private CardView adminInfoCard;
+    private CardView adminManageRoomsCard;
+    private CardView userListCard;
+    private CardView adminHistoryCard;
+    private CardView adminSettingsCard;
+    private CardView adminDeleteAccountCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,25 +39,27 @@ public class AdminProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         adminInfoCard = findViewById(R.id.cardViewAdminInfo);
-        manageRoomsCard = findViewById(R.id.cardViewManageRooms);
+        adminManageRoomsCard = findViewById(R.id.cardViewManageRooms);
         userListCard = findViewById(R.id.cardViewUserList);
         adminHistoryCard = findViewById(R.id.cardViewAdminHistory);
         adminSettingsCard = findViewById(R.id.cardViewAdminSettings);
         adminDeleteAccountCard = findViewById(R.id.cardViewDeleteAdminAccount);
 
-        //admin info card
+        // Go to user info activity
         adminInfoCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(AdminProfileActivity.this, Admin_InfoCard.class);
+                startActivity(intent);
             }
         });
 
         //manage rooms card
-        manageRoomsCard.setOnClickListener(new View.OnClickListener() {
+        adminManageRoomsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AdminProfileActivity.this, AdminRoomsActivity.class));
+                Intent intent = new Intent(AdminProfileActivity.this, Admin_ManageRoomsCard.class);
+                startActivity(intent);
             }
         });
 
@@ -63,7 +75,8 @@ public class AdminProfileActivity extends AppCompatActivity {
         adminHistoryCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(AdminProfileActivity.this, Admin_HistoryCard.class);
+                startActivity(intent);
             }
         });
 

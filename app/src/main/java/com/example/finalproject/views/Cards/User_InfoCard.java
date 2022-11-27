@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.SharedPreferences;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +21,7 @@ public class User_InfoCard extends AppCompatActivity {
 
     private Button avatarButton;
     private SharedPreferences sharedPreferences;
-    private ImageView chosenAvatar;
+    private ImageView chosenUserAvatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class User_InfoCard extends AppCompatActivity {
         setContentView(R.layout.activity_user_info_card);
 
         this.sharedPreferences = getSharedPreferences("profile_Shared_Pref", MODE_PRIVATE);
-        chosenAvatar = findViewById(R.id.shownAvatar);
+        chosenUserAvatar = findViewById(R.id.shownUserAvatar);
         updateImage();
 
         Toolbar toolbar = findViewById(R.id.userToolbar);
@@ -36,25 +37,21 @@ public class User_InfoCard extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("User Info");
 
-        avatarButton = (Button) findViewById(R.id.changeAvatarButton);
+        avatarButton = (Button) findViewById(R.id.changeUserAvatarButton);
 
         // Add avatar selection dialogue fragment
-        avatarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                insertAvatarDialogueFragment avatarDialogueFragment = new insertAvatarDialogueFragment();
-                avatarDialogueFragment.show(getSupportFragmentManager(), "avatarDialogueFragment");
-            }
+        avatarButton.setOnClickListener(v -> {
+            insertAvatarDialogueFragment avatarDialogueFragment = new insertAvatarDialogueFragment(true);
+            avatarDialogueFragment.show(getSupportFragmentManager(), "avatarDialogueFragment");
         });
 
     }
 
-
     public void updateImage(){
-        int imageID = sharedPreferences.getInt("imageID", -1);
-        if (imageID != -1) {
+        int userImageID = sharedPreferences.getInt("ImageID", -1);
+        if (userImageID != -1) {
             int drawableID = 0;
-            switch(imageID) {
+            switch(userImageID) {
                 case 1:
                     drawableID = R.drawable.avatars1;
                     break;
@@ -85,10 +82,9 @@ public class User_InfoCard extends AppCompatActivity {
                 default:
                     break;
             }
-            chosenAvatar.setImageResource(drawableID);
+            chosenUserAvatar.setImageResource(drawableID);
         }
     }
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

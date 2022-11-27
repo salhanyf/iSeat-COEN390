@@ -47,35 +47,40 @@
         android:id="@+id/cardViewAdminInfo"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
         android:clickable="true"
+        android:focusable="true"
         app:cardBackgroundColor="@color/card_rooms_background"
         app:cardCornerRadius="20dp"
         app:cardElevation="5dp"
-        android:layout_margin="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userProfileTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        android:focusable="true">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userProfileTitle">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
                 android:id="@+id/imageViewUser"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/account_activity_ic_manage_account" />
+
             <TextView
                 android:id="@+id/ProfilePageUserInfoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:text="Admin Info"
-                android:layout_gravity="center"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="@color/orange"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -83,15 +88,17 @@
         android:id="@+id/cardViewManageRooms"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
         android:clickable="true"
+        android:focusable="true"
         app:cardBackgroundColor="@color/card_rooms_background"
         app:cardCornerRadius="20dp"
         app:cardElevation="5dp"
-        android:layout_margin="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewAdminInfo"
         app:layout_constraintStart_toStartOf="parent"
-        android:focusable="true">
+        app:layout_constraintTop_toBottomOf="@+id/cardViewAdminInfo">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -122,35 +129,40 @@
         android:id="@+id/cardViewUserList"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
         android:clickable="true"
+        android:focusable="true"
         app:cardBackgroundColor="@color/card_rooms_background"
         app:cardCornerRadius="20dp"
         app:cardElevation="5dp"
-        android:layout_margin="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewManageRooms"
         app:layout_constraintEnd_toEndOf="parent"
-        android:focusable="true">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewManageRooms">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
                 android:id="@+id/imageViewFriendsList"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
-                app:srcCompat="@drawable/account_activity_ic_friends"/>
+                app:srcCompat="@drawable/account_activity_ic_friends" />
+
             <TextView
                 android:id="@+id/profilePageUserInfoTextView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:text="User List"
-                android:layout_gravity="center"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="@color/orange"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -158,35 +170,40 @@
         android:id="@+id/cardViewAdminHistory"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
         android:clickable="true"
+        android:focusable="true"
         app:cardBackgroundColor="@color/card_rooms_background"
         app:cardCornerRadius="20dp"
         app:cardElevation="5dp"
-        android:layout_margin="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewUserList"
         app:layout_constraintStart_toStartOf="parent"
-        android:focusable="true">
+        app:layout_constraintTop_toBottomOf="@+id/cardViewUserList">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
                 android:id="@+id/imageViewHistory"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
-                app:srcCompat="@drawable/account_activity_ic_history"/>
+                app:srcCompat="@drawable/account_activity_ic_history" />
+
             <TextView
                 android:id="@+id/profilePageUserInfoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:text="History"
-                android:layout_gravity="center"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="@color/orange"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -194,35 +211,40 @@
         android:id="@+id/cardViewAdminSettings"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
         android:clickable="true"
+        android:focusable="true"
         app:cardBackgroundColor="@color/card_rooms_background"
         app:cardCornerRadius="20dp"
         app:cardElevation="5dp"
-        android:layout_margin="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewAdminHistory"
         app:layout_constraintEnd_toEndOf="parent"
-        android:focusable="true">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewAdminHistory">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
                 android:id="@+id/imageViewSettings"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
-                app:srcCompat="@drawable/account_activity_ic_settings"/>
+                app:srcCompat="@drawable/account_activity_ic_settings" />
+
             <TextView
                 android:id="@+id/profilePageUserInfoTextView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:text="Settings"
-                android:layout_gravity="center"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="@color/orange"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -230,35 +252,40 @@
         android:id="@+id/cardViewDeleteAdminAccount"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
         android:clickable="true"
+        android:focusable="true"
         app:cardBackgroundColor="@color/card_rooms_background"
         app:cardCornerRadius="20dp"
         app:cardElevation="5dp"
-        android:layout_margin="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewAdminSettings"
         app:layout_constraintStart_toStartOf="parent"
-        android:focusable="true">
+        app:layout_constraintTop_toBottomOf="@+id/cardViewAdminSettings">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
                 android:id="@+id/imageViewDeleteAccount"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
-                app:srcCompat="@drawable/account_activity_ic_delete"/>
+                app:srcCompat="@drawable/account_activity_ic_delete" />
+
             <TextView
                 android:id="@+id/profilePageUserInfoTextView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:text="Delete Account"
-                android:layout_gravity="center"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="@color/orange"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

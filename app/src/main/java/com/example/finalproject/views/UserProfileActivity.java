@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
-
 import com.example.finalproject.R;
 import com.example.finalproject.views.Cards.User_FavoriteRoomCard;
 import com.example.finalproject.views.Cards.User_FriendCard;
@@ -39,6 +38,7 @@ public class UserProfileActivity extends AppCompatActivity {
         favoriteRoomCard = findViewById(R.id.cardViewFavorite);
         friendCard = findViewById(R.id.cardViewFriend);
         historyCard = findViewById(R.id.cardViewHistory);
+        // Need delete user account card thanks Farah :)
 
 
         // Go to user info activity
@@ -71,9 +71,9 @@ public class UserProfileActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Go to delete account popup
-
     }
+
+    // Add delete account popup Farah thank you :)
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

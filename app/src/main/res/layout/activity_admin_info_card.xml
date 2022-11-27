@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".views.Cards.User_InfoCard"
-    tools:layout_editor_absoluteY="25dp">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/userToolbar"
+            android:id="@+id/adminToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
@@ -25,7 +23,7 @@
             android:theme="?attr/actionBarTheme" />
 
         <ImageView
-            android:id="@+id/shownUserAvatar"
+            android:id="@+id/shownAdminAvatar"
             android:layout_width="253dp"
             android:layout_height="231dp"
             android:layout_gravity="center_horizontal"
@@ -33,7 +31,7 @@
             android:src="@drawable/defaultavatar" />
 
         <Button
-            android:id="@+id/changeUserAvatarButton"
+            android:id="@+id/changeAdminAvatarButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -47,12 +45,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:text="Username"
+            android:text="Admin Username"
             android:textAlignment="center"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/viewUsername"
+            android:id="@+id/viewAdminUsername"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:editable="true"
@@ -61,17 +59,17 @@
             android:textAlignment="center" />
 
         <TextView
-            android:id="@+id/cardEmail"
+            android:id="@+id/textView5"
             android:layout_width="205dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:text="Email"
+            android:text="Admin Email"
             android:textAlignment="center"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/viewEmail"
+            android:id="@+id/viewAdminUsername2"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:editable="true"
@@ -80,5 +78,4 @@
             android:textAlignment="center" />
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
