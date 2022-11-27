@@ -19,7 +19,6 @@ import com.example.finalproject.views.Cards.User_HistoryCard;
 import com.example.finalproject.views.Registration.WelcomeActivity;
 import com.example.finalproject.views.Settings.SettingsActivity;
 import com.google.firebase.auth.FirebaseAuth;
-
 public class AdminProfileActivity extends AppCompatActivity {
 
     private CardView adminInfoCard;

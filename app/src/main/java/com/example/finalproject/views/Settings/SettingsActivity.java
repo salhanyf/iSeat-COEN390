@@ -1,14 +1,14 @@
 package com.example.finalproject.views.Settings;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.EditTextPreference;
-import androidx.preference.ListPreference;
-import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 import androidx.preference.SwitchPreferenceCompat;
@@ -30,16 +30,24 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
+        public static SwitchPreferenceCompat bluetoothPermission, locationPermission;
+        public static EditTextPreference feedback;
+
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
+
+            bluetoothPermission = (SwitchPreferenceCompat) findPreference("settingsBluetooth");
+            locationPermission =  (SwitchPreferenceCompat) findPreference("settingsLocation");
+            feedback = (EditTextPreference) findPreference("settingSendFeedback");
         }
     }
 
+    //handles preferences change
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String rootKey) {
-        String appearanceRootKey = "settingsAppAppearance";
         if (rootKey != null && sharedPreferences != null){
+            String appearanceRootKey = "settingsAppAppearance";
             if (rootKey.equals(appearanceRootKey)) {
                 final String[] appearanceValues = getResources().getStringArray(R.array.appearance_values);
                 String pref = PreferenceManager.getDefaultSharedPreferences(this)
@@ -51,6 +59,91 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 if (pref.equals(appearanceValues[2]))
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            }
+            String appNotificationsRootKey = "settingsAppNotifications";
+            if (rootKey.equals(appNotificationsRootKey)){
+                boolean isChecked = PreferenceManager.getDefaultSharedPreferences(this)
+                        .getBoolean(appNotificationsRootKey, false);
+                if (isChecked){
+                    Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                }
+            }
+            String textNotificationsRootKey = "settingsTextNotifications";
+            if (rootKey.equals(textNotificationsRootKey)){
+                boolean isChecked = PreferenceManager.getDefaultSharedPreferences(this)
+                        .getBoolean(textNotificationsRootKey, false);
+                if (isChecked){
+                    Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                }
+            }
+            String emailNotificationsRootKey = "settingsEmailNotifications";
+            if (rootKey.equals(emailNotificationsRootKey)){
+                boolean isChecked = PreferenceManager.getDefaultSharedPreferences(this)
+                        .getBoolean(emailNotificationsRootKey, false);
+                if (isChecked){
+                    Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                }
+            }
+            String bluetoothRootKey = "settingsBluetooth";
+            if(rootKey.equals(bluetoothRootKey)){
+                boolean enabled = PreferenceManager.getDefaultSharedPreferences(this)
+                        .getBoolean(bluetoothRootKey, false);
+                if(enabled){
+                    new AlertDialog.Builder(this)
+                            .setTitle("Bluetooth Permission")
+                            .setMessage("Are you sure you want to allow iSeat to use bluetooth")
+                            .setPositiveButton("Allow", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int i) {
+                                    Toast.makeText(SettingsActivity.this, "Permission granted", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setNegativeButton("Deny", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    SettingsFragment.bluetoothPermission.setChecked(false);
+                                    dialogInterface.cancel();
+                                }
+                            })
+                            .show();
+                }else{
+                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                }
+            }
+            String locationRootKey = "settingsLocation";
+            if(rootKey.equals(locationRootKey)){
+                boolean enabled = PreferenceManager.getDefaultSharedPreferences(this)
+                        .getBoolean(locationRootKey, false);
+                if(enabled){
+                    new AlertDialog.Builder(this)
+                            .setTitle("Location Permission")
+                            .setMessage("Are you sure you want to allow iSeat to access your location")
+                            .setPositiveButton("Allow", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int i) {
+                                    Toast.makeText(SettingsActivity.this, "Permission granted", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setNegativeButton("Deny", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    SettingsFragment.locationPermission.setChecked(false);
+                                    dialogInterface.cancel();
+                                }
+                            })
+                            .show();
+                }else{
+                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                }
+            }
+            String sendFeedback = "settingSendFeedback";
+            //TODO: Show user that his feedback was recieved
+            if(rootKey.equals(sendFeedback)){
+
             }
         }
     }
