@@ -13,55 +13,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject"
         tools:targetApi="31">
-
-        <activity
-            android:name=".views.AdminProfileActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <!-- DeleteAccountCard -->
-        <!-- HistoryCard -->
-
-
         <!-- Registration Activities -->
         <activity
             android:name=".views.Registration.WelcomeActivity"
-            android:exported="true">
-        </activity>
-
+            android:exported="true" />
         <activity
             android:name=".views.Registration.RegisterActivity"
-            android:exported="false">
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity> <!-- FriendCard -->
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".views.Registration.LoginActivity"
-            android:exported="false" />
-
-        <!-- Rooms Activities -->
-
+            android:exported="false" /> <!-- Rooms Activities -->
         <activity
             android:name=".views.RoomListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
-        </activity> <!-- FavoriteRoomCard -->
-
         </activity>
-
         <activity
             android:name=".views.AdminRoomsActivity"
             android:exported="false"
@@ -69,12 +43,7 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
-        </activity> <!-- UserInfoCard -->
-
-        </activity>
-        <!--    RoomClickedActivity-->
-
+        </activity> <!-- RoomClickedActivity -->
         <activity
             android:name=".views.RoomClickedActivity"
             android:exported="false"
@@ -82,29 +51,7 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
-        </activity> <!-- Registration Activities -->
-        <activity
-            android:name=".views.Registration.WelcomeActivity"
-            android:exported="true">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-
-        </activity>
-        <activity
-            android:name=".views.Registration.RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".views.Registration.LoginActivity"
-            android:exported="false" />
-
-        </activity>
-
-
-        <!-- Settings -->
+        </activity> <!-- Settings -->
         <activity
             android:name=".views.Settings.SettingsActivity"
             android:exported="false"
@@ -114,9 +61,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".views.RoomListActivity" />
-        </activity>
-
-        <!-- UserProfileActivityPage -->
+        </activity> <!-- UserProfileActivityPage -->
         <activity
             android:name=".views.UserProfileActivity"
             android:exported="false"
@@ -126,47 +71,20 @@
                 android:value="" />
         </activity>
         <activity
-
-            android:name=".views.AdminRoomsActivity"
-            android:exported="true"
-
             android:name=".views.AdminProfileActivity"
             android:exported="false"
-
             android:parentActivityName=".views.RoomListActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-
-        </activity>
-
-        <activity
-            android:name=".views.MainActivity"
-            android:exported="true" /> <!-- UserProfileActivityPage -->
-
-
-        <!-- UserInfoCard -->
-
+        </activity> <!-- UserInfoCard -->
         <activity
             android:name=".views.Cards.UserInfoCard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" /> <!-- RoomClickedActivity -->
-
-        <!-- FavoriteRoomCard -->
-
+        </activity> <!-- FavoriteRoomCard -->
         <activity
             android:name=".views.Cards.FavoriteRoomCard"
             android:exported="false"
@@ -175,16 +93,14 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-        <!-- FriendCard -->
+        </activity> <!-- FriendCard -->
         <activity
             android:name=".views.Cards.FriendCard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-        <!-- HistoryCard -->
+        </activity> <!-- HistoryCard -->
         <activity
             android:name=".views.Cards.HistoryCard"
             android:exported="false">
@@ -192,13 +108,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <!-- DeleteAccountCard -->
-        <activity
-            android:name=".views.Cards.DeleteAccountCard"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
     </application>
+
 </manifest>
