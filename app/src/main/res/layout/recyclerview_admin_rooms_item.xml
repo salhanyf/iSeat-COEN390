@@ -57,7 +57,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/buttonRemoveSensorAdminRoomsItem"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_add_sensor" />
+                app:srcCompat="@drawable/admin_ic_add_sensor" />
 
             <ImageButton
                 android:id="@+id/buttonRemoveSensorAdminRoomsItem"
@@ -68,7 +68,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:srcCompat="@drawable/ic_remove_sensor" />
+                app:srcCompat="@drawable/admin_ic_remove_sensor" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

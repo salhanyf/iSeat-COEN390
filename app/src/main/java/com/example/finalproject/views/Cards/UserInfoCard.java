@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+
 import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +26,7 @@ public class UserInfoCard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info_card);
+
 
         this.sharedPreferences = getSharedPreferences("profile_Shared_Pref", MODE_PRIVATE);
         chosenAvatar = findViewById(R.id.shownAvatar);
@@ -45,6 +48,7 @@ public class UserInfoCard extends AppCompatActivity {
         });
 
     }
+
 
     public void updateImage(){
         int imageID = sharedPreferences.getInt("imageID", -1);
@@ -84,6 +88,7 @@ public class UserInfoCard extends AppCompatActivity {
             chosenAvatar.setImageResource(drawableID);
         }
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

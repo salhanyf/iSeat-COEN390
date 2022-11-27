@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
+    android:background="@drawable/background_login_register"
     tools:context=".views.Registration.LoginActivity">
 
     <androidx.cardview.widget.CardView
@@ -27,7 +27,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/text_bubble_border"
+            android:background="@drawable/card_text_border"
             android:orientation="vertical">
 
             <TextView
@@ -51,8 +51,8 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
-                android:background="@drawable/text_bubble_border"
-                android:drawableStart="@drawable/email_icon"
+                android:background="@drawable/card_text_border"
+                android:drawableStart="@drawable/login_activity_email_icon"
                 android:drawablePadding="8dp"
                 android:hint="@string/email"
                 android:padding="8dp"
@@ -67,8 +67,8 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
-                android:background="@drawable/text_bubble_border"
-                android:drawableStart="@drawable/lock_icon"
+                android:background="@drawable/card_text_border"
+                android:drawableStart="@drawable/login_activity_lock_closed"
                 android:drawablePadding="8dp"
                 android:hint="@string/password"
                 android:inputType="textPassword"
