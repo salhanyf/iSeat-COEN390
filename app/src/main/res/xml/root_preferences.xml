@@ -41,7 +41,7 @@
         <SwitchPreferenceCompat
             app:key="SettingsLocation"
             app:title="Your Location"
-            app:icon="@drawable/ic_baseline_location_on_24" />
+            app:icon="@drawable/settings_location_icon" />
     </PreferenceCategory>
 
 </PreferenceScreen>

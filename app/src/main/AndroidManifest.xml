@@ -13,8 +13,109 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject"
         tools:targetApi="31">
+
+        <!-- Registration Activities -->
+        <activity
+            android:name=".views.Registration.WelcomeActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".views.Registration.RegisterActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".views.Registration.LoginActivity"
+            android:exported="false" />
+
+        <!-- Rooms Activities -->
+        <activity
+            android:name=".views.RoomListActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".views.AdminRoomsActivity"
+            android:exported="false"
+            android:parentActivityName=".views.RoomListActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <!--    RoomClickedActivity-->
+        <activity
+            android:name=".views.RoomClickedActivity"
+            android:exported="false"
+            android:parentActivityName=".views.RoomListActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <!-- Settings -->
+        <activity
+            android:name=".views.Settings.SettingsActivity"
+            android:exported="false"
+            android:label="Settings"
+            android:parentActivityName=".views.RoomListActivity"
+            android:theme="@style/DefaultTheme.ActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".views.RoomListActivity" />
+        </activity>
+
+        <!-- UserProfileActivityPage -->
+        <activity
+            android:name=".views.UserProfileActivity"
+            android:exported="false"
+            android:parentActivityName=".views.RoomListActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".views.AdminProfileActivity"
+            android:exported="false"
+            android:parentActivityName=".views.RoomListActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <!-- UserInfoCard -->
+        <activity
+            android:name=".views.Cards.UserInfoCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <!-- FavoriteRoomCard -->
+        <activity
+            android:name=".views.Cards.FavoriteRoomCard"
+            android:exported="false"
+            android:label="@string/title_activity_favorite_room_card"
+            android:theme="@style/Theme.FinalProject.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <!-- FriendCard -->
+        <activity
+            android:name=".views.Cards.FriendCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <!-- HistoryCard -->
+        <activity
+            android:name=".views.Cards.HistoryCard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -27,113 +128,6 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity> <!-- HistoryCard -->
-        <activity
-            android:name=".views.Cards.HistoryCard"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity> <!-- FriendCard -->
-        <activity
-            android:name=".views.Cards.FriendCard"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity> <!-- FavoriteRoomCard -->
-        <activity
-            android:name=".views.Cards.FavoriteRoomCard"
-            android:exported="false"
-            android:label="@string/title_activity_favorite_room_card"
-            android:theme="@style/Theme.FinalProject.NoActionBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity> <!-- UserInfoCard -->
-        <activity
-            android:name=".views.Cards.UserInfoCard"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity> <!-- Registration Activities -->
-        <activity
-            android:name=".views.Registration.WelcomeActivity"
-            android:exported="true">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-
-        </activity>
-        <activity
-            android:name=".views.Registration.RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".views.Registration.LoginActivity"
-            android:exported="false" /> <!-- Settings -->
-        <activity
-            android:name=".views.Settings.SettingsActivity"
-            android:exported="false"
-            android:label="Settings"
-            android:parentActivityName=".views.RoomListActivity"
-            android:theme="@style/DefaultTheme.ActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views.RoomListActivity" />
-        </activity>
-        <activity
-            android:name=".views.RoomListActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".views.AdminRoomsActivity"
-            android:exported="true"
-            android:parentActivityName=".views.RoomListActivity">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-
-        </activity>
-        <activity
-            android:name=".views.MainActivity"
-            android:exported="true" /> <!-- UserProfileActivityPage -->
-        <activity
-            android:name=".views.UserProfileActivity"
-            android:exported="false"
-            android:parentActivityName=".views.RoomListActivity">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" /> <!-- RoomClickedActivity -->
-        <activity
-            android:name=".views.RoomClickedActivity"
-            android:exported="false"
-            android:parentActivityName=".views.RoomListActivity">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
     </application>
-
 </manifest>

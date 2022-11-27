@@ -16,6 +16,7 @@
         android:elevation="4dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ToolbarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -23,261 +24,238 @@
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/toolbar_text_color" />
+            android:textColor="@color/toolbar_text_color"/>
     </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/userProfileTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Account"
+        android:textColor="@color/text_header"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appToolbar"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewUser"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:clickable="true"
         app:cardBackgroundColor="@color/card_rooms_background"
         app:cardCornerRadius="20dp"
         app:cardElevation="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardViewHistory"
-        app:layout_constraintEnd_toStartOf="@+id/cardViewFavorite"
+        android:layout_margin="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appToolbar">
-
-        <ImageView
-            android:id="@+id/imageViewUser"
-            style="@style/profilepage"
-            android:layout_width="122dp"
-            android:layout_height="120dp"
-            android:clickable="true"
-            app:srcCompat="@drawable/ic_baseline_admin_panel_settings_24" />
-
-        <TextView
-            android:id="@+id/ProfilePageUserInfoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:clickable="true"
-            android:fontFamily="@font/gadugi"
-            android:text="Admin Info"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="@color/text_small"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+        app:layout_constraintTop_toBottomOf="@+id/userProfileTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:focusable="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imageViewUser"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                app:srcCompat="@drawable/account_activity_ic_manage_account" />
+            <TextView
+                android:id="@+id/ProfilePageUserInfoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Admin Info"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/orange"
+                android:textSize="20sp"/>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewFavorite"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:clickable="true"
         app:cardBackgroundColor="@color/card_rooms_background"
         app:cardCornerRadius="20dp"
         app:cardElevation="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardViewFriend"
+        android:layout_margin="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardViewUser"
-        app:layout_constraintTop_toBottomOf="@+id/appToolbar">
-
-        <TextView
-            android:id="@+id/FavoriteRoomsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:clickable="true"
-            android:fontFamily="@font/gadugi"
-            android:text="Manage Rooms"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="@color/text_small"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/imageViewFavorite"
-            style="@style/profilepage"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:clickable="true"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewDelete"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        app:cardBackgroundColor="@color/card_rooms_background"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardViewSettings"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewFriend">
-
-        <TextView
-            android:id="@+id/profilePageUserInfoTextView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:clickable="true"
-            android:fontFamily="@font/gadugi"
-            android:text="Delete Account"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="@color/text_small"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/imageViewDeleteAccount"
-            style="@style/profilepage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:clickable="true"
-            android:tint="#FF0000"
-            app:srcCompat="@android:drawable/ic_delete"
-            tools:ignore="UseAppTint" />
+        app:layout_constraintTop_toBottomOf="@+id/cardViewUser"
+        app:layout_constraintStart_toStartOf="parent"
+        android:focusable="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imageViewFavorite"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                app:srcCompat="@drawable/account_activity_ic_edit"/>
+            <TextView
+                android:id="@+id/FavoriteRoomsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Manage Rooms"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/orange"
+                android:textSize="20sp"/>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewHistory"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:clickable="true"
         app:cardBackgroundColor="@color/card_rooms_background"
         app:cardCornerRadius="20dp"
         app:cardElevation="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardViewSettings"
-        app:layout_constraintEnd_toStartOf="@+id/cardViewFriend"
+        android:layout_margin="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewFriend"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewUser">
-
-        <ImageView
-            android:id="@+id/imageViewHistory"
-            style="@style/profilepage"
-            android:layout_width="110dp"
-            android:layout_height="101dp"
-            android:clickable="true"
-            android:tint="#000000"
-            app:srcCompat="@drawable/history"
-            tools:ignore="UseAppTint" />
-
-        <TextView
-            android:id="@+id/profilePageUserInfoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:clickable="true"
-            android:fontFamily="@font/gadugi"
-            android:text="History"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="@color/text_small"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewSettings"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        app:cardBackgroundColor="@color/card_rooms_background"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cardViewDelete"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewHistory">
-
-        <TextView
-            android:id="@+id/profilePageUserInfoTextView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:clickable="true"
-            android:fontFamily="@font/gadugi"
-            android:text="Settings"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="@color/text_small"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/imageViewSettings"
-            style="@style/profilepage"
-            android:layout_width="98dp"
-            android:layout_height="100dp"
-            android:clickable="true"
-            android:tint="#7983A2"
-            app:srcCompat="@drawable/ic_baseline_settings_24"
-            tools:ignore="UseAppTint" />
+        android:focusable="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imageViewHistory"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                app:srcCompat="@drawable/account_activity_ic_history"/>
+            <TextView
+                android:id="@+id/profilePageUserInfoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="History"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/orange"
+                android:textSize="20sp"/>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewFriend"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:clickable="true"
         app:cardBackgroundColor="@color/card_rooms_background"
         app:cardCornerRadius="20dp"
         app:cardElevation="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardViewDelete"
+        android:layout_margin="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewFavorite"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardViewHistory"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewFavorite">
-
-        <ImageView
-            android:id="@+id/imageViewFriendsList"
-            style="@style/profilepage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:tint="#FF5900"
-            app:srcCompat="@drawable/network"
-            tools:ignore="UseAppTint" />
-
-        <TextView
-            android:id="@+id/profilePageUserInfoTextView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:clickable="true"
-            android:fontFamily="@font/gadugi"
-            android:text="User List"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="@color/text_small"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+        android:focusable="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imageViewFriendsList"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                app:srcCompat="@drawable/account_activity_ic_friends"/>
+            <TextView
+                android:id="@+id/profilePageUserInfoTextView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="User List"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/orange"
+                android:textSize="20sp"/>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewSettings"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:clickable="true"
+        app:cardBackgroundColor="@color/card_rooms_background"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp"
+        android:layout_margin="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewHistory"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:focusable="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imageViewSettings"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                app:srcCompat="@drawable/account_activity_ic_settings"/>
+            <TextView
+                android:id="@+id/profilePageUserInfoTextView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Settings"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/orange"
+                android:textSize="20sp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewDelete"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:clickable="true"
+        app:cardBackgroundColor="@color/card_rooms_background"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp"
+        android:layout_margin="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewSettings"
+        app:layout_constraintStart_toStartOf="parent"
+        android:focusable="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imageViewDeleteAccount"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                app:srcCompat="@drawable/account_activity_ic_delete"/>
+            <TextView
+                android:id="@+id/profilePageUserInfoTextView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Delete Account"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/orange"
+                android:textSize="20sp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
