@@ -20,6 +20,7 @@ public class FavoriteRoomCard extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbarFavorite);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Favorite Rooms");
     }
 
     @Override

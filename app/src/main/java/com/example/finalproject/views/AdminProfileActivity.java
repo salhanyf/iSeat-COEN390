@@ -1,114 +1,104 @@
 package com.example.finalproject.views;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-
-import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
 import com.example.finalproject.R;
-import com.example.finalproject.views.Cards.AdminUserListCard;
-import com.example.finalproject.views.Cards.DeleteAccountCard;
-import com.example.finalproject.views.Cards.FavoriteRoomCard;
-import com.example.finalproject.views.Cards.FriendCard;
-import com.example.finalproject.views.Cards.HistoryCard;
-import com.example.finalproject.views.Cards.UserInfoCard;
+import com.example.finalproject.views.Registration.WelcomeActivity;
 import com.example.finalproject.views.Settings.SettingsActivity;
-
-
+import com.google.firebase.auth.FirebaseAuth;
 public class AdminProfileActivity extends AppCompatActivity {
 
-    private ImageView adminSettingsImage;
-    private ImageView favoriteRoomImage;
-    private ImageView friendImage;
-    private ImageView historyImage;
-    private ImageView deleteAccountImage;
-
-    private CardView adminInfoCard;
+    private CardView adminInfoCard, manageRoomsCard, userListCard, adminHistoryCard, adminSettingsCard, adminDeleteAccountCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_profile);
 
-
         Toolbar toolbar = findViewById(R.id.appToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        adminInfoCard = findViewById(R.id.cardViewUser);
+        adminInfoCard = findViewById(R.id.cardViewAdminInfo);
+        manageRoomsCard = findViewById(R.id.cardViewManageRooms);
+        userListCard = findViewById(R.id.cardViewUserList);
+        adminHistoryCard = findViewById(R.id.cardViewAdminHistory);
+        adminSettingsCard = findViewById(R.id.cardViewAdminSettings);
+        adminDeleteAccountCard = findViewById(R.id.cardViewDeleteAdminAccount);
 
-        adminSettingsImage = findViewById(R.id.imageViewSettings);
-        favoriteRoomImage = findViewById(R.id.imageViewFavorite);
-        friendImage = findViewById(R.id.imageViewFriendsList);
-        historyImage = findViewById(R.id.imageViewHistory);
-        deleteAccountImage = findViewById(R.id.imageViewDeleteAccount);
-
-        // Go to admin info activity
+        //admin info card
         adminInfoCard.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AdminProfileActivity.this, UserInfoCard.class);
-                startActivity(intent);
+            public void onClick(View view) {
+
             }
         });
 
-        // Go to admin settings activity
-        adminSettingsImage.setOnClickListener(new View.OnClickListener() {
+        //manage rooms card
+        manageRoomsCard.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AdminProfileActivity.this, SettingsActivity.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                startActivity(new Intent(AdminProfileActivity.this, AdminRoomsActivity.class));
             }
         });
 
-
-        favoriteRoomImage.setOnClickListener(new View.OnClickListener() {
+        //user list card
+        userListCard.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AdminProfileActivity.this, AdminUserListCard.class);
-                startActivity(intent);
+            public void onClick(View view) {
+
             }
         });
 
-        // Go to friend activity
-        friendImage.setOnClickListener(new View.OnClickListener() {
+        //history card
+        adminHistoryCard.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AdminProfileActivity.this, FriendCard.class);
-                startActivity(intent);
+            public void onClick(View view) {
+
             }
         });
 
-        // Go to history activity
-        historyImage.setOnClickListener(new View.OnClickListener() {
+        //settings card
+        adminSettingsCard.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AdminProfileActivity.this, HistoryCard.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                startActivity(new Intent(AdminProfileActivity.this, SettingsActivity.class));
             }
         });
 
-        // Go to delete account activity
-        deleteAccountImage.setOnClickListener(new View.OnClickListener() {
+        //deleting account card
+        adminDeleteAccountCard.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AdminProfileActivity.this, DeleteAccountCard.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(AdminProfileActivity.this);
+                builder.setTitle("Are you sure!").setMessage("Note: you will not be able to recover your account");
+                builder.setCancelable(false);
+
+                builder.setPositiveButton("Yes, delete", (DialogInterface.OnClickListener) (dialog, which) -> {
+                    // if user click yes button then the account is deleted and user is redirected to Welcome activity
+                    //TODO: DELETE ACCOUNT FROM FIREBASE
+                    finish();
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(AdminProfileActivity.this, WelcomeActivity.class));
+                    Toast.makeText(AdminProfileActivity.this, "Goodbye!", Toast.LENGTH_SHORT).show();
+                });
+                builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
+                    // If user click no button then dialog box is canceled
+                    dialog.cancel();
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
