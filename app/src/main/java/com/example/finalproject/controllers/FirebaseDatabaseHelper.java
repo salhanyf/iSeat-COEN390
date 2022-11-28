@@ -14,6 +14,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DataSnapshot;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class FirebaseDatabaseHelper {
@@ -131,6 +132,7 @@ public class FirebaseDatabaseHelper {
                     user.setUsername(keyNode.child("username").getValue(String.class));
                     user.setEmail(keyNode.child("email").getValue(String.class));
                     user.setIsAdmin(keyNode.child("isAdmin").getValue(Boolean.class));
+                    user.setDateCreated(keyNode.child("dateCreated").getValue(String.class));
                     user.setKey(keyNode.getKey());
                 }
             }

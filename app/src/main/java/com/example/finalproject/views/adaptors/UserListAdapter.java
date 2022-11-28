@@ -1,5 +1,6 @@
 package com.example.finalproject.views.adaptors;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,13 +44,14 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtName, txtEmail, txtRole;
+        TextView txtName, txtEmail, txtRole, txtDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtName = itemView.findViewById(R.id.textViewRecycler_topleft_users);
             txtEmail = itemView.findViewById(R.id.textViewRecyclerView_BottomLeft_users);
             txtRole = itemView.findViewById(R.id.textViewRecyclerView_topRight_users);
+            txtDate = itemView.findViewById(R.id.textViewRecyclerView_BottomRight_users);
         }
 
         public void bind(User user) {
@@ -60,6 +62,8 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
             }
             txtName.setText("Username: " + user.getUsername());
             txtEmail.setText("Email: " + user.getEmail());
+            txtDate.setText("Date Created: " + user.getDateCreated());
+            Log.w("TAG", "bind: " + user.getDateCreated());
         }
     }
 }

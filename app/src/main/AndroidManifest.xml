@@ -14,13 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject"
         tools:targetApi="31">
-        <activity
-            android:name=".views.Cards.Admin_UserListCard"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
         <!-- Registration Activities -->
         <activity
             android:name=".views.Registration.WelcomeActivity"
@@ -162,6 +155,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

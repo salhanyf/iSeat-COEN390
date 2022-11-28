@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -22,12 +23,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             style="?android:attr/listSeparatorTextViewStyle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical">
 
             <TextView
                 android:id="@+id/textViewRecycler_topleft_users"
-                android:layout_width="wrap_content"
+                android:layout_width="241dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="8dp"
@@ -39,7 +40,7 @@
 
             <TextView
                 android:id="@+id/textViewRecyclerView_BottomLeft_users"
-                android:layout_width="wrap_content"
+                android:layout_width="227dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
@@ -55,10 +56,10 @@
                 android:id="@+id/textViewRecyclerView_topRight_users"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="52dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
                 android:text="Role"
-                android:textAlignment="viewStart"
+                android:textAlignment="viewEnd"
                 android:textColor="@color/orange"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -67,21 +68,21 @@
 
             <TextView
                 android:id="@+id/textViewRecyclerView_BottomRight_users"
-                android:layout_width="wrap_content"
+                android:layout_width="106dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
-                android:fontFamily="@font/montserrat_light"
-                android:text="(Online)/(Offline)"
-                android:textAlignment="viewStart"
+                android:fontFamily="@font/droid_serif"
+                android:text="Date"
+                android:textAlignment="viewEnd"
                 android:textAllCaps="true"
                 android:textColor="@color/text_small"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewRecyclerView_topRight_users"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.636" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,6 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
+
 public class RegisterActivity extends AppCompatActivity {
     private final String ADMIN_PASSWORD = "admin";
 
@@ -67,6 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").push();
                                 databaseReference.child("username").setValue(username);
                                 databaseReference.child("email").setValue(email);
+                                databaseReference.child("dateCreated").setValue(String.valueOf(new Date()));
                                 if (anAdmin.isChecked())
                                     databaseReference.child("isAdmin").setValue(true);
                                 else databaseReference.child("isAdmin").setValue(false);
