@@ -44,7 +44,6 @@ public class UserProfileActivity extends AppCompatActivity {
         userSettingsCard = findViewById(R.id.cardViewSettings);
         favoriteRoomCard = findViewById(R.id.cardViewFavorite);
         friendCard = findViewById(R.id.cardViewFriend);
-        historyCard = findViewById(R.id.cardViewHistory);
         userDeleteAccountCard = findViewById(R.id.cardViewDeleteUserAccount);
 
         // Go to user info activity
@@ -68,12 +67,6 @@ public class UserProfileActivity extends AppCompatActivity {
         // Go to friend activity
         friendCard.setOnClickListener(v -> {
             Intent intent = new Intent(UserProfileActivity.this, User_FriendCard.class);
-            startActivity(intent);
-        });
-
-        // Go to history activity
-        historyCard.setOnClickListener(v -> {
-            Intent intent = new Intent(UserProfileActivity.this, User_HistoryCard.class);
             startActivity(intent);
         });
 

@@ -49,6 +49,7 @@
         <entry key="app/src/main/res/drawable/settings_bluetooth_icon.xml" value="0.236" />
         <entry key="app/src/main/res/drawable/settings_location_icon.xml" value="0.236" />
         <entry key="app/src/main/res/drawable/text_bubble_border.xml" value="0.240185546875" />
+        <entry key="app/src/main/res/layout/activity_admin_history_card.xml" value="0.15476190476190477" />
         <entry key="app/src/main/res/layout/activity_admin_profile.xml" value="0.25482177734375" />
         <entry key="app/src/main/res/layout/activity_admin_rooms.xml" value="0.23975409836065573" />
         <entry key="app/src/main/res/layout/activity_delete_account_card.xml" value="0.34479166666666666" />
@@ -57,10 +58,10 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_room_info.xml" value="0.23975409836065573" />
-        <entry key="app/src/main/res/layout/activity_room_list.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_room_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.21909722222222222" />
-        <entry key="app/src/main/res/layout/activity_user_info_card.xml" value="0.34479166666666666" />
-        <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_user_info_card.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_welcome.xml" value="0.22013888888888888" />
         <entry key="app/src/main/res/layout/admin_list_items.xml" value="0.1" />
         <entry key="app/src/main/res/layout/app_toolbar.xml" value="0.1" />
