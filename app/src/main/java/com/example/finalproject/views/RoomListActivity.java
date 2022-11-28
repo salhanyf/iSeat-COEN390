@@ -2,6 +2,7 @@ package com.example.finalproject.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -77,27 +78,25 @@ public class RoomListActivity extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
             String email = auth.getCurrentUser().getEmail();
-            FirebaseDatabase.getInstance().getReference("admins").orderByValue().equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+            FirebaseDatabase.getInstance().getReference("users").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot snap : snapshot.getChildren()) {
-                        String e = snap.getValue(String.class);
-                        if (e.equals(email)) {
+                        Log.w("TAG", "onDataChange: " + snap);
+                        if (snap.child("isAdmin").getValue().toString().equals("true") && snap.child("email").getValue().toString().equalsIgnoreCase(email)) {
                             itemManageRooms.setVisible(true);
                             //add an admin profile button to the toolbar
 
                             toolbar.setNavigationIcon(R.drawable.ic_account_admin_settings);
-                            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent(RoomListActivity.this, AdminProfileActivity.class);
-                                    startActivity(intent);
-                                }
+                            toolbar.setNavigationOnClickListener(v -> {
+                                Intent intent = new Intent(RoomListActivity.this, AdminProfileActivity.class);
+                                startActivity(intent);
                             });
                             break;
                         }
                     }
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                     Toast.makeText(RoomListActivity.this, "Failure during get admin", Toast.LENGTH_SHORT).show();
@@ -107,12 +106,9 @@ public class RoomListActivity extends AppCompatActivity {
         //add a user profile button to the toolbar
 
         toolbar.setNavigationIcon(R.drawable.ic_account_circle);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RoomListActivity.this, UserProfileActivity.class);
-                startActivity(intent);
-            }
+        toolbar.setNavigationOnClickListener(v -> {
+            Intent intent = new Intent(RoomListActivity.this, UserProfileActivity.class);
+            startActivity(intent);
         });
 
         return super.onCreateOptionsMenu(menu);

@@ -1,21 +1,26 @@
 package com.example.finalproject.views.Cards;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-
 import android.content.SharedPreferences;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.finalproject.R;
 import com.example.finalproject.views.dialogfragments.insertAvatarDialogueFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class User_InfoCard extends AppCompatActivity {
 
@@ -45,9 +50,36 @@ public class User_InfoCard extends AppCompatActivity {
             avatarDialogueFragment.show(getSupportFragmentManager(), "avatarDialogueFragment");
         });
 
+        TextView email = findViewById(R.id.viewEmail);
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        email.setText(mAuth.getCurrentUser().getEmail());
+
+        // go into all the keys under "users" and find the one that matches the current user's email
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String email = snapshot.child("email").getValue(String.class);
+                    if (email.equalsIgnoreCase(mAuth.getCurrentUser().getEmail())) {
+                        String username = snapshot.child("username").getValue(String.class);
+                        TextView usernameView = findViewById(R.id.viewUsername);
+                        usernameView.setText(username);
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
-    public void updateImage(){
+    public void updateImage() {
         int userImageID = sharedPreferences.getInt("ImageID", -1);
         if (userImageID != -1) {
             int drawableID = 0;

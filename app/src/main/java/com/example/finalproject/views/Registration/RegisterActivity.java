@@ -1,7 +1,5 @@
 package com.example.finalproject.views.Registration;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -11,9 +9,12 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.finalproject.R;
 import com.example.finalproject.views.RoomListActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -59,29 +60,31 @@ public class RegisterActivity extends AppCompatActivity {
             String adminPasswordEntered = adminCodeSignup.getText().toString();
 
             if (!checkErrors(username, email, password, passwordRepeat, adminPasswordEntered)) {
-
-                if (anAdmin.isChecked())
-                    FirebaseDatabase.getInstance().getReference("admins").push().setValue(email);
-
-                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(
-                        task -> {
-                            if (task.isSuccessful()) {
-                                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(t -> {
-                                    if (t.isSuccessful())
-                                        Toast.makeText(this, "User Registration & Login Success", Toast.LENGTH_SHORT).show();
-                                    else
-                                        Toast.makeText(this, "User Registration Success but Login Failed", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(this, RoomListActivity.class));
-                                    finishAffinity();
-                                });
+                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(t -> {
+                            if (t.isSuccessful()) {
+                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").push();
+                                databaseReference.child("username").setValue(username);
+                                databaseReference.child("email").setValue(email);
+                                if (anAdmin.isChecked())
+                                    databaseReference.child("isAdmin").setValue(true);
+                                else databaseReference.child("isAdmin").setValue(false);
+                                Toast.makeText(this, "User Registration & Login Success", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(this, "User Registration Failed, Try Again", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "User Registration Success but Login Failed", Toast.LENGTH_SHORT).show();
                             }
-                        }
-                );
+                            startActivity(new Intent(this, RoomListActivity.class));
+                            finishAffinity();
+                        });
+                    }
+                });
+            } else {
+                Toast.makeText(this, "User Registration Failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 
     private boolean checkErrors(String username, String email, String password, String passwordRepeat, String adminPasswordEntered) {
         boolean err = false;
@@ -114,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
     public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
         //check which radio button was clicked
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.adminYes:
                 adminCodeSignup.setVisibility(View.VISIBLE);
                 break;

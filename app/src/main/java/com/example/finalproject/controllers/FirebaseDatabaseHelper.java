@@ -6,6 +6,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import com.example.finalproject.models.Room;
 import com.example.finalproject.models.Sensor;
+import com.example.finalproject.models.User;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -18,6 +19,7 @@ import java.util.List;
 public class FirebaseDatabaseHelper {
     private final FirebaseDatabase mDatabase; // Firebase database object
     private final DatabaseReference mReferenceProfiles; // Object for Adnan and Farah
+    private final DatabaseReference mReferenceUsers;
     private final DatabaseReference mReferenceRooms;  // Object for Shahin, Shayan, and Samson
     private final DatabaseReference mReferenceSensors; // Object for Shahin, Shayan, and Samson
     Query query;
@@ -56,7 +58,8 @@ public class FirebaseDatabaseHelper {
 
     public FirebaseDatabaseHelper() {
         mDatabase = FirebaseDatabase.getInstance();
-        mReferenceProfiles = mDatabase.getReference("profiles"); // Make sure this is correct for Adnan and Farah
+        mReferenceProfiles = mDatabase.getReference("Profiles"); // Make sure this is correct for Adnan and Farah
+        mReferenceUsers = mDatabase.getReference("users");
         mReferenceRooms = mDatabase.getReference("rooms");
         mReferenceSensors = mDatabase.getReference("sensors");
     }
@@ -118,6 +121,26 @@ public class FirebaseDatabaseHelper {
             }
         });
     }
+    //make a method that reads the users from the database and sets then to the User class
+    public void readUsers() {
+        mReferenceUsers.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {  // This is the method that is called when the data is changed (asynchronous)
+                for (DataSnapshot keyNode : dataSnapshot.getChildren()) {
+                    User user = keyNode.getValue(User.class);
+                    user.setUsername(keyNode.child("username").getValue(String.class));
+                    user.setEmail(keyNode.child("email").getValue(String.class));
+                    user.setIsAdmin(keyNode.child("isAdmin").getValue(Boolean.class));
+                    user.setKey(keyNode.getKey());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
 
     public DatabaseReference getReferenceProfiles() { return mReferenceProfiles; }
     public DatabaseReference getReferenceRooms() { return mReferenceRooms; }

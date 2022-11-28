@@ -56,8 +56,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="5dp"
-                android:text="@string/seats_available"
+                android:layout_marginEnd="52dp"
+                android:text="Role"
+                android:textAlignment="viewStart"
                 android:textColor="@color/orange"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -69,16 +70,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="40dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/montserrat_light"
-                android:text="TextView"
+                android:text="(Online)/(Offline)"
+                android:textAlignment="viewStart"
                 android:textAllCaps="true"
                 android:textColor="@color/text_small"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewRecyclerView_topRight_users" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewRecyclerView_topRight_users"
+                app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
