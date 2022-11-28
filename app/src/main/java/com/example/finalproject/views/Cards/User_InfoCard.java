@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,8 +25,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class User_InfoCard extends AppCompatActivity {
 
-    private Button avatarButton;
     private SharedPreferences sharedPreferences;
+    private Button avatarButton, editButton, saveButton, cancelButton;
+    private EditText usernameEditText;
     private ImageView chosenUserAvatar;
 
     @Override
@@ -42,13 +44,25 @@ public class User_InfoCard extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("User Info");
 
+        usernameEditText = (EditText) findViewById(R.id.viewUsername);
         avatarButton = (Button) findViewById(R.id.changeUserAvatarButton);
+        editButton = (Button) findViewById(R.id.editButton);
+        saveButton = (Button) findViewById(R.id.saveButton);
+        cancelButton = (Button) findViewById(R.id.cancelButton);
 
-        // Add avatar selection dialogue fragment
-        avatarButton.setOnClickListener(v -> {
-            insertAvatarDialogueFragment avatarDialogueFragment = new insertAvatarDialogueFragment(true);
-            avatarDialogueFragment.show(getSupportFragmentManager(), "avatarDialogueFragment");
-        });
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editButton.setVisibility(View.INVISIBLE);
+                saveButton.setVisibility(View.VISIBLE);
+                cancelButton.setVisibility(View.VISIBLE);
+                avatarButton.setVisibility(View.VISIBLE);
+
+                // Add avatar selection dialogue fragment
+                avatarButton.setOnClickListener(v -> {
+                    insertAvatarDialogueFragment avatarDialogueFragment = new insertAvatarDialogueFragment(true);
+                    avatarDialogueFragment.show(getSupportFragmentManager(), "avatarDialogueFragment");
+                });
 
         TextView email = findViewById(R.id.viewEmail);
 
@@ -77,6 +91,26 @@ public class User_InfoCard extends AppCompatActivity {
             }
         });
 
+                //TODO: SAVE THE VALUUES ENTERED - ONLY USERNAME AND AVATAR (EMAIL CANNOT BE EDITED)
+                saveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+
+                //TODO: MAKE SURE NOTHING IS SAVED
+                cancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        saveButton.setVisibility(View.INVISIBLE);
+                        cancelButton.setVisibility(View.INVISIBLE);
+                        avatarButton.setVisibility(View.INVISIBLE);
+                        editButton.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
+        });
     }
 
     public void updateImage() {
