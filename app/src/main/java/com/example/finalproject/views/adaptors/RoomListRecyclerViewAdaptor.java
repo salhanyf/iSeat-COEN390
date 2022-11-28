@@ -40,17 +40,14 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
         holder.bind(mRooms.get(position));
         new FirebaseDatabaseHelper().listenToSensorsRoom(mRooms.get(position).getKey(), new UpdateCapacityTextView(holder.mRoomCapacity));
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // add the room key to the intent and start the activity
-                Intent intent = new Intent(context, RoomClickedActivity.class);
-                intent.putExtra("roomKey", mRooms.get(holder.getAdapterPosition()).getKey());
-                intent.putExtra("roomName", mRooms.get(holder.getAdapterPosition()).getName());
-                intent.putExtra("roomCapacity", mRooms.get(holder.getAdapterPosition()).getCapacity());
-                intent.putExtra("roomLocation", mRooms.get(holder.getAdapterPosition()).getLocation());
-                context.startActivity(intent);
-            }
+        holder.itemView.setOnClickListener(v -> {
+            // add the room key to the intent and start the activity
+            Intent intent = new Intent(context, RoomClickedActivity.class);
+            intent.putExtra("roomKey", mRooms.get(holder.getAdapterPosition()).getKey());
+            intent.putExtra("roomName", mRooms.get(holder.getAdapterPosition()).getName());
+            intent.putExtra("roomCapacity", mRooms.get(holder.getAdapterPosition()).getCapacity());
+            intent.putExtra("roomLocation", mRooms.get(holder.getAdapterPosition()).getLocation());
+            context.startActivity(intent);
         });
     }
 
@@ -66,9 +63,9 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mRoomName = itemView.findViewById(R.id.textViewRecyclerView_BottomLeft);
-            mRoomLocation = itemView.findViewById(R.id.textViewRecycler_topleft);
-            mRoomCapacity = itemView.findViewById(R.id.textViewRecyclerView_BottomRight);
+            mRoomName = itemView.findViewById(R.id.textViewRecyclerView_BottomLeft_users);
+            mRoomLocation = itemView.findViewById(R.id.textViewRecycler_topleft_users);
+            mRoomCapacity = itemView.findViewById(R.id.textViewRecyclerView_BottomRight_users);
         }
 
         public void bind(Room room) {

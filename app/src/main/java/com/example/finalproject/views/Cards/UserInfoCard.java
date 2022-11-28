@@ -1,14 +1,7 @@
 package com.example.finalproject.views.Cards;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-
 import android.content.SharedPreferences;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -65,17 +58,17 @@ public class UserInfoCard extends AppCompatActivity {
         email.setText(mAuth.getCurrentUser().getEmail());
 
         // go into all the keys under "users" and find the one that matches the current user's email
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.addValueEventListener(new ValueEventListener() {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String email = snapshot.child("email").getValue(String.class);
-                    Log.d("!!!!!!!!email", email);
-                    if (email.equals(mAuth.getCurrentUser().getEmail())) {
+                    if (email.equalsIgnoreCase(mAuth.getCurrentUser().getEmail())) {
                         String username = snapshot.child("username").getValue(String.class);
                         TextView usernameView = findViewById(R.id.viewUsername);
                         usernameView.setText(username);
+                        break;
                     }
                 }
             }
@@ -89,11 +82,11 @@ public class UserInfoCard extends AppCompatActivity {
     }
 
 
-    public void updateImage(){
+    public void updateImage() {
         int imageID = sharedPreferences.getInt("imageID", -1);
         if (imageID != -1) {
             int drawableID = 0;
-            switch(imageID) {
+            switch (imageID) {
                 case 1:
                     drawableID = R.drawable.avatars1;
                     break;

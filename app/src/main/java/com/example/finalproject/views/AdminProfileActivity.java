@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.finalproject.R;
+import com.example.finalproject.views.Cards.AdminUserListCard;
 import com.example.finalproject.views.Registration.WelcomeActivity;
 import com.example.finalproject.views.Settings.SettingsActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -55,7 +56,7 @@ public class AdminProfileActivity extends AppCompatActivity {
         userListCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(AdminProfileActivity.this, AdminUserListCard.class));
             }
         });
 
