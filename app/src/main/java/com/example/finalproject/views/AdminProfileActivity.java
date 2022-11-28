@@ -15,8 +15,7 @@ import com.example.finalproject.R;
 import com.example.finalproject.views.Cards.Admin_HistoryCard;
 import com.example.finalproject.views.Cards.Admin_InfoCard;
 import com.example.finalproject.views.Cards.Admin_ManageRoomsCard;
-import com.example.finalproject.views.Cards.User_HistoryCard;
-import com.example.finalproject.views.Cards.AdminUserListCard;
+import com.example.finalproject.views.Cards.Admin_UserListCard;
 import com.example.finalproject.views.Registration.WelcomeActivity;
 import com.example.finalproject.views.Settings.SettingsActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -67,7 +66,7 @@ public class AdminProfileActivity extends AppCompatActivity {
         userListCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AdminProfileActivity.this, AdminUserListCard.class));
+                startActivity(new Intent(AdminProfileActivity.this, Admin_UserListCard.class));
             }
         });
 

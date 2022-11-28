@@ -45,6 +45,7 @@ public class User_InfoCard extends AppCompatActivity {
         chosenUserAvatar = findViewById(R.id.shownUserAvatar);
         updateImage();
 
+        // Back button functionality
         Toolbar toolbar = findViewById(R.id.userToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -158,6 +159,7 @@ public class User_InfoCard extends AppCompatActivity {
         }
     }
 
+    // Back button functionality
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

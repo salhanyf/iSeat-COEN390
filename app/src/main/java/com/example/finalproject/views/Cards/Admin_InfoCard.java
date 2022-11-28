@@ -31,6 +31,7 @@ public class Admin_InfoCard extends AppCompatActivity {
         chosenAdminAvatar = findViewById(R.id.shownAdminAvatar);
         updateImage();
 
+        // Back button functionality
         Toolbar toolbar = findViewById(R.id.adminToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -85,6 +86,7 @@ public class Admin_InfoCard extends AppCompatActivity {
         }
     }
 
+    // Back button functionality
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

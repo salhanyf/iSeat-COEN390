@@ -17,12 +17,14 @@ public class User_FavoriteRoomCard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_room_card);
 
+        // Back button functionality
         Toolbar toolbar = findViewById(R.id.toolbarFavorite);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Favorite Rooms");
     }
 
+    // Back button functionality
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
