@@ -1,6 +1,12 @@
 package com.example.finalproject.views.Cards;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+
 import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -113,7 +119,7 @@ public class User_InfoCard extends AppCompatActivity {
         });
     }
 
-    public void updateImage() {
+    public void updateImage(){
         int userImageID = sharedPreferences.getInt("ImageID", -1);
         if (userImageID != -1) {
             int drawableID = 0;

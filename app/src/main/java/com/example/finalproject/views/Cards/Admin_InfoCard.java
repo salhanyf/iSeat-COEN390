@@ -36,7 +36,7 @@ public class Admin_InfoCard extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Admin Info");
 
-        avatarButton = (Button) findViewById(R.id.changeAdminAvatarButton);
+        avatarButton = findViewById(R.id.changeAdminAvatarButton);
 
         // Add avatar selection dialogue fragment
         avatarButton.setOnClickListener(v -> {
