@@ -30,7 +30,7 @@ public class Admin_UserListCard extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.adminUserListToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Admin Info");
+        getSupportActionBar().setTitle("User List");
 
         //get the list of users from the database and display them in a recycler view list
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("users");
