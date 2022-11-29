@@ -14,25 +14,25 @@ void setupLoadCell() {
   Serial.println("Calibration complete");
 }
 
-// ifdef changes definition of sensorState() function if LOAD_CELL defined in 'iSeat.ino'
-#ifdef LOAD_CELL
 
   // read the Load cell sensor value and return the seat status
   // return true: Seat open
   // return false: Seat taken
+
   bool sensorState(bool current) {
+    Serial.print("Hello from sensor.cpp");
     // get smoothed value from the dataset if updated value available
     if (loadCell.update()) {
       float data = loadCell.getData();  // Contains Raw data of load cell!!!
       // If load cell output (i) is greater than X, seat is taken else seat is open
       if (data > 1000) {
         Serial.print("Seat is taken, Current Pressure: ");
-        Serial.println(i);
+        Serial.println(data);
         return false;
       }
       else {
         Serial.print("Seat is open, Current Pressure: ");
-        Serial.println(i);
+        Serial.println(data);
         return true;
       }
     }
@@ -40,15 +40,4 @@ void setupLoadCell() {
     return current;
   }
 
-#else
 
-  // read pushbutton or Film Sensor and return the seat status
-  // Both are connected to SENSOR pin with pullup resistors, active LOW
-  // Return the value of digitalRead() of pin
-  // true: Seat open
-  // false: Seat taken 
-  bool sensorState(bool current) {
-    return digitalRead(SENSOR);
-  }
-
-#endif

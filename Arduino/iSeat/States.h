@@ -28,7 +28,7 @@ void responseConnecting(WiFiClient& client, const String& ssid, const String& pa
 ////////////////////////////////////////////////// Connecting State
 
 // macros used in state
-#define TIMEOUT           5000
+#define TIMEOUT           10000
 #define FIREBASE_URL      "test-1ee43-default-rtdb.firebaseio.com"  // Firebase Website -> Build -> Realtime Database -> URL
 #define FIREBASE_API_KEY  "AIzaSyAcNLVUsicx0dKUT__6ojBJ8P8N-HoTrmQ" // Firebase Website -> Project Settings -> Web API Key
 

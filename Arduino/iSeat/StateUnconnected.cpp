@@ -34,6 +34,9 @@ void unconnected() {
       if (req.startsWith("GET /network")) {
         String ssid, pass;
         parseArgs(req, ssid, pass); // parse inputs from URI
+        Serial.println(ssid);
+      
+        Serial.println(pass);
         // check for empty SSID, empty pass OK if no security
         if (ssid != "") {
           Serial.println("SSID and PASS non-empty, attempting to connect...");

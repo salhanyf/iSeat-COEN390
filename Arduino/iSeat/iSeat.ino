@@ -4,7 +4,7 @@
 */
 
 // ***** UNCOMMENT/COMMENT FOLLOWING LINE IF LOAD CELL USED/UNUSED
-// #define LOAD_CELL
+#define LOAD_CELL 0
 
 // libraries
 #include "Sensor.h"
@@ -35,8 +35,8 @@ void setup() {
 
   // set the following to immediately connect to a home Network for quick testing
   // state = CONNECTING;
-  // _ssid = "BELL343";
-  // _pass = "398f9kke9";
+  // _ssid = "GOD&JESUS";
+  // _pass = "@Khalkhali1.com";
 }
 
 void loop() {
