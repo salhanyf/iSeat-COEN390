@@ -41,11 +41,11 @@
                 android:value="" />
         </activity>
 
-        <!-- Admin Room Activity -->
+        <!-- Admin - Manage Rooms Card -->
         <activity
             android:name=".views.AdminRoomsActivity"
             android:exported="false"
-            android:parentActivityName=".views.RoomListActivity">
+            android:parentActivityName=".views.AdminProfileActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -74,15 +74,6 @@
         <!-- Admin - Info Card -->
         <activity
             android:name=".views.Cards.Admin_InfoCard"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <!-- Admin - Manage Rooms Card -->
-        <activity
-            android:name=".views.Cards.Admin_ManageRoomsCard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -151,7 +142,7 @@
             android:name=".views.Settings.SettingsActivity"
             android:exported="false"
             android:label="Settings"
-            android:parentActivityName=".views.RoomListActivity"
+            android:parentActivityName=".views.AdminProfileActivity"
             android:theme="@style/DefaultTheme.ActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

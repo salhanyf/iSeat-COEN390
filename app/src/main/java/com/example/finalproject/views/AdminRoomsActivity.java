@@ -48,6 +48,13 @@ public class AdminRoomsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_rooms);
+
+        // Back button functionality
+        Toolbar toolbar = findViewById(R.id.room_clicked_tool_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Manage Rooms");
+
         // get the user email
         if (FirebaseAuth.getInstance().getCurrentUser() != null)
             adminEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
@@ -87,6 +94,11 @@ public class AdminRoomsActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        // Back button functionality
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
 
         switch (item.getItemId()){
             case R.id.action_add_room :
