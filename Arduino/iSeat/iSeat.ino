@@ -1,20 +1,28 @@
 /*
-  iSeat.ino : main code for iSeat tracker.
+  iSeat.ino
   COEN390 Team D
+  Main code for iSeat device.  
 */
 
-// ***** UNCOMMENT/COMMENT FOLLOWING LINE IF LOAD CELL USED/UNUSED
-#define LOAD_CELL 0
+////////////////////////////////////////////////////////////////////////////////
+//                                  WARNING:                                  //
+//                                                                            //
+//  Make sure to comment/uncomment macro LOAD_CELL in "Sensor.h" depending on //
+//  the current circuit being used:                                           //
+//                                                                            //
+//  - Load Cell with Amplifier: Uncomment LOAD_CELL,                          //
+//  - Film Sensor / Pushbutton: Comment out LOAD_CELL                         //
+//                                                                            //
+#include "Sensor.h" // sensor functions/macros (LOAD_CELL macro in here)      //
+////////////////////////////////////////////////////////////////////////////////
 
-// libraries
-#include "Sensor.h"
-#include "States.h"
+#include "States.h" // state macros/functions/data
 
 // global variables shared by 1+ state
-State state;
-String _ssid, _pass, _mac;
-FirebaseData fbdo;
-bool hasRoom;
+State state;                // state machine state
+String _ssid, _pass, _mac;  // network SSID/password and MAC address
+FirebaseData fbdo;          // Firebase data object
+bool hasRoom;               // flag for having a room assigned to sensor
 
 // setup Arduino
 void setup() {
@@ -35,22 +43,20 @@ void setup() {
 
   // set the following to immediately connect to a home Network for quick testing
   // state = CONNECTING;
-  // _ssid = "GOD&JESUS";
-  // _pass = "@Khalkhali1.com";
+  // _ssid = "MYNETWORKNAME";
+  // _pass = "myPassword123";
 }
 
+// run state machine in loop
 void loop() {
 
-  // arduino function as Access Point. Serves web page to enter a Network SSID & password to connect Arduino to
-  if (state == UNCONNECTED)
-    unconnected();
+  if (state == UNCONNECTED)     // Arduino function as Access Point. Serves web page to
+    unconnected();              // enter a Network SSID & password to connect Arduino to
 
-  // Arduino tries to connect to given Network. Closes Access Point, WiFi Setup and Firebase Setup
-  else if (state == CONNECTING)
-    connecting();
+  else if (state == CONNECTING) // Arduino tries to connect to given Network.
+    connecting();               // Closes Access Point, setup WiFi and Firebase
 
-  // Arduino functions as iSeat sensor
-  else if (state == CONNECTED)
-    connected();
+  else if (state == CONNECTED)  // Arduino functions as iSeat sensor. Send updates
+    connected();                // on seat status to Firebase if room assigned to it.
 
 }

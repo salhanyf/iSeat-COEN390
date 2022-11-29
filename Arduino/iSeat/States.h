@@ -1,9 +1,17 @@
+/*
+  States.h
+  COEN390 Team D
+  Shared header file for the iSeat device State Machine.
+  Contains libraries, macros, function prototypes and shared data.
+*/
 #pragma once
 
 // libraries
 #include <WiFiNINA.h>
 #include <Firebase_Arduino_WiFiNINA.h>
 #include "Sensor.h"
+
+////////////////////////////////////////////////// STATES SHARED DATA
 
 // state machine states
 enum State{ UNCONNECTED, CONNECTING, CONNECTED };
@@ -14,7 +22,7 @@ extern String _ssid, _pass, _mac;
 extern FirebaseData fbdo;
 extern bool hasRoom;
 
-////////////////////////////////////////////////// Unconnected State
+////////////////////////////////////////////////// UNCONNECTED STATE
 
 // macros used in state
 #define ISEAT_SSID "iSeat"
@@ -25,7 +33,7 @@ void parseArgs(String req, String& ssid, String& pass);
 void responseInput(WiFiClient& client, const String& ssid, const String& pass);
 void responseConnecting(WiFiClient& client, const String& ssid, const String& pass);
 
-////////////////////////////////////////////////// Connecting State
+////////////////////////////////////////////////// CONNECTING STATE
 
 // macros used in state
 #define TIMEOUT           10000
@@ -34,10 +42,11 @@ void responseConnecting(WiFiClient& client, const String& ssid, const String& pa
 
 // function prototypes for state, see 'StateConnecting.cpp' for definitions
 void connecting();
-void setupFirebase();
 String getMac();
+void setupFirebase();
+void setupSensorNode();
 
-////////////////////////////////////////////////// Connected State
+////////////////////////////////////////////////// CONNECTED STATE
 
 // macros used in state
 #define SLEEP_DELAY_MS      500
@@ -46,6 +55,10 @@ String getMac();
 
 // function prototypes for state, see 'StateConnected.cpp' for definitions
 void connected();
-String WiFiStatus();
+void updateRoom();
+void updateWiFiStrength();
+String getWiFiStrength();
+void updateSeatStatus();
+void blinkLed();
 
 //////////////////////////////////////////////////

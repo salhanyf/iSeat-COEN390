@@ -1,3 +1,9 @@
+/*
+  StateUnconnected.cpp
+  COEN390 Team D
+  Unconnected State of iSeat device, functions as AP with Web server that
+  gets Network info input from user to connect device to.
+*/
 #include "States.h"
 
 WiFiServer server(80); // server listens on Port 80 for incoming HTTP requests
@@ -33,14 +39,17 @@ void unconnected() {
       // if this is a GET request from '/network' form with ssid & pass arguments
       if (req.startsWith("GET /network")) {
         String ssid, pass;
-        parseArgs(req, ssid, pass); // parse inputs from URI
+        // parse inputs from URI and print
+        parseArgs(req, ssid, pass);
+        Serial.print("Found \'ssid\' arg: ");
         Serial.println(ssid);
-      
+        Serial.print("Found \'pass\' arg: ");
         Serial.println(pass);
         // check for empty SSID, empty pass OK if no security
         if (ssid != "") {
           Serial.println("SSID and PASS non-empty, attempting to connect...");
           responseConnecting(client, ssid, pass); // send the connecting response
+          delay(500); // small delay to not disconnect before client receives final data
           client.stop();
           // at this point, client has entered an SSID and Password to server,
           // assign those values to global _ssid and _pass and change State to
@@ -60,12 +69,14 @@ void unconnected() {
 
 // parse the 'ssid' and 'pass' arguments from the GET request URI
 void parseArgs(String req, String& ssid, String& pass) {
-  int lo = 17, hi = lo;
-  while (req[++hi] != '&');
-  ssid = req.substring(lo+1, hi);  
-  lo = (hi += 5);
-  while (req[++hi] != ' ');  
-  pass = req.substring(lo+1, hi);
+  // example request: 'GET /network?ssid=<data>&pass=<data> HTTP/1.1'
+  // * important indices:               *lo    *hi  *hi+5  *end
+  int lo = 17, hi = lo;     // ssid data starts at 'lo' index 17 of GET request ('=' char) *see example above*
+  while (req[++hi] != '&'); // increment 'hi' index until finds arguments seperator ('&' char)
+  ssid = req.substring(lo+1, hi);  // get ssid substring and save in reference
+  lo = (hi += 5);           // password data starts at 'lo' = previous hi value ('&' char) plus 5, (second '=' char) *see example above*
+  while (req[++hi] != ' '); // increment 'hi' index until finds end of arguments (' ' char)
+  pass = req.substring(lo+1, hi); // get password substring and save in reference
 }
 
 // default HTTP response to clients accessing Server on root '/'
@@ -79,15 +90,19 @@ void responseInput(WiFiClient& client, const String& ssid, const String& pass) {
   client.print("<center>");   // center contents
   client.print("<form action=\"/network\" method=\"GET\">");      // HTML form using GET request
   client.print("<br><br>");   // spacing
-  client.print("<label for=\"ssid\">Network SSID: </label><br>"); // text label for network SSID
+  client.print("<label for=\"ssid\">Network SSID:</label><br>"); // text label for network SSID
+ 
   // SSID text box input (with a previous value if already set once)
   String ssidTextBox = "<input type=\"text\" id=\"ssid\" name=\"ssid\" value=\"" + ssid + "\">";
   client.print(ssidTextBox);
+ 
   client.print("<br><br>");   // spacing
-  client.print("<label for=\"pass\">Network Password: </label><br>"); // text label for network Password
+  client.print("<label for=\"pass\">Network Password:</label><br>"); // text label for network Password
+ 
   // Password text box input (with a previous value if already set once)
   String passTextBox = "<input type=\"text\" id=\"pass\" name=\"pass\" value=\"" + pass + "\">";
   client.print(passTextBox);
+ 
   client.print("<br><br>");   // spacing
   client.print("<input type=\"submit\" value=\"Submit\">"); // button to submit form
   client.print("</form>");    // end of form
