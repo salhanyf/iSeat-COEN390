@@ -26,20 +26,10 @@ public class LoginActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        if (auth.getCurrentUser() != null) {
-            Toast.makeText(this, "User " + auth.getCurrentUser().getEmail() + " already signed in!", Toast.LENGTH_SHORT).show();
-            finish();
-        }
-
         loginEmail = findViewById(R.id.emailLogin);
         loginPassword = findViewById(R.id.passwordLogin);
         loginButton = findViewById(R.id.loginButton);
         signupRedirectButton = findViewById(R.id.signupRedirect);
-
-        signupRedirectButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, RegisterActivity.class));
-            finish();
-        });
 
         loginButton.setOnClickListener(v -> {
             String email = loginEmail.getText().toString();
@@ -56,6 +46,11 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
             }
+        });
+
+        signupRedirectButton.setOnClickListener(v -> {
+            startActivity(new Intent(this, RegisterActivity.class));
+            finish();
         });
     }
 

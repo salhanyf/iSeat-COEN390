@@ -7,10 +7,8 @@
     android:layout_height="match_parent">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="406dp"
+        android:layout_width="400dp"
         android:layout_height="490dp"
-        android:layout_marginTop="79dp"
-        android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +20,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="10dp"
-            android:text="Close" />
+            app:cornerRadius="20dp"
+            android:textColor="@color/button_text_color"
+            android:textSize="14sp"
+            android:text="@string/close" />
 
         <ImageButton
             android:id="@+id/editAvatarButton1"
@@ -104,5 +105,4 @@
             android:src="@drawable/avatars8" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

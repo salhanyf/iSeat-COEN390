@@ -127,7 +127,6 @@ public class RoomListActivity extends AppCompatActivity {
                 startActivity(settingsIntent);
                 break;
             case R.id.signOutActionButton:
-                //TODO: signing out user
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(this, "Goodbye!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, WelcomeActivity.class));

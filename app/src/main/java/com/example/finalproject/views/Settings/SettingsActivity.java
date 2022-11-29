@@ -141,9 +141,8 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                 }
             }
             String sendFeedback = "settingSendFeedback";
-            //TODO: Show user that his feedback was recieved
             if(rootKey.equals(sendFeedback)){
-
+                Toast.makeText(this, "Feedback Received, Thank you!", Toast.LENGTH_SHORT).show();
             }
         }
     }
