@@ -71,7 +71,6 @@ public class AdminProfileActivity extends AppCompatActivity {
 
             builder.setPositiveButton("Yes, delete", (dialog, which) -> {
                 // if user click yes button then the account is deleted and user is redirected to Welcome activity
-                //TODO: DELETE ACCOUNT FROM FIREBASE
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 FirebaseDatabaseHelper.deleteUser(user.getEmail());
                 user.delete()
