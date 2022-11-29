@@ -31,6 +31,7 @@ public class Admin_InfoCard extends AppCompatActivity {
     private EditText usernameEditText;
     private TextView adminEmail;
     private ImageView chosenAdminAvatar;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +70,7 @@ public class Admin_InfoCard extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String email = snapshot.child("email").getValue(String.class);
                     if (email.equalsIgnoreCase(mAuth.getCurrentUser().getEmail())) {
-                        String username = snapshot.child("username").getValue(String.class);
+                        username = snapshot.child("username").getValue(String.class);
                         usernameEditText.setText(username);
                         break;
                     }
@@ -96,15 +97,30 @@ public class Admin_InfoCard extends AppCompatActivity {
                     avatarDialogueFragment.show(getSupportFragmentManager(), "avatarDialogueFragment");
                 });
 
-                //TODO: SAVE THE VALUUES ENTERED - ONLY USERNAME AND AVATAR (EMAIL CANNOT BE EDITED)
                 saveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        FirebaseDatabase.getInstance().getReference("users").orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot snap : snapshot.getChildren()) {
+                                    FirebaseDatabase.getInstance().getReference("users").child(snap.getKey()).child("username").setValue(usernameEditText.getText().toString());
+                                    break;
+                                }
+                                usernameEditText.setEnabled(false);
+                                saveButton.setVisibility(View.INVISIBLE);
+                                cancelButton.setVisibility(View.INVISIBLE);
+                                avatarButton.setVisibility(View.INVISIBLE);
+                                editButton.setVisibility(View.VISIBLE);
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
 
+                            }
+                        });
                     }
                 });
 
-                //TODO: MAKE SURE NOTHING IS SAVED
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -113,6 +129,8 @@ public class Admin_InfoCard extends AppCompatActivity {
                         cancelButton.setVisibility(View.INVISIBLE);
                         avatarButton.setVisibility(View.INVISIBLE);
                         editButton.setVisibility(View.VISIBLE);
+
+                        usernameEditText.setText(username);
                     }
                 });
             }
