@@ -19,13 +19,19 @@ import android.widget.Toast;
 import com.example.finalproject.R;
 import com.example.finalproject.controllers.FirebaseDatabaseHelper;
 import com.example.finalproject.models.Room;
+import com.example.finalproject.models.Sensor;
 import com.example.finalproject.views.Registration.WelcomeActivity;
 import com.example.finalproject.views.Settings.SettingsActivity;
 import com.example.finalproject.views.adaptors.AdminRoomsRecyclerViewAdaptor;
 import com.example.finalproject.views.dialogfragments.AddRoomDialogFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdminRoomsActivity extends AppCompatActivity {
@@ -178,7 +184,10 @@ public class AdminRoomsActivity extends AppCompatActivity {
             // ok deletes the rooms
             setPositiveButton("Delete", (dialogInterface, i) -> {
                 // delete each room from Firebase, exit delete mode and dismiss alert
-                for (Room room : rooms) FirebaseDatabase.getInstance().getReference("rooms").child(room.getKey()).removeValue();
+                for (Room room : rooms) {
+                    FirebaseDatabase.getInstance().getReference("rooms").child(room.getKey()).removeValue();
+                    unassignSensors(room);
+                }
                 toggleDelete(false);
                 dialogInterface.dismiss();
             });
@@ -189,6 +198,22 @@ public class AdminRoomsActivity extends AppCompatActivity {
             String str = "";
             for (Room room : rooms) str = String.format("%s\n%s", str, room);
             return str;
+        }
+
+        private void unassignSensors(Room room) {
+            FirebaseDatabase.getInstance().getReference("sensors").orderByChild("roomKey").equalTo(room.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot snap : snapshot.getChildren()) {
+                        FirebaseDatabase.getInstance().getReference("sensors").child(snap.getKey()).child("roomKey").setValue("");
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getApplicationContext(), "ERROR Un-assigning Sensors: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }
