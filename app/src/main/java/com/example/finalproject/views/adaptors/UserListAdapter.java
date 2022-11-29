@@ -60,8 +60,8 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
             } else {
                 txtRole.setText("Role: User");
             }
-            txtName.setText("Username: " + user.getUsername());
-            txtEmail.setText("Email: " + user.getEmail());
+            txtName.setText(user.getUsername());
+            txtEmail.setText(user.getEmail());
             txtDate.setText("Date Created: " + user.getDateCreated());
             Log.w("TAG", "bind: " + user.getDateCreated());
         }

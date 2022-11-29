@@ -63,8 +63,8 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mRoomName = itemView.findViewById(R.id.textViewRecyclerView_BottomLeft_users);
-            mRoomLocation = itemView.findViewById(R.id.textViewRecycler_topleft_users);
+            mRoomName = itemView.findViewById(R.id.textViewRecycler_topleft_users);
+            mRoomLocation = itemView.findViewById(R.id.textViewRecyclerView_BottomLeft_users);
             mRoomCapacity = itemView.findViewById(R.id.textViewRecyclerView_BottomRight_users);
         }
 

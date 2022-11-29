@@ -53,11 +53,13 @@
         <entry key="app/src/main/res/layout/activity_admin_info_card.xml" value="0.2554347826086957" />
         <entry key="app/src/main/res/layout/activity_admin_profile.xml" value="0.25482177734375" />
         <entry key="app/src/main/res/layout/activity_admin_rooms.xml" value="0.23975409836065573" />
+        <entry key="app/src/main/res/layout/activity_admin_user_list_card.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_delete_account_card.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/layout/activity_favorite_room_card.xml" value="0.34479166666666666" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.14782608695652175" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/activity_room_clicked.xml" value="0.2205607476635514" />
         <entry key="app/src/main/res/layout/activity_room_info.xml" value="0.23975409836065573" />
         <entry key="app/src/main/res/layout/activity_room_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.21909722222222222" />
@@ -73,6 +75,7 @@
         <entry key="app/src/main/res/layout/login_test.xml" value="0.22288055419921876" />
         <entry key="app/src/main/res/layout/recyclerview_admin_rooms_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/recyclerview_room_list_item.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/recyclerview_user_list_item.xml" value="0.45" />
         <entry key="app/src/main/res/layout/room_list_items.xml" value="0.1" />
         <entry key="app/src/main/res/layout/settings_activity.xml" value="0.20173611111111112" />
         <entry key="app/src/main/res/menu/iseat_admin_menu.xml" value="0.165" />
