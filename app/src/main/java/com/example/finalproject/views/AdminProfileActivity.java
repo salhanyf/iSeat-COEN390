@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.example.finalproject.R;
 import com.example.finalproject.views.Cards.Admin_HistoryCard;
 import com.example.finalproject.views.Cards.Admin_InfoCard;
-import com.example.finalproject.views.Cards.Admin_ManageRoomsCard;
 import com.example.finalproject.views.Cards.Admin_UserListCard;
 import com.example.finalproject.views.Registration.WelcomeActivity;
 import com.example.finalproject.views.Settings.SettingsActivity;
@@ -57,7 +56,7 @@ public class AdminProfileActivity extends AppCompatActivity {
         adminManageRoomsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminProfileActivity.this, Admin_ManageRoomsCard.class);
+                Intent intent = new Intent(AdminProfileActivity.this, AdminRoomsActivity.class);
                 startActivity(intent);
             }
         });

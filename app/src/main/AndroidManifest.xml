@@ -84,15 +84,6 @@
                 android:value="" />
         </activity>
 
-        <!-- Admin_ManageRoomsCard -->
-        <activity
-            android:name=".views.Cards.Admin_ManageRoomsCard"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
         <!-- Admin_HistoryCard -->
         <activity
             android:name=".views.Cards.Admin_HistoryCard"
