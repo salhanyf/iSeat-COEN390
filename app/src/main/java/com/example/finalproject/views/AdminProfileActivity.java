@@ -73,7 +73,7 @@ public class AdminProfileActivity extends AppCompatActivity {
                 // if user click yes button then the account is deleted and user is redirected to Welcome activity
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 FirebaseDatabaseHelper.deleteUser(user.getEmail());
-                user.delete()
+                user.delete()   // delete user from firebase
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
                                 Toast.makeText(AdminProfileActivity.this, "Account deleted", Toast.LENGTH_SHORT).show();

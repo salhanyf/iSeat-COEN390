@@ -26,6 +26,7 @@ public class FirebaseDatabaseHelper {
     Query query;
     ValueEventListener listener;
 
+    // method used to delete a user from the database
     public static void deleteUser(String uEmail) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users");
@@ -86,7 +87,7 @@ public class FirebaseDatabaseHelper {
         mReferenceRooms = mDatabase.getReference("rooms");
         mReferenceSensors = mDatabase.getReference("sensors");
     }
-
+    // Read from the database
     public void readRooms(DataStatusRoom dataStatus) {
         mReferenceRooms.addValueEventListener(new ValueEventListener() {
             @Override
@@ -105,7 +106,7 @@ public class FirebaseDatabaseHelper {
             }
         });
     }
-
+    // This is the method that is called when the data is changed (asynchronous)
     public void listenToSensorsRoom(String roomKey, SensorDataChange dataStatus) {
         query = mReferenceSensors.orderByChild("roomKey").equalTo(roomKey);
         listener = query.addValueEventListener(new ValueEventListener() {
@@ -127,7 +128,7 @@ public class FirebaseDatabaseHelper {
     public void removeSensorsListeners() {
         query.removeEventListener(listener);
     }
-
+    // This method is used to add a new user to the database
     public void getAdminRooms(String adminEmail, DataStatusRoom dataStatus) {
         mReferenceRooms.orderByChild("admin").equalTo(adminEmail).addValueEventListener(new ValueEventListener() {
             @Override

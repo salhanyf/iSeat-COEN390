@@ -72,10 +72,9 @@ public class UserProfileActivity extends AppCompatActivity {
 
             builder.setPositiveButton("Yes, delete", (dialog, which) -> {
                 // if user click yes button then the account is deleted and user is redirected to Welcome activity
-                //TODO: DELETE ACCOUNT FROM FIREBASE
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 FirebaseDatabaseHelper.deleteUser(user.getEmail());
-                user.delete()
+                user.delete()   // delete user from firebase authentication
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
                                 Toast.makeText(UserProfileActivity.this, "Account deleted", Toast.LENGTH_SHORT).show();
