@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.finalproject">
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -14,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject"
         tools:targetApi="31">
+
         <!-- Registration Activities -->
         <activity
             android:name=".views.Registration.WelcomeActivity"
@@ -24,20 +27,21 @@
         <activity
             android:name=".views.Registration.LoginActivity"
             android:exported="false" />
+
         <!-- Rooms Activities -->
         <activity
             android:name=".views.RoomListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <!-- Admin Room Activity -->
         <activity
             android:name=".views.AdminRoomsActivity"
             android:exported="false"
@@ -45,7 +49,9 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity> <!-- RoomClickedActivity -->
+        </activity>
+
+        <!-- Room Clicked Activity -->
         <activity
             android:name=".views.RoomClickedActivity"
             android:exported="false"
@@ -53,7 +59,94 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity> <!-- Settings -->
+        </activity>
+
+        <!-- Admin Profile Activity -->
+        <activity
+            android:name=".views.AdminProfileActivity"
+            android:exported="false"
+            android:parentActivityName=".views.RoomListActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <!-- Admin - Info Card -->
+        <activity
+            android:name=".views.Cards.Admin_InfoCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <!-- Admin - Manage Rooms Card -->
+        <activity
+            android:name=".views.Cards.Admin_ManageRoomsCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <!-- Admin - User List Card -->
+        <activity
+            android:name=".views.Cards.Admin_UserListCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <!-- Admin - History Card -->
+        <activity
+            android:name=".views.Cards.Admin_HistoryCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <!-- User Profile Activity -->
+        <activity
+            android:name=".views.UserProfileActivity"
+            android:exported="false"
+            android:parentActivityName=".views.RoomListActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <!-- User - Info Card -->
+        <activity
+            android:name=".views.Cards.User_InfoCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <!-- User - Favorite Room Card -->
+        <activity
+            android:name=".views.Cards.User_FavoriteRoomCard"
+            android:exported="false"
+            android:label="@string/title_activity_favorite_room_card"
+            android:theme="@style/Theme.FinalProject.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <!-- User - Friend List Card -->
+        <activity
+            android:name=".views.Cards.User_FriendCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <!-- Settings -->
         <activity
             android:name=".views.Settings.SettingsActivity"
             android:exported="false"
@@ -64,91 +157,5 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".views.RoomListActivity" />
         </activity>
-
-        <!-- AdminProfileActivityPage -->
-        <activity
-            android:name=".views.AdminProfileActivity"
-            android:exported="false"
-            android:parentActivityName=".views.RoomListActivity">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <!-- Admin_InfoCard -->
-        <activity
-            android:name=".views.Cards.Admin_InfoCard"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <!-- Admin_HistoryCard -->
-        <activity
-            android:name=".views.Cards.Admin_HistoryCard"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <!-- Admin_UserListCard -->
-        <activity
-            android:name=".views.Cards.Admin_UserListCard"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <!-- UserProfileActivityPage -->
-        <activity
-            android:name=".views.UserProfileActivity"
-            android:exported="false"
-            android:parentActivityName=".views.RoomListActivity">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <!-- User_InfoCard -->
-        <activity
-            android:name=".views.Cards.User_InfoCard"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <!-- User_FavoriteRoomCard -->
-        <activity
-            android:name=".views.Cards.User_FavoriteRoomCard"
-            android:exported="false"
-            android:label="@string/title_activity_favorite_room_card"
-            android:theme="@style/Theme.FinalProject.NoActionBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity> <!-- User_FriendCard -->
-        <activity
-            android:name=".views.Cards.User_FriendCard"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <!-- User_HistoryCard -->
-        <activity
-            android:name=".views.Cards.User_HistoryCard"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>

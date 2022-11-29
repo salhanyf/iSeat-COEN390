@@ -11,21 +11,32 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.finalproject.R;
 import com.example.finalproject.views.dialogfragments.insertAvatarDialogueFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Admin_InfoCard extends AppCompatActivity {
 
-    private Button avatarButton;
     private SharedPreferences sharedPreferences;
+    private Button avatarButton, editButton, saveButton, cancelButton;
+    private EditText usernameEditText;
+    private TextView adminEmail;
     private ImageView chosenAdminAvatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_info_card);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         this.sharedPreferences = getSharedPreferences("profile_Shared_Pref", MODE_PRIVATE);
         chosenAdminAvatar = findViewById(R.id.shownAdminAvatar);
@@ -37,16 +48,77 @@ public class Admin_InfoCard extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Admin Info");
 
+        usernameEditText = (EditText) findViewById(R.id.viewAdminUsername);
+        usernameEditText.setEnabled(false);
+        adminEmail = (TextView) findViewById(R.id.viewAdminEmail);
         avatarButton = findViewById(R.id.changeAdminAvatarButton);
+        editButton = (Button) findViewById(R.id.editButton);
+        saveButton = (Button) findViewById(R.id.saveButton);
+        cancelButton = (Button) findViewById(R.id.cancelButton);
 
-        // Add avatar selection dialogue fragment
-        avatarButton.setOnClickListener(v -> {
-            insertAvatarDialogueFragment avatarDialogueFragment = new insertAvatarDialogueFragment(false);
-            avatarDialogueFragment.show(getSupportFragmentManager(), "avatarDialogueFragment");
+        // set current user email
+        String email = mAuth.getCurrentUser().getEmail();
+        adminEmail.setText(email);
+
+        // go into all the keys under "users" and find the one that matches the current user's email
+        // set current user username
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String email = snapshot.child("email").getValue(String.class);
+                    if (email.equalsIgnoreCase(mAuth.getCurrentUser().getEmail())) {
+                        String username = snapshot.child("username").getValue(String.class);
+                        usernameEditText.setText(username);
+                        break;
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
         });
 
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                usernameEditText.setEnabled(true);
+                editButton.setVisibility(View.INVISIBLE);
+                saveButton.setVisibility(View.VISIBLE);
+                cancelButton.setVisibility(View.VISIBLE);
+                avatarButton.setVisibility(View.VISIBLE);
+
+                // Add avatar selection dialogue fragment
+                avatarButton.setOnClickListener(v -> {
+                    insertAvatarDialogueFragment avatarDialogueFragment = new insertAvatarDialogueFragment(false);
+                    avatarDialogueFragment.show(getSupportFragmentManager(), "avatarDialogueFragment");
+                });
+
+                //TODO: SAVE THE VALUUES ENTERED - ONLY USERNAME AND AVATAR (EMAIL CANNOT BE EDITED)
+                saveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+
+                //TODO: MAKE SURE NOTHING IS SAVED
+                cancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        usernameEditText.setEnabled(false);
+                        saveButton.setVisibility(View.INVISIBLE);
+                        cancelButton.setVisibility(View.INVISIBLE);
+                        avatarButton.setVisibility(View.INVISIBLE);
+                        editButton.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
+        });
     }
-    
+
     public void updateImage(){
         int adminImageID = sharedPreferences.getInt("ImageID", -1);
         if (adminImageID != -1) {

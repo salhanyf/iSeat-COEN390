@@ -1,81 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".views.Cards.Admin_InfoCard"
+    tools:layout_editor_absoluteY="25dp">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/adminToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/toolbar_background_color"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ToolbarTheme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/toolbar_title_room_clicked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/toolbar_text_color" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/shownAdminAvatar"
+        android:layout_width="253dp"
+        android:layout_height="231dp"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/avatar"
+        android:src="@drawable/defaultavatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adminToolbar" />
+
+    <Button
+        android:id="@+id/changeAdminAvatarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shownAdminAvatar"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/button_background_color"
+        android:textColor="@color/button_text_color"
+        android:textSize="14sp"
+        app:cornerRadius="20dp"
+        android:text="@string/change_avatar"
+        android:visibility="invisible"/>
 
     <LinearLayout
+        android:id="@+id/firstLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/adminToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
-
-        <ImageView
-            android:id="@+id/shownAdminAvatar"
-            android:layout_width="253dp"
-            android:layout_height="231dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/defaultavatar" />
-
-        <Button
-            android:id="@+id/changeAdminAvatarButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:text="Change Avatar" />
+        app:layout_constraintTop_toBottomOf="@+id/changeAdminAvatarButton"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/cardUsername"
-            android:layout_width="205dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:text="Admin Username"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+            android:fontFamily="monospace"
+            android:text="@string/username"
+            android:textColor="@color/text_header"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <TextView
+        <EditText
             android:id="@+id/viewAdminUsername"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:editable="true"
-            android:gravity="center_vertical"
-            android:text="@string/username"
-            android:textAlignment="center" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="205dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
-            android:text="Admin Email"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/card_text_border"
+            android:hint="@string/username"
+            android:inputType="text"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="@color/text_small"
+            android:autofillHints=""/>
 
         <TextView
-            android:id="@+id/viewAdminUsername2"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:editable="true"
-            android:gravity="center_vertical"
+            android:id="@+id/cardEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="monospace"
             android:text="@string/email"
-            android:textAlignment="center" />
-
+            android:textColor="@color/text_header"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/viewAdminEmail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/card_text_border"
+            android:gravity="center"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/email"
+            android:textColor="@color/text_small"
+            android:textSize="20sp" />
     </LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/firstLayout">
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/icons_color"
+            android:textColor="@color/button_text_color"
+            android:textSize="14sp"
+            app:cornerRadius="20dp"
+            android:text="@string/edit"
+            android:visibility="visible"/>
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/saveButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/button_background_color"
+            android:textColor="@color/button_text_color"
+            android:textSize="14sp"
+            app:cornerRadius="20dp"
+            android:text="@string/cancel"
+            android:visibility="invisible"/>
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/cancelButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/button_background_color"
+            android:textColor="@color/button_text_color"
+            android:textSize="14sp"
+            app:cornerRadius="20dp"
+            android:text="@string/save"
+            android:visibility="invisible"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

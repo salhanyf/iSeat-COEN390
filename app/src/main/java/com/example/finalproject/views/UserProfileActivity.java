@@ -16,7 +16,6 @@ import androidx.cardview.widget.CardView;
 import com.example.finalproject.R;
 import com.example.finalproject.views.Cards.User_FavoriteRoomCard;
 import com.example.finalproject.views.Cards.User_FriendCard;
-import com.example.finalproject.views.Cards.User_HistoryCard;
 import com.example.finalproject.views.Cards.User_InfoCard;
 import com.example.finalproject.views.Registration.WelcomeActivity;
 import com.example.finalproject.views.Settings.SettingsActivity;
@@ -24,12 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class UserProfileActivity extends AppCompatActivity {
 
-    private CardView userInfoCard;
-    private CardView userSettingsCard;
-    private CardView favoriteRoomCard;
-    private CardView friendCard;
-    private CardView historyCard;
-    private CardView userDeleteAccountCard;
+    private CardView userInfoCard, userFavoriteRoomsCard, userFriendsListCard, userSettingsCard, userDeleteAccountCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +35,9 @@ public class UserProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         userInfoCard = findViewById(R.id.cardViewUser);
+        userFavoriteRoomsCard = findViewById(R.id.cardViewFavorite);
+        userFriendsListCard = findViewById(R.id.cardViewFriend);
         userSettingsCard = findViewById(R.id.cardViewSettings);
-        favoriteRoomCard = findViewById(R.id.cardViewFavorite);
-        friendCard = findViewById(R.id.cardViewFriend);
         userDeleteAccountCard = findViewById(R.id.cardViewDeleteUserAccount);
 
         // Go to user info activity
@@ -52,25 +46,19 @@ public class UserProfileActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Go to user settings activity
-        userSettingsCard.setOnClickListener(v -> {
-            Intent intent = new Intent(UserProfileActivity.this, SettingsActivity.class);
-            startActivity(intent);
-        });
-
-        // Go to favorite room activity
-        favoriteRoomCard.setOnClickListener(v -> {
+        // Go to user favorite rooms activity
+        userFavoriteRoomsCard.setOnClickListener(v -> {
             Intent intent = new Intent(UserProfileActivity.this, User_FavoriteRoomCard.class);
             startActivity(intent);
         });
 
-        // Go to friend activity
-        friendCard.setOnClickListener(v -> {
+        // Go to user friends list activity
+        userFriendsListCard.setOnClickListener(v -> {
             Intent intent = new Intent(UserProfileActivity.this, User_FriendCard.class);
             startActivity(intent);
         });
 
-        // User settings card
+        // Go to user settings activity
         userSettingsCard.setOnClickListener(v -> {
             Intent intent = new Intent(UserProfileActivity.this, SettingsActivity.class);
             startActivity(intent);

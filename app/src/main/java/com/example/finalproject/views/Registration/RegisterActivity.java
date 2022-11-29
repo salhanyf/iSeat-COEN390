@@ -24,7 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private EditText signupUsername, signupEmail, signupPassword, signupPasswordRepeat, adminCodeSignup;
-    private RadioButton anAdmin, notAnAdmin;
+    private RadioButton anAdmin;
     private Button signupCreateAccountButton, loginRedirectButton;
 
     @Override
@@ -34,25 +34,14 @@ public class RegisterActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        if (auth.getCurrentUser() != null) {
-            Toast.makeText(this, "User " + auth.getCurrentUser().getEmail() + " already signed in!", Toast.LENGTH_SHORT).show();
-            finish();
-        }
-
         signupUsername = findViewById(R.id.usernameSignup);
         signupEmail = findViewById(R.id.emailSignup);
         signupPassword = findViewById(R.id.passwordSignup);
         signupPasswordRepeat = findViewById(R.id.passwordRepeatSignup);
         anAdmin = findViewById(R.id.adminYes);
-        //notAnAdmin = findViewById(R.id.adminNo);
         adminCodeSignup = findViewById(R.id.adminCodeSignup);
         signupCreateAccountButton = findViewById(R.id.createAccountButton);
         loginRedirectButton = findViewById(R.id.loginRedirect);
-
-        loginRedirectButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
-        });
 
         signupCreateAccountButton.setOnClickListener(v -> {
             String username = signupUsername.getText().toString().trim();
@@ -86,8 +75,12 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(this, "User Registration Failed", Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
+        loginRedirectButton.setOnClickListener(v -> {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        });
+    }
 
     private boolean checkErrors(String username, String email, String password, String passwordRepeat, String adminPasswordEntered) {
         boolean err = false;

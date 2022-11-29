@@ -20,12 +20,7 @@ import com.example.finalproject.views.Settings.SettingsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 public class AdminProfileActivity extends AppCompatActivity {
 
-    private CardView adminInfoCard;
-    private CardView adminManageRoomsCard;
-    private CardView userListCard;
-    private CardView adminHistoryCard;
-    private CardView adminSettingsCard;
-    private CardView adminDeleteAccountCard;
+    private CardView adminInfoCard, adminManageRoomsCard, adminUserListCard, adminHistoryCard, adminSettingsCard, adminDeleteAccountCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +33,7 @@ public class AdminProfileActivity extends AppCompatActivity {
 
         adminInfoCard = findViewById(R.id.cardViewAdminInfo);
         adminManageRoomsCard = findViewById(R.id.cardViewManageRooms);
-        userListCard = findViewById(R.id.cardViewUserList);
+        adminUserListCard = findViewById(R.id.cardViewUserList);
         adminHistoryCard = findViewById(R.id.cardViewAdminHistory);
         adminSettingsCard = findViewById(R.id.cardViewAdminSettings);
         adminDeleteAccountCard = findViewById(R.id.cardViewDeleteAdminAccount);
@@ -62,7 +57,7 @@ public class AdminProfileActivity extends AppCompatActivity {
         });
 
         //user list card
-        userListCard.setOnClickListener(new View.OnClickListener() {
+        adminUserListCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(AdminProfileActivity.this, Admin_UserListCard.class));
@@ -110,6 +105,5 @@ public class AdminProfileActivity extends AppCompatActivity {
                 alertDialog.show();
             }
         });
-
     }
 }

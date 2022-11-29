@@ -110,7 +110,6 @@ public class AdminRoomsActivity extends AppCompatActivity {
                 break;
 
             case R.id.signOutActionButton:
-                //TODO: signing out user
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(this, "Goodbye", Toast.LENGTH_SHORT).show();
                 Intent signOutIntent = new Intent(this, WelcomeActivity.class);
