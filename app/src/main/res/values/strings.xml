@@ -92,5 +92,8 @@
     <string name="cancel">CANCEL</string>
     <string name="save">SAVE</string>
     <string name="close">Close</string>
+    <string name="room_location">Room Location</string>
+    <string name="room">Room</string>
+    <string name="room_capacity">Room Capacity</string>
 
 </resources>
