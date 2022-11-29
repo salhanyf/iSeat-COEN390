@@ -26,6 +26,28 @@ public class FirebaseDatabaseHelper {
     Query query;
     ValueEventListener listener;
 
+    public static void deleteUser(String uEmail) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("users");
+        // search for the user with the email
+        myRef.orderByChild("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    Log.d("TAG", "onDataChange: " + ds.child("email").getValue() + " VS " + uEmail);
+                    if (ds.child("email").getValue().equals(uEmail)) {
+                        ds.getRef().removeValue();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("TAG", "onCancelled: " + databaseError.getMessage());
+            }
+        });
+    }
+
     public String[] getAdminInfo() {
         final String[] strings = new String[3];
         query = mReferenceProfiles.orderByChild("username").equalTo("admin");
@@ -116,7 +138,6 @@ public class FirebaseDatabaseHelper {
                 }
                 dataStatus.DataIsLoaded(rooms);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
@@ -136,13 +157,11 @@ public class FirebaseDatabaseHelper {
                     user.setKey(keyNode.getKey());
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
     }
-
 
     public DatabaseReference getReferenceProfiles() { return mReferenceProfiles; }
     public DatabaseReference getReferenceRooms() { return mReferenceRooms; }
