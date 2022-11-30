@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -15,7 +14,6 @@
         app:cardCornerRadius="20dp"
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true"
-        app:contentPadding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,37 +32,26 @@
                 app:checkedState="unchecked"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/textViewRoomAdminRoomsItem"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="8dp"
                 android:layout_weight="1"
                 android:gravity="start|center_vertical"
                 android:singleLine="true"
                 android:textColor="@color/text_small"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/ManageRoomsAdminName"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/buttonAddSensorAdminRoomsItem"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/checkBoxAdminRoomsItem"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/ManageRoomsAdminName"
-                android:layout_width="182dp"
-                android:layout_height="wrap_content"
-                android:text="Added By:"
-                app:layout_constraintStart_toEndOf="@+id/checkBoxAdminRoomsItem"
-                app:layout_constraintTop_toBottomOf="@+id/textViewRoomAdminRoomsItem" />
 
             <ImageButton
                 android:id="@+id/buttonAddSensorAdminRoomsItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/AdminRooms_ContentDescription_AddSensor"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -78,9 +65,9 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/AdminRooms_ContentDescription_RemoveSensor"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:srcCompat="@drawable/admin_ic_remove_sensor" />
 
 
