@@ -65,7 +65,7 @@ void updateRoom() {
 void updateWiFiStrength() {
   // get WiFi strength from WiFi module
   String strength = getWiFiStrength();
-  // upload the wifi strength to Firebase 
+  // upload the wifi strength to Firebase
   Firebase.setString(fbdo, "sensors/" + _mac + "/wifiStatus", strength);
   // check if WiFi Status is weak
   if ((strength == "Weak") || (strength == "Very Weak"))
@@ -77,11 +77,24 @@ void updateWiFiStrength() {
 String getWiFiStrength() {
   // get wifi strength
   long rssi = WiFi.RSSI();
+  String strength = "Offline";
   // return corresponding strength string
-  if (rssi > -70)       return "Strong";
-  else if (rssi > -80)  return "Medium";
-  else if (rssi > -90)  return "Weak";
-  else                  return "Very Weak";
+    if (rssi >= -50) {
+        strength = "Strong" + String(rssi) + "dBm";
+      return strength;
+    } else if (rssi >= -70) {
+        strength = "Good" + String(rssi) + "dBm";
+        return strength;
+    } else if (rssi >= -80) {
+        strength = "Weak" + String(rssi) + "dBm";
+        return strength;
+    } else if (rssi >= -100) {
+        strength = "Very Weak" + String(rssi) + "dBm";
+        return strength;
+    } else {
+        strength = "No Signal" + String(rssi) + "dBm";
+        return strength;
+    }
 }
 
 // updates the iSeat device node on Firebase
