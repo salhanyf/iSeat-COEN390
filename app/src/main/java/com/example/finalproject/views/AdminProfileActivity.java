@@ -35,7 +35,7 @@ public class AdminProfileActivity extends AppCompatActivity {
         adminInfoCard = findViewById(R.id.cardViewAdminInfo);
         adminManageRoomsCard = findViewById(R.id.cardViewManageRooms);
         adminUserListCard = findViewById(R.id.cardViewUserList);
-        adminHistoryCard = findViewById(R.id.cardViewAdminHistory);
+        //adminHistoryCard = findViewById(R.id.cardViewAdminHistory);
         adminSettingsCard = findViewById(R.id.cardViewAdminSettings);
         adminDeleteAccountCard = findViewById(R.id.cardViewDeleteAdminAccount);
 
