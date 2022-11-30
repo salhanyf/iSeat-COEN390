@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
 
     private final List<Room> mRooms;
     private final Context context;
+    private static boolean isBookmarked;
 
     public RoomListRecyclerViewAdaptor(Context context, List<Room> mRooms) {
         this.context = context;
@@ -60,12 +62,29 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
         private final TextView mRoomName;
         private final TextView mRoomLocation;
         private final TextView mRoomCapacity;
+        private ImageView favoriteButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mRoomName = itemView.findViewById(R.id.textViewRecycler_topleft_users);
             mRoomLocation = itemView.findViewById(R.id.textViewRecyclerView_BottomLeft_users);
             mRoomCapacity = itemView.findViewById(R.id.textViewRecyclerView_BottomRight_users);
+            favoriteButton = itemView.findViewById(R.id.addToFavoriteButton);
+            favoriteButton.setImageResource(R.drawable.account_activity_bookmark_border);
+            isBookmarked = false;
+
+            favoriteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(isBookmarked){
+                        favoriteButton.setImageResource(R.drawable.account_activity_bookmark_border);
+                    }
+                    else{
+                        favoriteButton.setImageResource(R.drawable.account_activity_bookmark);
+                        isBookmarked = true;
+                    }
+                }
+            });
         }
 
         public void bind(Room room) {

@@ -18,8 +18,12 @@
         <entry key="app/src/debug/res/drawable-anydpi/ic_remove_room.xml" value="0.168" />
         <entry key="app/src/debug/res/drawable-anydpi/ic_remove_sensor.xml" value="0.168" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/account_activity_bookmark.xml" value="0.184" />
+        <entry key="app/src/main/res/drawable/account_activity_bookmark_border.xml" value="0.184" />
         <entry key="app/src/main/res/drawable/account_activity_ic_delete.xml" value="0.1075" />
         <entry key="app/src/main/res/drawable/account_activity_ic_edit.xml" value="0.182" />
+        <entry key="app/src/main/res/drawable/account_activity_ic_favorite.xml" value="0.212" />
+        <entry key="app/src/main/res/drawable/account_activity_ic_favorite_border.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/account_activity_ic_friends.xml" value="0.1075" />
         <entry key="app/src/main/res/drawable/account_activity_ic_history.xml" value="0.1075" />
         <entry key="app/src/main/res/drawable/account_activity_ic_manage_account.xml" value="0.1705" />
@@ -51,7 +55,7 @@
         <entry key="app/src/main/res/drawable/text_bubble_border.xml" value="0.240185546875" />
         <entry key="app/src/main/res/layout/activity_admin_history_card.xml" value="0.15476190476190477" />
         <entry key="app/src/main/res/layout/activity_admin_info_card.xml" value="0.2554347826086957" />
-        <entry key="app/src/main/res/layout/activity_admin_profile.xml" value="0.25482177734375" />
+        <entry key="app/src/main/res/layout/activity_admin_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_admin_rooms.xml" value="0.23975409836065573" />
         <entry key="app/src/main/res/layout/activity_admin_user_list_card.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_delete_account_card.xml" value="0.34479166666666666" />
@@ -74,7 +78,7 @@
         <entry key="app/src/main/res/layout/dialoguefragment_add_avatar.xml" value="0.2554347826086957" />
         <entry key="app/src/main/res/layout/login_test.xml" value="0.22288055419921876" />
         <entry key="app/src/main/res/layout/recyclerview_admin_rooms_item.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/recyclerview_room_list_item.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/recyclerview_room_list_item.xml" value="0.5803030395507813" />
         <entry key="app/src/main/res/layout/recyclerview_user_list_item.xml" value="0.45" />
         <entry key="app/src/main/res/layout/room_list_items.xml" value="0.1" />
         <entry key="app/src/main/res/layout/settings_activity.xml" value="0.20173611111111112" />
