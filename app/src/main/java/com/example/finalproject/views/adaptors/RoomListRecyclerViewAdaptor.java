@@ -2,6 +2,7 @@ package com.example.finalproject.views.adaptors;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.example.finalproject.views.RoomListActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -31,11 +33,13 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
 
     private final List<Room> mRooms;
     private final Context context;
-    private static boolean isBookmarked;
+//    private static boolean isBookmarked;
+    private String email;
 
     public RoomListRecyclerViewAdaptor(Context context, List<Room> mRooms) {
         this.context = context;
         this.mRooms = mRooms;
+        email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
     }
 
     @NonNull
@@ -48,7 +52,8 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(mRooms.get(position));
-        new FirebaseDatabaseHelper().listenToSensorsRoom(mRooms.get(position).getKey(), new UpdateCapacityTextView(holder.mRoomCapacity));
+        String roomKey = mRooms.get(position).getKey();
+        new FirebaseDatabaseHelper().listenToSensorsRoom(roomKey, new UpdateCapacityTextView(holder.mRoomCapacity));
 
         holder.itemView.setOnClickListener(v -> {
             // add the room key to the intent and start the activity
@@ -59,6 +64,43 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
             intent.putExtra("roomLocation", mRooms.get(holder.getAdapterPosition()).getLocation());
             context.startActivity(intent);
         });
+
+        holder.email = email;
+
+        DatabaseReference users = FirebaseDatabase.getInstance().getReference("users");
+        users.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    users.child(snap.getKey()).child("bookmarks").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot snap : snapshot.getChildren()) {
+                                if ((snap.getKey().equals(roomKey)) && ((Boolean) snap.getValue())) {
+                                    holder.favoriteButton.setImageResource(R.drawable.account_activity_bookmark);
+                                    holder.isBookmarked = true;
+                                }
+                                else {
+                                    holder.favoriteButton.setImageResource(R.drawable.account_activity_bookmark_border);
+                                    holder.isBookmarked = false;
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+
+//            favoriteButton.setImageResource(R.drawable.account_activity_bookmark_border);
     }
 
     @Override
@@ -70,8 +112,9 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
         private final TextView mRoomName;
         private final TextView mRoomLocation;
         private final TextView mRoomCapacity;
+        private boolean isBookmarked;
         private ImageView favoriteButton;
-        private String roomKey;
+        private String email;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,20 +122,24 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
             mRoomLocation = itemView.findViewById(R.id.textViewRecyclerView_BottomLeft_users);
             mRoomCapacity = itemView.findViewById(R.id.textViewRecyclerView_BottomRight_users);
             favoriteButton = itemView.findViewById(R.id.addToFavoriteButton);
-            favoriteButton.setImageResource(R.drawable.account_activity_bookmark_border);
             isBookmarked = false;
+        }
+
+        public void bind(Room room) {
+            mRoomName.setText(room.getName());
+            mRoomLocation.setText(room.getLocation());
+            mRoomCapacity.setText(room.getCapacity());
 
             favoriteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
                     if(isBookmarked){
                         favoriteButton.setImageResource(R.drawable.account_activity_bookmark_border);
                         FirebaseDatabase.getInstance().getReference("users").orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 for (DataSnapshot snap : snapshot.getChildren()) {
-                                    FirebaseDatabase.getInstance().getReference("users").child(snap.getKey()).child("bookmarks").child(roomKey).removeValue();
+                                    FirebaseDatabase.getInstance().getReference("users").child(snap.getKey()).child("bookmarks").child(room.getKey()).removeValue();
                                 }
                             }
 
@@ -110,7 +157,7 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 for (DataSnapshot snap : snapshot.getChildren()) {
-                                    FirebaseDatabase.getInstance().getReference("users").child(snap.getKey()).child("bookmarks").child(roomKey).setValue("");
+                                    FirebaseDatabase.getInstance().getReference("users").child(snap.getKey()).child("bookmarks").child(room.getKey()).setValue(true);
                                 }
                             }
 
@@ -124,13 +171,6 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
                     }
                 }
             });
-        }
-
-        public void bind(Room room) {
-            mRoomName.setText(room.getName());
-            mRoomLocation.setText(room.getLocation());
-            mRoomCapacity.setText(room.getCapacity());
-            roomKey = room.getKey();
         }
     }
 
