@@ -1,6 +1,7 @@
 package com.example.finalproject.views;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -29,6 +30,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class RoomListActivity extends AppCompatActivity {
@@ -148,6 +151,11 @@ public class RoomListActivity extends AppCompatActivity {
     private class UpdateRoomsRecyclerView implements FirebaseDatabaseHelper.DataStatusRoom {
         @Override
         public void DataIsLoaded(List<Room> rooms) {
+            Collections.sort(rooms, (left, right) -> {
+                if (left.getLocation().equals(right.getLocation()))
+                    return left.getName().compareTo(right.getName());
+                return left.getLocation().compareTo(right.getLocation());
+            });
             if (progressBar.getVisibility() != View.GONE) progressBar.setVisibility(View.GONE);
             mRecyclerView.setLayoutManager(new LinearLayoutManager(RoomListActivity.this));
             mRecyclerView.setAdapter(new RoomListRecyclerViewAdaptor(RoomListActivity.this, rooms));
