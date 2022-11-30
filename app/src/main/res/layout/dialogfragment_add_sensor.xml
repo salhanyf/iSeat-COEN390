@@ -65,8 +65,9 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:padding="10dp"
+
                 android:text="@string/AddSensor_TextView_SelectedRoom"
-                android:textColor="@color/text_grey"
+                android:textColor="@color/text_small"
                 android:textStyle="italic" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
