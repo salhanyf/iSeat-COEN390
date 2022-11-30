@@ -158,6 +158,15 @@
                 android:textColor="@color/text_small"
                 android:visibility="gone" />
 
+            <ImageButton
+                android:id="@+id/QrBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:src="@drawable/qr_code_scanner"
+                android:visibility="gone" />
+
             <Button
                 android:id="@+id/createAccountButton"
                 android:layout_width="match_parent"
