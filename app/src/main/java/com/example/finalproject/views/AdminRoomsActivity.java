@@ -32,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AdminRoomsActivity extends AppCompatActivity {
@@ -178,6 +179,11 @@ public class AdminRoomsActivity extends AppCompatActivity {
     private class UpdateAdminsRoomsRecyclerView implements FirebaseDatabaseHelper.DataStatusRoom {
         @Override
         public void DataIsLoaded(List<Room> rooms) {
+            Collections.sort(rooms, (left, right) -> {
+                if (left.getLocation().equals(right.getLocation()))
+                    return left.getName().compareTo(right.getName());
+                return left.getLocation().compareTo(right.getLocation());
+            });
             // simply pass list of rooms to new recyclerview
             setupRecyclerView(rooms);
         }
