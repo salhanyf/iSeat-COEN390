@@ -2,12 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_vertical">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/card_rooms_background"
@@ -64,21 +66,44 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textViewRecyclerView_BottomRight_users"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/montserrat_light"
-                android:text="TextView"
-                android:textAllCaps="true"
-                android:textColor="@color/text_small"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewRecyclerView_topRight_users" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRecyclerView_topRight_users">
+                <TextView
+                    android:id="@+id/textViewRecyclerView_BottomRight_users"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/montserrat_light"
+                    android:text="TextView"
+                    android:gravity="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/text_small"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/addToFavoriteButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewRecyclerView_topRight_users" />
+
+                <ImageView
+                    android:id="@+id/addToFavoriteButton"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:focusable="true"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="10dp"
+                    app:backgroundTint="@color/icons_color"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewRecyclerView_BottomRight_users"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:srcCompat="@drawable/account_activity_bookmark_border" />
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
