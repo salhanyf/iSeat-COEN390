@@ -36,10 +36,10 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
 //    private static boolean isBookmarked;
     private String email;
 
-    public RoomListRecyclerViewAdaptor(Context context, List<Room> mRooms) {
+    public RoomListRecyclerViewAdaptor(Context context, List<Room> mRooms, String email) {
         this.context = context;
         this.mRooms = mRooms;
-        email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        this.email = email;
     }
 
     @NonNull

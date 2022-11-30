@@ -156,9 +156,15 @@ public class RoomListActivity extends AppCompatActivity {
                     return left.getName().compareTo(right.getName());
                 return left.getLocation().compareTo(right.getLocation());
             });
+
+            String email = "";
+
+            if (FirebaseAuth.getInstance().getCurrentUser() != null)
+             email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
             if (progressBar.getVisibility() != View.GONE) progressBar.setVisibility(View.GONE);
             mRecyclerView.setLayoutManager(new LinearLayoutManager(RoomListActivity.this));
-            mRecyclerView.setAdapter(new RoomListRecyclerViewAdaptor(RoomListActivity.this, rooms));
+            mRecyclerView.setAdapter(new RoomListRecyclerViewAdaptor(RoomListActivity.this, rooms, email));
         }
     }
 }
