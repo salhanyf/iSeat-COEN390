@@ -89,7 +89,7 @@ public class RemoveSensorDialogFragment extends DialogFragment {
             textView.setGravity(Gravity.CENTER);
             textView.setMinHeight(50);
             textView.setPadding(10, 10, 10, 10);
-            textView.setTextColor(getContext().getColor(R.color.black));
+            textView.setTextColor(getContext().getColor(R.color.text_small));
             textView.setOnClickListener(view -> (new ConfirmDialog(getContext(), sensors.get(position).getKey())).show());
             return super.getView(position, textView, parent);
         }

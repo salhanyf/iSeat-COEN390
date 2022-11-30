@@ -100,7 +100,7 @@ public class AddSensorDialogFragment extends DialogFragment {
             textViewSensor.setGravity(Gravity.CENTER);
             textViewSensor.setMinHeight(50);
             textViewSensor.setPadding(10, 10, 10, 10);
-            textViewSensor.setTextColor(getContext().getColor(R.color.black));
+            textViewSensor.setTextColor(getContext().getColor(R.color.text_small));
             // set the items onClickListener to open a Confirmation Dialog for adding sensor
             textViewSensor.setOnClickListener(view -> (new ConfirmDialog(getContext(), sensors.get(position).getKey())).show());
             return super.getView(position, textViewSensor, parent);
