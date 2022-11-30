@@ -2,9 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.finalproject">
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +25,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject"
         tools:targetApi="31">
+        <activity
+            android:name=".views.Cards.ScanQrCodeCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
 
         <!-- Registration Activities -->
         <activity
@@ -26,22 +42,20 @@
             android:exported="false" />
         <activity
             android:name=".views.Registration.LoginActivity"
-            android:exported="false" />
-
-        <!-- Rooms Activities -->
+            android:exported="false" /> <!-- Rooms Activities -->
         <activity
             android:name=".views.RoomListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-        <!-- Admin - Manage Rooms Card -->
+        </activity> <!-- Admin - Manage Rooms Card -->
         <activity
             android:name=".views.AdminRoomsActivity"
             android:exported="false"
@@ -49,9 +63,7 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-        <!-- Room Clicked Activity -->
+        </activity> <!-- Room Clicked Activity -->
         <activity
             android:name=".views.RoomClickedActivity"
             android:exported="false"
@@ -59,9 +71,7 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-        <!-- Admin Profile Activity -->
+        </activity> <!-- Admin Profile Activity -->
         <activity
             android:name=".views.AdminProfileActivity"
             android:exported="false"
@@ -69,36 +79,28 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-        <!-- Admin - Info Card -->
+        </activity> <!-- Admin - Info Card -->
         <activity
             android:name=".views.Cards.Admin_InfoCard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-        <!-- Admin - User List Card -->
+        </activity> <!-- Admin - User List Card -->
         <activity
             android:name=".views.Cards.Admin_UserListCard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-        <!-- Admin - History Card -->
+        </activity> <!-- Admin - History Card -->
         <activity
             android:name=".views.Cards.Admin_HistoryCard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-        <!-- User Profile Activity -->
+        </activity> <!-- User Profile Activity -->
         <activity
             android:name=".views.UserProfileActivity"
             android:exported="false"
@@ -106,18 +108,14 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-        <!-- User - Info Card -->
+        </activity> <!-- User - Info Card -->
         <activity
             android:name=".views.Cards.User_InfoCard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-        <!-- User - Favorite Room Card -->
+        </activity> <!-- User - Favorite Room Card -->
         <activity
             android:name=".views.Cards.User_FavoriteRoomCard"
             android:exported="false"
@@ -126,18 +124,14 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-        <!-- User - Friend List Card -->
+        </activity> <!-- User - Friend List Card -->
         <activity
             android:name=".views.Cards.User_FriendCard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-        <!-- Settings -->
+        </activity> <!-- Settings -->
         <activity
             android:name=".views.Settings.SettingsActivity"
             android:exported="false"
@@ -149,4 +143,5 @@
                 android:value=".views.RoomListActivity" />
         </activity>
     </application>
+
 </manifest>

@@ -6,12 +6,15 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finalproject.R;
+import com.example.finalproject.views.Cards.ScanQrCodeCard;
 import com.example.finalproject.views.RoomListActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -19,13 +22,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Date;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity  {
     private final String ADMIN_PASSWORD = "admin";
 
     private FirebaseAuth auth;
-    private EditText signupUsername, signupEmail, signupPassword, signupPasswordRepeat, adminCodeSignup;
+    private EditText signupUsername, signupEmail, signupPassword, signupPasswordRepeat;
     private RadioButton anAdmin;
     private Button signupCreateAccountButton, loginRedirectButton;
+    EditText adminCodeSignup;
+    ImageButton QrBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
         adminCodeSignup = findViewById(R.id.adminCodeSignup);
         signupCreateAccountButton = findViewById(R.id.createAccountButton);
         loginRedirectButton = findViewById(R.id.loginRedirect);
+        QrBtn = findViewById(R.id.QrBtn);
 
         signupCreateAccountButton.setOnClickListener(v -> {
             String username = signupUsername.getText().toString().trim();
@@ -116,10 +122,41 @@ public class RegisterActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.adminYes:
                 adminCodeSignup.setVisibility(View.VISIBLE);
+                QrBtn.setVisibility(View.VISIBLE);
+                QrBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivityForResult(new Intent(RegisterActivity.this, ScanQrCodeCard.class), 0);
+                    }
+                });
                 break;
             case R.id.adminNo:
                 adminCodeSignup.setVisibility(View.GONE);
+                QrBtn.setVisibility(View.GONE);
                 break;
         }
     }
+
+    public void setTextAdminCode(){
+
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        String QrCode = data.getStringExtra("adminCode");
+
+    if (!QrCode.isEmpty()) {
+        adminCodeSignup.setText(QrCode);
+
+    }
+        if(requestCode==0)
+        {
+            Toast.makeText(this, "Qr Code Failed", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
