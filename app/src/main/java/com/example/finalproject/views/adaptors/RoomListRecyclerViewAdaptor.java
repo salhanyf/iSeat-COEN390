@@ -66,41 +66,6 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
         });
 
         holder.email = email;
-
-        DatabaseReference users = FirebaseDatabase.getInstance().getReference("users");
-        users.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    users.child(snap.getKey()).child("bookmarks").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for (DataSnapshot snap : snapshot.getChildren()) {
-                                if ((snap.getKey().equals(roomKey)) && ((Boolean) snap.getValue())) {
-                                    holder.favoriteButton.setImageResource(R.drawable.account_activity_bookmark);
-                                    holder.isBookmarked = true;
-                                }
-                                else {
-                                    holder.favoriteButton.setImageResource(R.drawable.account_activity_bookmark_border);
-                                    holder.isBookmarked = false;
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-
-
-//            favoriteButton.setImageResource(R.drawable.account_activity_bookmark_border);
     }
 
     @Override
@@ -123,12 +88,44 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
             mRoomCapacity = itemView.findViewById(R.id.textViewRecyclerView_BottomRight_users);
             favoriteButton = itemView.findViewById(R.id.addToFavoriteButton);
             isBookmarked = false;
+            this.email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         }
 
         public void bind(Room room) {
             mRoomName.setText(room.getName());
             mRoomLocation.setText(room.getLocation());
             mRoomCapacity.setText(room.getCapacity());
+            String roomKey = room.getKey();
+
+            DatabaseReference users = FirebaseDatabase.getInstance().getReference("users");
+            users.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot snap : snapshot.getChildren()) {
+                        Log.d("TESTING", "user key: " + snap.getKey());
+                        users.child(snap.getKey()).child("bookmarks").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot snap : snapshot.getChildren()) {
+                                    if ((snap.getKey().equals(roomKey)) && ((Boolean) snap.getValue())) {
+                                        Log.d("TESTING", "Fav: " + snap.getKey());
+                                        favoriteButton.setImageResource(R.drawable.account_activity_bookmark);
+                                        isBookmarked = true;
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
 
             favoriteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
