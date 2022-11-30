@@ -35,7 +35,7 @@ public class AdminProfileActivity extends AppCompatActivity {
         adminInfoCard = findViewById(R.id.cardViewAdminInfo);
         adminManageRoomsCard = findViewById(R.id.cardViewManageRooms);
         adminUserListCard = findViewById(R.id.cardViewUserList);
-        adminHistoryCard = findViewById(R.id.cardViewAdminHistory);
+        //adminHistoryCard = findViewById(R.id.cardViewAdminHistory);
         adminSettingsCard = findViewById(R.id.cardViewAdminSettings);
         adminDeleteAccountCard = findViewById(R.id.cardViewDeleteAdminAccount);
 
@@ -55,10 +55,10 @@ public class AdminProfileActivity extends AppCompatActivity {
         adminUserListCard.setOnClickListener(view -> startActivity(new Intent(AdminProfileActivity.this, Admin_UserListCard.class)));
 
         //history card
-        adminHistoryCard.setOnClickListener(view -> {
-            Intent intent = new Intent(AdminProfileActivity.this, Admin_HistoryCard.class);
-            startActivity(intent);
-        });
+//        adminHistoryCard.setOnClickListener(view -> {
+//            Intent intent = new Intent(AdminProfileActivity.this, Admin_HistoryCard.class);
+//            startActivity(intent);
+//        });
 
         //settings card
         adminSettingsCard.setOnClickListener(view -> startActivity(new Intent(AdminProfileActivity.this, SettingsActivity.class)));

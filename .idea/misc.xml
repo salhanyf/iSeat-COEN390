@@ -60,6 +60,8 @@
         <entry key="app/src/main/res/layout/activity_admin_user_list_card.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_delete_account_card.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/layout/activity_favorite_room_card.xml" value="0.34479166666666666" />
+        <entry key="app/src/main/res/layout/activity_friend_card.xml" value="0.21920289855072464" />
+        <entry key="app/src/main/res/layout/activity_history_card.xml" value="0.21920289855072464" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.14782608695652175" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.375" />
