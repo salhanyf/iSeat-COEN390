@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +16,9 @@ import com.example.finalproject.R;
 import com.example.finalproject.controllers.FirebaseDatabaseHelper;
 import com.example.finalproject.models.Room;
 import com.example.finalproject.models.Sensor;
+import com.example.finalproject.views.Registration.LoginActivity;
 import com.example.finalproject.views.RoomClickedActivity;
+import com.example.finalproject.views.RoomListActivity;
 
 import java.util.List;
 
@@ -78,9 +81,12 @@ public class RoomListRecyclerViewAdaptor extends RecyclerView.Adapter<RoomListRe
                 public void onClick(View view) {
                     if(isBookmarked){
                         favoriteButton.setImageResource(R.drawable.account_activity_bookmark_border);
+                        Toast.makeText(view.getContext(), "Room is removed from favourite", Toast.LENGTH_SHORT).show();
+                        isBookmarked = false;
                     }
                     else{
                         favoriteButton.setImageResource(R.drawable.account_activity_bookmark);
+                        Toast.makeText(view.getContext(), "Room saved", Toast.LENGTH_SHORT).show();
                         isBookmarked = true;
                     }
                 }
