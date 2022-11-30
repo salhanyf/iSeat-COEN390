@@ -153,10 +153,10 @@ public class RegisterActivity extends AppCompatActivity  {
         adminCodeSignup.setText(QrCode);
 
     }
-        if(requestCode==0)
-        {
-            Toast.makeText(this, "Qr Code Failed", Toast.LENGTH_SHORT).show();
-        }
+//        if(requestCode==0)
+//        {
+//            Toast.makeText(this, "Qr Code Failed", Toast.LENGTH_SHORT).show();
+//        }
     }
 
 }
