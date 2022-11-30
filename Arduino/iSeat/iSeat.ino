@@ -42,9 +42,9 @@ void setup() {
   hasRoom = false;            // flag for sensor assigned to room
 
   // set the following to immediately connect to a home Network for quick testing
-  // state = CONNECTING;
-  // _ssid = "MYNETWORKNAME";
-  // _pass = "myPassword123";
+  state = CONNECTING;
+  _ssid = "GOD&JESUS";
+  _pass = "@Khalkhali1.com";
 }
 
 // run state machine in loop

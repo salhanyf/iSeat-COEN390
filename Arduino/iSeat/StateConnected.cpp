@@ -68,7 +68,7 @@ void updateWiFiStrength() {
   // upload the wifi strength to Firebase
   Firebase.setString(fbdo, "sensors/" + _mac + "/wifiStatus", strength);
   // check if WiFi Status is weak
-  if ((strength == "Weak") || (strength == "Very Weak"))
+  if ((strength.substring(0,4) == "Weak") || (strength.substring(0,9) == "Very Weak"))
     Serial.println("WiFi Signal " + strength + "...");
   fbdo.clear();
 }

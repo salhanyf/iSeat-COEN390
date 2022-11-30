@@ -7,6 +7,7 @@
 */
 #include "Sensor.h"
 
+
 // when LOAD_CELL defined, a Load Cell sensor with amplifier (HX_711) is used in iSeat circuit
 // when LOAD_CELL undefined, a simpler Film sensor or test Push button iSeat circuit is used
 // #ifdef:  an LoadCell (amplifier) object/setup function are defined, as well as one version of sensorState()
@@ -40,11 +41,13 @@
       if (data > THRESHOLD) {
         Serial.print("Seat is taken, Current Pressure: ");
         Serial.println(data);
+        Firebase.setFloat(fbdo, "sensors/" + _mac + "/pressure", data);
         return false;
       }
       else {
         Serial.print("Seat is open, Current Pressure: ");
         Serial.println(data);
+        Firebase.setFloat(fbdo, "sensors/" + _mac + "/pressure", data);
         return true;
       }
     }

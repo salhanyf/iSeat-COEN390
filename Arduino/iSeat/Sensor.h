@@ -8,6 +8,7 @@
 
 // library for the HX711 amplifier used to read load cell
 #include <HX711_ADC.h>
+#include "States.h"
 
 /********** UNCOMMENT/COMMENT FOLLOWING LINE IF LOAD CELL USED/UNUSED **********/
 
@@ -22,7 +23,7 @@
 
 // macros for load cell setup
 #define CALIBRATION_VALUE   696.0 // calibration value for load cell
-#define STABILIZATION_TIME  2000  // time in milliseconds to stabilize sensor before reading
+#define STABILIZATION_TIME  4000  // time in milliseconds to stabilize sensor before reading
 
 // macro for seat open/taken threshold value
 #define THRESHOLD 1000
