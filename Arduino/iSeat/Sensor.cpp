@@ -41,13 +41,13 @@
       if (data > THRESHOLD) {
         Serial.print("Seat is taken, Current Pressure: ");
         Serial.println(data);
-        Firebase.setFloat(fbdo, "sensors/" + _mac + "/pressure", data);
+        // Firebase.setFloat(fbdo, "sensors/" + _mac + "/pressure", data);
         return false;
       }
       else {
         Serial.print("Seat is open, Current Pressure: ");
         Serial.println(data);
-        Firebase.setFloat(fbdo, "sensors/" + _mac + "/pressure", data);
+        // Firebase.setFloat(fbdo, "sensors/" + _mac + "/pressure", data);
         return true;
       }
     }

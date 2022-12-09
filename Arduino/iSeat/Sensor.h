@@ -12,7 +12,7 @@
 
 /********** UNCOMMENT/COMMENT FOLLOWING LINE IF LOAD CELL USED/UNUSED **********/
 
-#define LOAD_CELL
+// #define LOAD_CELL
 
 /*******************************************************************************/
 
