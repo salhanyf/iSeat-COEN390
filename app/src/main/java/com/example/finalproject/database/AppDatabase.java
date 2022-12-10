@@ -1,3 +1,6 @@
+/*
+    This file was used in beginning for local database, but stop being used when we migrated to firebase.
+*/
 package com.example.finalproject.database;
 
 import android.content.Context;
