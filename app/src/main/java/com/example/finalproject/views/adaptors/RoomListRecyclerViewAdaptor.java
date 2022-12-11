@@ -1,3 +1,14 @@
+/*
+    File:           RoomListRecyclerViewAdaptor.java
+    Authors:        Adnan Saab          #40075504
+                    Samson Kaller       #40136815
+                    Farah Salhany       #40074803
+                    Shahin Khalkhali    #40057384
+                    Shayan Khalkhali    #40059491
+                    Marwan Al-Ghaziri   #40126554
+    Description:    This class is the adaptor for the items in the recycler view on the Room List
+                    activity.
+*/
 package com.example.finalproject.views.adaptors;
 
 import android.content.Context;
@@ -17,9 +28,7 @@ import com.example.finalproject.R;
 import com.example.finalproject.controllers.FirebaseDatabaseHelper;
 import com.example.finalproject.models.Room;
 import com.example.finalproject.models.Sensor;
-import com.example.finalproject.views.Registration.LoginActivity;
 import com.example.finalproject.views.RoomClickedActivity;
-import com.example.finalproject.views.RoomListActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

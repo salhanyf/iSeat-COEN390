@@ -1,3 +1,14 @@
+/*
+    File:           UserListAdaptor.java
+    Authors:        Adnan Saab          #40075504
+                    Samson Kaller       #40136815
+                    Farah Salhany       #40074803
+                    Shahin Khalkhali    #40057384
+                    Shayan Khalkhali    #40059491
+                    Marwan Al-Ghaziri   #40126554
+    Description:    This class is the adaptor for the items in the recycler view on the User List
+                    card that admins can consult and see the registered users.
+*/
 package com.example.finalproject.views.adaptors;
 
 import android.util.Log;

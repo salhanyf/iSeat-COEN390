@@ -1,3 +1,14 @@
+/*
+    File:           AdminRoomsRecyclerViewAdaptor.java
+    Authors:        Adnan Saab          #40075504
+                    Samson Kaller       #40136815
+                    Farah Salhany       #40074803
+                    Shahin Khalkhali    #40057384
+                    Shayan Khalkhali    #40059491
+                    Marwan Al-Ghaziri   #40126554
+    Description:    This class is the adaptor for the items in the recycler view on the Admin rooms
+                    activity.
+*/
 package com.example.finalproject.views.adaptors;
 
 import android.view.LayoutInflater;
