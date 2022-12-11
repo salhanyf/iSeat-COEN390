@@ -1,3 +1,15 @@
+/*
+    File:           AdminRoomsActivity.java
+    Authors:        Adnan Saab          #40075504
+                    Samson Kaller       #40136815
+                    Farah Salhany       #40074803
+                    Shahin Khalkhali    #40057384
+                    Shayan Khalkhali    #40059491
+                    Marwan Al-Ghaziri   #40126554
+    Description:    This class controls items on the Admin Rooms activity. This is the page with the
+                    list of rooms managed by the currently logged in Admin. The admin can add/remove
+                    rooms as well as add/remove sensors from a room for the iSeat application.
+*/
 package com.example.finalproject.views;
 
 import androidx.annotation.NonNull;

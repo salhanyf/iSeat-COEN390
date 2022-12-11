@@ -1,3 +1,15 @@
+/*
+    File:           RoomClickedActivity.java
+    Authors:        Adnan Saab          #40075504
+                    Samson Kaller       #40136815
+                    Farah Salhany       #40074803
+                    Shahin Khalkhali    #40057384
+                    Shayan Khalkhali    #40059491
+                    Marwan Al-Ghaziri   #40126554
+    Description:    This class controls items on the Room Clicked activity. This is a page that pops
+                    up when a user clicks a room in the Room List. For now, details are hardcoded for
+                    popular Concordia buildings.
+*/
 package com.example.finalproject.views;
 
 import android.annotation.SuppressLint;

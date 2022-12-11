@@ -1,3 +1,17 @@
+/*
+    File:           RoomListActivity.java
+    Authors:        Adnan Saab          #40075504
+                    Samson Kaller       #40136815
+                    Farah Salhany       #40074803
+                    Shahin Khalkhali    #40057384
+                    Shayan Khalkhali    #40059491
+                    Marwan Al-Ghaziri   #40126554
+    Description:    This class controls items on the Room List activity. This is the main activity
+                    for the app. If a user has already logged in and opens the app, this page is
+                    displayed. If the user is not logged in, they will be sent to the welcome page
+                    to register/sign in before they can access this activity. Displays a list of rooms
+                    with location as well as the amount of available seating in each room.
+*/
 package com.example.finalproject.views;
 
 import android.content.Intent;
