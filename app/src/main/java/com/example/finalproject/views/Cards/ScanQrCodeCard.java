@@ -1,3 +1,14 @@
+/*
+    File:           ScanQrCodeCard.java
+    Authors:        Adnan Saab          #40075504
+                    Samson Kaller       #40136815
+                    Farah Salhany       #40074803
+                    Shahin Khalkhali    #40057384
+                    Shayan Khalkhali    #40059491
+                    Marwan Al-Ghaziri   #40126554
+    Description:    This class controls items on the card activity for the QR scanner when it scans
+                    an admin QR code to allow the user to create an admin account.
+*/
 package com.example.finalproject.views.Cards;
 
 import androidx.appcompat.app.AppCompatActivity;
