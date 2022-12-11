@@ -1,3 +1,15 @@
+/*
+    File:           SettingsActivity.java
+    Authors:        Adnan Saab          #40075504
+                    Samson Kaller       #40136815
+                    Farah Salhany       #40074803
+                    Shahin Khalkhali    #40057384
+                    Shayan Khalkhali    #40059491
+                    Marwan Al-Ghaziri   #40126554
+    Description:    This class controls items on the Settings activity. This includes light/dark mode,
+                    App permissions and notifications. These last two were in preparation for notifications,
+                    which in the end were not implemented.
+*/
 package com.example.finalproject.views.Settings;
 
 import android.content.DialogInterface;

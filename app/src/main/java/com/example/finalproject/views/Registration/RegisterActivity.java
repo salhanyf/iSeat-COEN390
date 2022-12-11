@@ -1,3 +1,14 @@
+/*
+    File:           RegisterActivity.java
+    Authors:        Adnan Saab          #40075504
+                    Samson Kaller       #40136815
+                    Farah Salhany       #40074803
+                    Shahin Khalkhali    #40057384
+                    Shayan Khalkhali    #40059491
+                    Marwan Al-Ghaziri   #40126554
+    Description:    This class controls items on the Register activity. Users can enter an email,
+                    username, password and admin code to register as a new user.
+*/
 package com.example.finalproject.views.Registration;
 
 import android.content.Intent;

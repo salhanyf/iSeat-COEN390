@@ -1,3 +1,14 @@
+/*
+    File:           WelcomeActivity.java
+    Authors:        Adnan Saab          #40075504
+                    Samson Kaller       #40136815
+                    Farah Salhany       #40074803
+                    Shahin Khalkhali    #40057384
+                    Shayan Khalkhali    #40059491
+                    Marwan Al-Ghaziri   #40126554
+    Description:    This class controls items on the Welcome activity. It is simply a nice page that
+                    pops up when user is not signed in, and has buttons for signing in or signing up.
+*/
 package com.example.finalproject.views.Registration;
 
 import androidx.appcompat.app.AppCompatActivity;
