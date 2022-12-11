@@ -1,3 +1,14 @@
+/*
+    File:           insertAvatarDialogFragment.java
+    Authors:        Adnan Saab          #40075504
+                    Samson Kaller       #40136815
+                    Farah Salhany       #40074803
+                    Shahin Khalkhali    #40057384
+                    Shayan Khalkhali    #40059491
+                    Marwan Al-Ghaziri   #40126554
+    Description:    This class controls items on the dialog fragment that allows users to select a
+                    profile pic for their account.
+*/
 package com.example.finalproject.views.dialogfragments;
 
 import static android.content.Context.MODE_PRIVATE;

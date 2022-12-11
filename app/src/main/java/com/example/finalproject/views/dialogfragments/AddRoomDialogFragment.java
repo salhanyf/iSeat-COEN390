@@ -1,3 +1,13 @@
+/*
+    File:           AddRoomDialogFragment.java
+    Authors:        Adnan Saab          #40075504
+                    Samson Kaller       #40136815
+                    Farah Salhany       #40074803
+                    Shahin Khalkhali    #40057384
+                    Shayan Khalkhali    #40059491
+                    Marwan Al-Ghaziri   #40126554
+    Description:    This class controls items on the dialog fragment for Admins to add a Room.
+*/
 package com.example.finalproject.views.dialogfragments;
 
 import android.app.AlertDialog;
@@ -26,10 +36,12 @@ public class AddRoomDialogFragment extends DialogFragment {
     private EditText editTextRoomName;
     private EditText editTextRoomLocation;
 
+    // constructor with admin emai argument
     public AddRoomDialogFragment(String adminEmail) {
         this.adminEmail = adminEmail;
     }
 
+    // on create view called when dialog fragment is displayed
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,9 +54,12 @@ public class AddRoomDialogFragment extends DialogFragment {
         return view;
     }
 
+    // setup user interface elements in dialog fragment
     private void setupUI(View view) {
+        // text inputs
         editTextRoomName = view.findViewById(R.id.editTextRoomName);
         editTextRoomLocation = view.findViewById(R.id.editTextRoomLocation);
+        // add room button
         ((Button) view.findViewById(R.id.buttonAddRoom)).setOnClickListener(v -> {
             String name = editTextRoomName.getText().toString();
             String location = editTextRoomLocation.getText().toString();
@@ -57,6 +72,7 @@ public class AddRoomDialogFragment extends DialogFragment {
         });
     }
 
+    // validate there is data entered
     private String checkInputErrors(String name, String location) {
         String err;
         err = name.equals("") ? "Please enter a room Name." : "";
@@ -64,6 +80,7 @@ public class AddRoomDialogFragment extends DialogFragment {
         return err;
     }
 
+    // confirmation dialog for adding room
     private class ConfirmDialog extends AlertDialog.Builder {
         public ConfirmDialog(Context context, Room room) {
             super(context);
